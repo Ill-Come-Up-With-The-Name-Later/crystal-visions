@@ -16,7 +16,9 @@ namespace Player
 
         void Update()
         {
-            _moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            _moveDirection = gameObject.transform.forward * Input.GetAxis("Vertical")
+                             + gameObject.transform.right * Input.GetAxis("Horizontal");
+
             gameObject.transform.position += Vector3.Normalize(_moveDirection) * _speed * Time.deltaTime;
         }
     }
