@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("Camera Settings")] 
     [SerializeField]
-    private float _mouseSensitivity = 550f;
+    private float _mouseSensitivity = 200f;
 
     [SerializeField]
     private float _maxAngle = 85f;

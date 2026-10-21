@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   _player: {fileID: 1873952427}
-  _mouseSensitivity: 200
-  _maxAngle: 75
+  _mouseSensitivity: 400
+  _maxAngle: 85
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7976755bcdc891419a51bf379d538d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
-  _speed: 5
+  _speed: 7.5
 --- !u!114 &1873952429
 MonoBehaviour:
   m_ObjectHideFlags: 0
