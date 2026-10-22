@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
 
-[Serializable]
-public abstract class TransitionCondition : MonoBehaviour
+public abstract class TransitionCondition : ScriptableObject
 {
     public abstract bool Evaluate(Entity entity, StateMachine stateMachine);
 }

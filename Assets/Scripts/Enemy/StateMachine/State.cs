@@ -1,31 +1,28 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public abstract class State : MonoBehaviour
+[CreateAssetMenu(menuName = "StateMachine/State Node")]
+public class StateNode : ScriptableObject
 {
+    [SerializeField]
+    private State _state;
+    
+    public State State { get => _state; }
+    
     [Header("Transitions")]
     [SerializeField]
-    protected List<Transition> _transitions;
+    private List<Transition> _transitions;
     
-    [Header("Debug (Do not edit")]
-    [SerializeField]
-    protected Entity _owner;
-    
-    public Entity Owner { get { return _owner; } }
-    
-    public List<Transition> Transitions { get { return _transitions; } }
-    
-    public virtual void OnEnter(StateMachine stateMachine, State previousState)
-    {
-        _owner = stateMachine.Owner;
-        Debug.Log("Entered " + name + " from " + previousState.name);
-    }
+    public IReadOnlyList<Transition> Transitions { get => _transitions; }
+}
 
-    public abstract void Tick(float deltaTime);
+public abstract class State : ScriptableObject
+{
+    public abstract void OnEnter(StateMachine stateMachine, State previousState);
 
-    public abstract void FixedTick(float deltaTime);
+    public abstract void Tick(StateMachine stateMachine, float deltaTime);
+
+    public abstract void FixedTick(StateMachine stateMachine, float deltaTime);
 
     public abstract void OnExit(StateMachine stateMachine, State nextState);
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/And Condition")]
 public class AndCondition : TransitionCondition
 {
     [Header("Conditions")]
@@ -11,6 +12,9 @@ public class AndCondition : TransitionCondition
 
     public override bool Evaluate(Entity entity, StateMachine stateMachine)
     {
+        if(_conditionOne == null || _conditionTwo == null)
+            return false;
+        
         return _conditionOne.Evaluate(entity, stateMachine) && _conditionTwo.Evaluate(entity, stateMachine);
     }
 }

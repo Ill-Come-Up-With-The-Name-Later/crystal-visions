@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public abstract class Transition : MonoBehaviour
+[CreateAssetMenu(menuName = "StateMachine/Transition/Transition")]
+public class Transition : ScriptableObject
 {
     [Header("Transition Condition")]
     [SerializeField]
@@ -11,7 +11,7 @@ public abstract class Transition : MonoBehaviour
     public TransitionCondition Condition { get { return _condition; } }
     
     [SerializeField]
-    protected State _next;
+    protected StateNode _next;
     
-    public State Next { get { return _next; } }
+    public StateNode Next { get { return _next; } }
 }

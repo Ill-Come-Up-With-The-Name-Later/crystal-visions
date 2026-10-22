@@ -22,6 +22,8 @@ public class EntityHealth : MonoBehaviour
     [SerializeField]
     private Entity _entity;
     
+    public float CurrentHealth { get { return _currentHealth; } }
+    
     void Start()
     {
         _entity = GetComponent<Entity>();

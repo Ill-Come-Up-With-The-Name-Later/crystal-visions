@@ -1,20 +1,21 @@
+using System;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
     [Header("State Machine Settings")]
     [SerializeField]
-    private State _startState;
+    private StateNode _startState;
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
     private Entity _owner;
-
-    [SerializeField]
-    private State _currentState;
     
     [SerializeField]
-    private State _previousState;
+    private StateNode _currentState;
+
+    [SerializeField]
+    private StateNode _previousState;
 
     [SerializeField]
     private float _timeInState;
@@ -30,39 +31,60 @@ public class StateMachine : MonoBehaviour
     
     void Start()
     {
-        if(_startState != null)
-            _currentState = _startState;
+        if (_startState == null || _startState.State == null)
+            return;
+        
+        _currentState = _startState;
+        _currentState.State.OnEnter(this, null);
     }
     
     void Update()
     {
-        if (_currentState != null)
+        _timeInState += Time.deltaTime;
+        
+        if (_currentState?.State == null)
+            return;
+        
+        _currentState.State.Tick(this, Time.deltaTime);
+        
+        foreach (var transition in _currentState.Transitions)
         {
-            _timeInState += Time.deltaTime;
+            if (transition == null)
+                continue;
             
-            foreach (var transition in _currentState.Transitions)
-            {
-                if (transition == null)
-                    continue;
+            if(transition.Condition == null)
+                continue;
+            
+            if(transition.Next == null || transition.Next.State == null)
+                continue;
 
-                if (transition.Condition.Evaluate(_owner, this))
-                {
-                    State next = transition.Next;
-                    
-                    if (next != null && next != _currentState)
-                        SwapStates(next);
-                }
+            if (transition.Condition.Evaluate(_owner, this))
+            {
+                StateNode next = transition.Next;
+                SwapStates(next);
+                break;
             }
         }
     }
 
-    private void SwapStates(State next)
+    private void FixedUpdate()
     {
-        _currentState.OnExit(this, next);
+        if (_currentState?.State == null)
+            return;
+        
+        _currentState.State.FixedTick(this, Time.fixedDeltaTime);
+    }
+
+    private void SwapStates(StateNode next)
+    {
+        if (next == null || next == _currentState || next.State == null)
+            return;
+        
+        _currentState.State.OnExit(this, next.State);
         _previousState = _currentState;
-                        
+        
         _currentState = next;
-        _currentState.OnEnter(this, _previousState);
+        _currentState.State.OnEnter(this, _previousState.State);
         _timeInState = 0;
     }
 }
