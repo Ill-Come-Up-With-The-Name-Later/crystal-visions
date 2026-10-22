@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour
 {
@@ -13,10 +14,20 @@ public class EntityHealth : MonoBehaviour
     [Header("Invulnerability")]
     [SerializeField]
     private bool _invulnerable;
+
+    [Header("Debug (Do not edit)")]
+    [SerializeField]
+    private Slider _healthbar;
     
     void Start()
     {
         _currentHealth = _maxHealth;
+        _healthbar = gameObject.GetComponentInChildren<Slider>();
+        
+        if(_healthbar == null)
+            Debug.LogError("Health bar not found on " + gameObject.name);
+        
+        _healthbar.value = 1f;
     }
     
     void Update()
@@ -40,11 +51,14 @@ public class EntityHealth : MonoBehaviour
         
         if (_currentHealth <= 0)
             Die();
+
+        _healthbar.value = _currentHealth / _maxHealth;
     }
 
     public void Heal(float heal)
     {
         _currentHealth += heal;
+        _healthbar.value = _currentHealth / _maxHealth;
     }
 
     public void Die()

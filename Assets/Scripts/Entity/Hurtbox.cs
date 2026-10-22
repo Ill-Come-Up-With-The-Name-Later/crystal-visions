@@ -38,7 +38,7 @@ public class Hurtbox : MonoBehaviour
             Entity otherParent = otherHitbox.Parent;
             
             if (otherParent != _parent)
-                Debug.Log("Hurtbox hit by " + otherParent.name);
+                Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
         }
     }
 }
