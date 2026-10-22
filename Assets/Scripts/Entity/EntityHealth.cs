@@ -10,6 +10,8 @@ public class EntityHealth : MonoBehaviour
     [SerializeField] 
     private float _currentHealth;
     
+    [Header("Invulnerability")]
+    [SerializeField]
     private bool _invulnerable;
     
     void Start()
@@ -29,7 +31,7 @@ public class EntityHealth : MonoBehaviour
         _invulnerable = false;
     }
 
-    public void TakeDamage(float damage, IDamageable source)
+    public void TakeDamage(float damage, Entity source)
     {
         if(_invulnerable) 
             return;

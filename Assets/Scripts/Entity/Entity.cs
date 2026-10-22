@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Entity : MonoBehaviour, IDamageable
+public class Entity : MonoBehaviour
 {
     private EntityHealth _health;
+    
+    public EntityHealth Health { get { return _health; } }
     
     void Start()
     {

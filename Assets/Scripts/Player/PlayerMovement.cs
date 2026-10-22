@@ -16,10 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody.linearVelocity = new Vector3(0, 0, 0);
-        
         _moveDirection = gameObject.transform.forward * Input.GetAxis("Vertical")
                          + gameObject.transform.right * Input.GetAxis("Horizontal");
+        
+        //Debug.DrawRay(gameObject.transform.position, _moveDirection, Color.red);
         
         _rigidbody.MovePosition(_rigidbody.position + 
                                 (Vector3.Normalize(_moveDirection) * _speed) * Time.deltaTime);
