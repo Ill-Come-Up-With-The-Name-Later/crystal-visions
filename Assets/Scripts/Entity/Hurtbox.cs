@@ -18,10 +18,7 @@ public class Hurtbox : MonoBehaviour
         
         if(_collider == null)
             Debug.LogWarning("No collider found");
-    }
-    
-    void Start()
-    {
+        
         if(_parent == null) 
             Debug.LogWarning("No parent found");
     }
