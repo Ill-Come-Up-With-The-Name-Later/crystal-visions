@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed;
+    private Player _player;
     
     private Vector3 _moveDirection;
     
@@ -12,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _player = GetComponent<Player>();
     }
 
     void FixedUpdate()
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.DrawRay(gameObject.transform.position, _moveDirection, Color.red);
         
         _rigidbody.MovePosition(_rigidbody.position + 
-                                (Vector3.Normalize(_moveDirection) * _speed) * Time.deltaTime);
+                                (Vector3.Normalize(_moveDirection) * _player.Stats.speed) * Time.deltaTime);
     }
 
     void Update()

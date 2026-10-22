@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 194694090}
   - component: {fileID: 194694089}
   - component: {fileID: 194694088}
+  - component: {fileID: 194694094}
   m_Layer: 0
   m_Name: HitboxTestEntity
   m_TagString: Untagged
@@ -152,10 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6213727b43464fa8ba0029f7aaa223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 50
   _currentHealth: 0
   _invulnerable: 0
+  _maxHealth: 0
   _healthbar: {fileID: 0}
+  _entity: {fileID: 0}
 --- !u!114 &194694089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089980fec3c34ad8b66bb14f08b68137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
+  _stats: {fileID: 11400000, guid: a3186820d1acc1e4b8eb06b86e36afd1, type: 2}
+  _health: {fileID: 0}
 --- !u!135 &194694090
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -263,6 +267,23 @@ Transform:
   - {fileID: 1902318635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194694094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194694087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e334b1390d9c2438285dab0255580c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateMachine
+  _startState: {fileID: 0}
+  _owner: {fileID: 0}
+  _currentState: {fileID: 0}
+  _previousState: {fileID: 0}
+  _timeInState: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,10 +762,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6213727b43464fa8ba0029f7aaa223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 500
   _currentHealth: 0
   _invulnerable: 0
+  _maxHealth: 0
   _healthbar: {fileID: 0}
+  _entity: {fileID: 0}
 --- !u!114 &1057360322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,6 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c2e2eb71a92ee45b00d7bf0c92494b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crystal
+  _stats: {fileID: 11400000, guid: a3186820d1acc1e4b8eb06b86e36afd1, type: 2}
+  _health: {fileID: 0}
 --- !u!136 &1057360323
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1321,7 +1345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7976755bcdc891419a51bf379d538d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMovement
-  _speed: 7.5
 --- !u!114 &1873952429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,10 +1357,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6213727b43464fa8ba0029f7aaa223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 50
   _currentHealth: 0
   _invulnerable: 0
+  _maxHealth: 0
   _healthbar: {fileID: 0}
+  _entity: {fileID: 0}
 --- !u!114 &1873952430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12869447333e2c43be6229657d512a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  _stats: {fileID: 11400000, guid: a3186820d1acc1e4b8eb06b86e36afd1, type: 2}
+  _health: {fileID: 0}
 --- !u!54 &1873952431
 Rigidbody:
   m_ObjectHideFlags: 0

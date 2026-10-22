@@ -4,10 +4,7 @@ using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour
 {
-    [Header("Health Values")]
-    [SerializeField] 
-    private float _maxHealth;
-    
+    [Header("Health")]
     [SerializeField] 
     private float _currentHealth;
     
@@ -16,11 +13,20 @@ public class EntityHealth : MonoBehaviour
     private bool _invulnerable;
 
     [Header("Debug (Do not edit)")]
+    [SerializeField] 
+    private float _maxHealth;
+    
     [SerializeField]
     private Slider _healthbar;
     
+    [SerializeField]
+    private Entity _entity;
+    
     void Start()
     {
+        _entity = GetComponent<Entity>();
+        
+        _maxHealth = _entity.Stats.maxHealth;
         _currentHealth = _maxHealth;
         _healthbar = gameObject.GetComponentInChildren<Slider>();
         
@@ -53,6 +59,7 @@ public class EntityHealth : MonoBehaviour
             Die();
 
         _healthbar.value = _currentHealth / _maxHealth;
+        StartCoroutine(MakeInvulnerable(_entity.Stats.hitInvulnerability));
     }
 
     public void Heal(float heal)
