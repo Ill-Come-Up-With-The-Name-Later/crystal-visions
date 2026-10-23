@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hurtbox
   - Hitbox
+  - Crystal
   layers:
   - Default
   - TransparentFX

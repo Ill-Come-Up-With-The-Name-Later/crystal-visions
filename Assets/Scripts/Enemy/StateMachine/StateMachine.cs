@@ -40,11 +40,10 @@ public class StateMachine : MonoBehaviour
     
     void Update()
     {
-        _timeInState += Time.deltaTime;
-        
         if (_currentState?.State == null)
             return;
         
+        _timeInState += Time.deltaTime;
         _currentState.State.Tick(this, Time.deltaTime);
         
         foreach (var transition in _currentState.Transitions)

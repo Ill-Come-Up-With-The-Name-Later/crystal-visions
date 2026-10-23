@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Debug (Do not edit)")]
+    [SerializeField]
     private Player _player;
     
+    [SerializeField]
     private Vector3 _moveDirection;
     
+    [SerializeField]
     private Rigidbody _rigidbody;
     
     void Start()

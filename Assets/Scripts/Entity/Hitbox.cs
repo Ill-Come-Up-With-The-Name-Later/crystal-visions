@@ -10,17 +10,24 @@ public class Hitbox : MonoBehaviour
     private BoxCollider _collider;
     
     public Entity Parent { get { return _parent; } }
+
+    void Awake()
+    {
+        _parent = GetComponentInParent<Entity>();
+        _collider = GetComponent<BoxCollider>();
+        
+        if(_parent == null)
+            Debug.LogError("No parent found");
+        
+        if(_collider == null)
+            Debug.LogError("No collider found");
+    }
     
     void Start()
     {
-        _collider = GetComponent<BoxCollider>();
-        
-        if(_collider == null)
-            Debug.LogWarning("No collider found");
     }
     
     void Update()
     {
-        
     }
 }

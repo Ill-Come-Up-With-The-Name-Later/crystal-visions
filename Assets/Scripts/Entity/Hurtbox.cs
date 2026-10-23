@@ -15,6 +15,7 @@ public class Hurtbox : MonoBehaviour
     void Awake()
     {
         _collider = GetComponent<BoxCollider>();
+        _parent = GetComponentInParent<Entity>();
         
         if(_collider == null)
             Debug.LogWarning("No collider found");
