@@ -289,6 +289,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _stateMachine: {fileID: 0}
   _crystalPosition: {x: 0, y: 0, z: 0}
+  _playerPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &194694096
 Rigidbody:
   m_ObjectHideFlags: 0

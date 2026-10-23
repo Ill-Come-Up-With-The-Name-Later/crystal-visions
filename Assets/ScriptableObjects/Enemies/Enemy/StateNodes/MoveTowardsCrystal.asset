@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MoveTowardsCrystal
   m_EditorClassIdentifier: Assembly-CSharp::StateNode
   _state: {fileID: 11400000, guid: 206403a3807c42944ae1290d53f62ba5, type: 2}
-  _transitions: []
+  _transitions:
+  - {fileID: 11400000, guid: d6264afad2a3613428311e2563a259e4, type: 2}
