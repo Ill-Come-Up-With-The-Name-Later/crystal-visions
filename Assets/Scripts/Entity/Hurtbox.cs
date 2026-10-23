@@ -29,6 +29,31 @@ public class Hurtbox : MonoBehaviour
         if (!other.CompareTag("Hitbox"))
             return;
         
+        if (_parent.Health.Invulnerable)
+            return;
+        
+        Hitbox otherHitbox = other.gameObject.GetComponentInChildren<Hitbox>();
+        
+        if (otherHitbox != null)
+        {
+            Entity otherParent = otherHitbox.Parent;
+
+            if (otherParent != _parent)
+            {
+                _parent.Health.TakeDamage(otherParent.Stats.damage, otherParent);
+                Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (!other.CompareTag("Hitbox"))
+            return;
+        
+        if (_parent.Health.Invulnerable)
+            return;
+        
         Hitbox otherHitbox = other.gameObject.GetComponentInChildren<Hitbox>();
         
         if (otherHitbox != null)

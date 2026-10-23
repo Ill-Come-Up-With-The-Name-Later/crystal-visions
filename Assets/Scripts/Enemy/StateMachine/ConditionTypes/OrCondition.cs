@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/Or Condition")]
+[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/Composite/Or Condition")]
 public class OrCondition : TransitionCondition
 {
     [Header("Conditions")]

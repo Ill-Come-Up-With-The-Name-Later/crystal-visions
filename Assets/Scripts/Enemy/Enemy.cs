@@ -12,6 +12,13 @@ public class Enemy : Entity
     
     public Vector3 CrystalPosition { get { return _crystalPosition; } }
     
+    private Player _targetPlayer;
+    
+    [SerializeField]
+    private Vector3 _playerPosition;
+    
+    public Vector3 PlayerPosition { get { return _playerPosition; } }
+    
     void Awake()
     {
         _stateMachine = GetComponent<StateMachine>();
@@ -32,11 +39,17 @@ public class Enemy : Entity
 
     void Start()
     {
+        _targetPlayer = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();
         
         if(_crystal == null)
             Debug.LogError("No Crystal found");
         
         _crystalPosition = new Vector3(_crystal.transform.position.x, 0, _crystal.transform.position.z);
+    }
+
+    void Update()
+    {
+        _playerPosition = _targetPlayer.transform.position;
     }
 }

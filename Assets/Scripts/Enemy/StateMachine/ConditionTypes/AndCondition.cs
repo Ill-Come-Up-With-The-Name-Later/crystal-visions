@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/And Condition")]
+[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/Composite/And Condition")]
 public class AndCondition : TransitionCondition
 {
     [Header("Conditions")]

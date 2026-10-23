@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StateMachine/Transition/Transition")]
+[CreateAssetMenu(menuName = "StateMachine/Transition")]
 public class Transition : ScriptableObject
 {
     [Header("Transition Condition")]
