@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/Composite/Always True Condition")]
+[CreateAssetMenu(menuName = "StateMachine/Transition Conditions/Always True Condition")]
 public class AlwaysTrue : TransitionCondition
 {
     public override bool Evaluate(Entity entity, StateMachine stateMachine)
