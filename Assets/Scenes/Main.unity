@@ -244,8 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3777f176a969cc4c8d2ecc569ba7ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrystalBall
-  _closeRangeAttack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
-  _longRangeAttack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
+  _closeRangeAttack:
+    _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
+    _cooldown: 0.1
+  _longRangeAttack:
+    _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
+    _cooldown: 0.1
   _owner: {fileID: 0}
 --- !u!1 &194694087
 GameObject:
@@ -417,6 +421,7 @@ MonoBehaviour:
   _stateMachine: {fileID: 0}
   _crystalPosition: {x: 0, y: 0, z: 0}
   _playerPosition: {x: 0, y: 0, z: 0}
+  _attacks: []
 --- !u!54 &194694096
 Rigidbody:
   m_ObjectHideFlags: 0

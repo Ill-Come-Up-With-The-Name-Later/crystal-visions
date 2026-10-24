@@ -13,10 +13,10 @@ public class CrystalBall : MonoBehaviour
 {
     [Header("Crystal Ball Attacks")]
     [SerializeField]
-    private Attack _closeRangeAttack;
+    private AttackAndCooldown _closeRangeAttack;
     
     [SerializeField]
-    private Attack _longRangeAttack;
+    private AttackAndCooldown _longRangeAttack;
 
     [Header("Debug (Do not edit)")]
     [SerializeField]
@@ -34,8 +34,8 @@ public class CrystalBall : MonoBehaviour
 
     void Start()
     {
-        _attackCooldowns[_closeRangeAttack] = 0;
-        _attackCooldowns[_longRangeAttack] = 0;
+        _attackCooldowns[_closeRangeAttack.Attack] = 0;
+        _attackCooldowns[_longRangeAttack.Attack] = 0;
     }
     
     void Update()
@@ -46,19 +46,19 @@ public class CrystalBall : MonoBehaviour
             _attackCooldowns[attack] -= Time.deltaTime;
 
         if (Input.GetMouseButtonDown((int)MouseButton.Left))
-            Attack(_closeRangeAttack);
+            UseAttack(_closeRangeAttack);
 
         if (Input.GetMouseButtonDown((int)MouseButton.Right))
-            Attack(_longRangeAttack);
+            UseAttack(_longRangeAttack);
     }
 
-    public void Attack(Attack attack)
+    public void UseAttack(AttackAndCooldown attack)
     {
-        if (!CanUseAttack(attack))
+        if (!CanUseAttack(attack.Attack))
             return;
         
-        attack.PerformAttack(_owner);
-        _attackCooldowns[attack] = attack.cooldown;
+        attack.Attack.PerformAttack(_owner);
+        _attackCooldowns[attack.Attack] = attack.Cooldown;
     }
 
     public bool CanUseAttack(Attack attack)

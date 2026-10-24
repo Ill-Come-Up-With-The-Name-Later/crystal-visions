@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -18,6 +20,12 @@ public class Enemy : Entity
     private Vector3 _playerPosition;
     
     public Vector3 PlayerPosition { get { return _playerPosition; } }
+
+    [Header("Attacks")]
+    [SerializeField]
+    private List<AttackAndCooldown> _attacks;
+    
+    private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>();
     
     void Awake()
     {
@@ -46,10 +54,40 @@ public class Enemy : Entity
             Debug.LogError("No Crystal found");
         
         _crystalPosition = new Vector3(_crystal.transform.position.x, 0, _crystal.transform.position.z);
+        
+        foreach(AttackAndCooldown attack in _attacks)
+            _attackCooldowns[attack.Attack] = attack.Cooldown;
     }
 
     void Update()
     {
         _playerPosition = _targetPlayer.transform.position;
+        
+        List<Attack> attacks = _attackCooldowns.Keys.ToList();
+
+        foreach (Attack attack in attacks)
+            _attackCooldowns[attack] -= Time.deltaTime;
+    }
+
+    public void UseRandomAttack()
+    {
+        AttackAndCooldown attack = _attacks[Random.Range(0, _attacks.Count)];
+        
+        UseAttack(attack);
+    }
+    
+    public void UseAttack(AttackAndCooldown attack)
+    {
+        if (!CanUseAttack(attack.Attack))
+            return;
+        
+        attack.Attack.PerformAttack(this);
+        _attackCooldowns[attack.Attack] = attack.Cooldown;
+    }
+
+    public bool CanUseAttack(Attack attack)
+    {
+        _attackCooldowns.TryGetValue(attack, out var cooldown);
+        return cooldown <= 0;
     }
 }
