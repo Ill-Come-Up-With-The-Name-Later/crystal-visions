@@ -8,10 +8,10 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("Camera Settings")] 
     [SerializeField]
-    private float _mouseSensitivity = 200f;
+    private float _mouseSensitivity;
 
-    [SerializeField]
-    private float _maxAngle = 85f;
+    [SerializeField] 
+    private float _maxAngle;
     
     private float _xRotation = 0f;
     
@@ -29,7 +29,7 @@ public class PlayerCamera : MonoBehaviour
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -_maxAngle, _maxAngle);
         
-        transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        gameObject.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
 
         _player.Rotate(Vector3.up * mouseX);
     }
