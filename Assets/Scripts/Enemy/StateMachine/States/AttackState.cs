@@ -5,13 +5,6 @@ public class AttackState : State
 {
     public override void OnEnter(StateMachine stateMachine, State nextState)
     {
-        Entity owner = stateMachine.Owner;
-        
-        if (owner == null)
-            return;
-
-        if (owner is Enemy enemy)
-            enemy.UseRandomAttack();
     }
 
     public override void OnExit(StateMachine stateMachine, State nextState)
@@ -20,6 +13,13 @@ public class AttackState : State
 
     public override void FixedTick(StateMachine stateMachine, float deltaTime)
     {
+        Entity owner = stateMachine.Owner;
+        
+        if (owner == null)
+            return;
+
+        if (owner is Enemy enemy)
+            enemy.UseRandomAttack();
     }
 
     public override void Tick(StateMachine stateMachine, float deltaTime)

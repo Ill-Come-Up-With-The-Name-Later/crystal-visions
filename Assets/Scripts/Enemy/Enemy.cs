@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : Entity
 {
@@ -25,6 +27,11 @@ public class Enemy : Entity
     [SerializeField]
     private List<AttackAndCooldown> _attacks;
     
+    [SerializeField]
+    private float _globalAttackCooldown; // This applies to all of the enemy's attacks
+
+    public float GlobalAttackCooldown { get => _globalAttackCooldown; }
+
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>();
     
     void Awake()
@@ -67,6 +74,8 @@ public class Enemy : Entity
 
         foreach (Attack attack in attacks)
             _attackCooldowns[attack] -= Time.deltaTime;
+
+        _globalAttackCooldown = Math.Max(0, _globalAttackCooldown - Time.deltaTime);
     }
 
     public void UseRandomAttack()
@@ -74,6 +83,11 @@ public class Enemy : Entity
         AttackAndCooldown attack = _attacks[Random.Range(0, _attacks.Count)];
         
         UseAttack(attack);
+    }
+
+    public bool CanAttack()
+    {
+        return _globalAttackCooldown == 0;
     }
     
     public void UseAttack(AttackAndCooldown attack)
@@ -88,6 +102,6 @@ public class Enemy : Entity
     public bool CanUseAttack(Attack attack)
     {
         _attackCooldowns.TryGetValue(attack, out var cooldown);
-        return cooldown <= 0;
+        return cooldown <= 0 && _globalAttackCooldown == 0;
     }
 }

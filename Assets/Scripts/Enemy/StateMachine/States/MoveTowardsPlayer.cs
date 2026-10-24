@@ -30,6 +30,8 @@ public class MoveTowardPlayer : State
             {
                 enemy.Rigidbody.MovePosition(enemy.Rigidbody.position +
                                              Vector3.Normalize(dir) * enemy.Stats.speed * deltaTime);
+                Quaternion rot = Quaternion.LookRotation(dir);
+                enemy.transform.rotation = rot;
             }
         }
     }

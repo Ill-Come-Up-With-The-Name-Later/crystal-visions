@@ -421,7 +421,10 @@ MonoBehaviour:
   _stateMachine: {fileID: 0}
   _crystalPosition: {x: 0, y: 0, z: 0}
   _playerPosition: {x: 0, y: 0, z: 0}
-  _attacks: []
+  _attacks:
+  - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
+    _cooldown: 0.75
+  _globalAttackCooldown: 0.2
 --- !u!54 &194694096
 Rigidbody:
   m_ObjectHideFlags: 0
