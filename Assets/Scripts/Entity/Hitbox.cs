@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Hitbox : MonoBehaviour
 {
     [Header("Debug (Do not edit)")]
@@ -8,7 +9,7 @@ public class Hitbox : MonoBehaviour
     private Entity _parent;
     
     [SerializeField]
-    private BoxCollider _collider;
+    private Collider _collider;
     
     public Entity Parent { get { return _parent; } set { _parent = value; } }
 
@@ -17,7 +18,7 @@ public class Hitbox : MonoBehaviour
     void Awake()
     {
         _parent = GetComponentInParent<Entity>();
-        _collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<Collider>();
         
         if(_collider == null)
             Debug.LogError("No collider found");
@@ -29,27 +30,21 @@ public class Hitbox : MonoBehaviour
             return;
         
         Hurtbox otherHurtbox = other.gameObject.GetComponentInChildren<Hurtbox>();
-
+        
         if (otherHurtbox == null)
             return;
-
-        if (otherHurtbox.Parent == null)
-            return;
         
-        if (otherHurtbox.Parent.Health.Invulnerable)
+        Entity target = otherHurtbox.Parent;
+        
+        if (_parent == null)
             return;
 
-        if (otherHurtbox.Parent == _parent)
+        if (target == null || target == _parent)
             return;
-        
-        HitOccur?.Invoke(otherHurtbox.Parent, _parent);
-    }
-    
-    void Start()
-    {
-    }
-    
-    void Update()
-    {
+
+        if (target.Health == null || target.Health.Invulnerable)
+            return;
+
+        HitOccur?.Invoke(target, _parent);
     }
 }

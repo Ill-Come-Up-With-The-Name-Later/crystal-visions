@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Hurtbox : MonoBehaviour
 {
     [Header("Parent Entity")]
@@ -8,13 +9,13 @@ public class Hurtbox : MonoBehaviour
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
-    private BoxCollider _collider;
+    private Collider _collider;
 
     public Entity Parent { get { return _parent; } }
 
     void Awake()
     {
-        _collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<Collider>();
         _parent = GetComponentInParent<Entity>();
         
         if(_collider == null)
@@ -26,29 +27,23 @@ public class Hurtbox : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Hitbox"))
-            return;
-        
-        if (_parent.Health.Invulnerable)
-            return;
-        
-        Hitbox otherHitbox = other.gameObject.GetComponentInChildren<Hitbox>();
-        
-        if (otherHitbox != null)
-        {
-            Entity otherParent = otherHitbox.Parent;
-
-            if (otherParent != _parent)
-            {
-                _parent.Health.TakeDamage(otherParent.Stats.damage, otherParent);
-                Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
-            }
-        }
+        TryDamage(other);
     }
 
     void OnTriggerStay(Collider other)
     {
+       TryDamage(other);
+    }
+
+    private void TryDamage(Collider other)
+    {
         if (!other.CompareTag("Hitbox"))
+            return;
+        
+        if (_parent == null)
+            return;
+        
+        if(_parent.Health == null)
             return;
         
         if (_parent.Health.Invulnerable)
@@ -56,15 +51,18 @@ public class Hurtbox : MonoBehaviour
         
         Hitbox otherHitbox = other.gameObject.GetComponentInChildren<Hitbox>();
         
-        if (otherHitbox != null)
-        {
-            Entity otherParent = otherHitbox.Parent;
+        if (otherHitbox == null || otherHitbox.Parent == null)
+            return;
+        
+        Entity otherParent = otherHitbox.Parent;
+        
+        if (otherParent == null || otherParent == _parent)
+            return;
 
-            if (otherParent != _parent)
-            {
-                _parent.Health.TakeDamage(otherParent.Stats.damage, otherParent);
-                Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
-            }
-        }
+        if (otherParent.Stats == null)
+            return;
+        
+        _parent.Health.TakeDamage(otherParent.Stats.damage, otherParent);
+        //Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
     }
 }
