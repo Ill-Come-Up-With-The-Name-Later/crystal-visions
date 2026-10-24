@@ -15,3 +15,4 @@ MonoBehaviour:
   _state: {fileID: 11400000, guid: f55bb038f9f634240ba454cedf083a6a, type: 2}
   _transitions:
   - {fileID: 11400000, guid: 18a23f1ccc201f34ca1a69113b9c10b2, type: 2}
+  - {fileID: 11400000, guid: 82cbcbca3e7ad7d4390582f89a330103, type: 2}

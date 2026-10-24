@@ -13,8 +13,11 @@ public class InAttackRange : TransitionCondition
             if (stats == null)
                 return false;
 
-            double distance = Vector3.Distance(enemyPos, enemy.PlayerPosition);
-            return distance < stats.MaxRange && distance > stats.MinRange;
+            double playerDistance = Vector3.Distance(enemyPos, enemy.PlayerPosition);
+            double crystalDistance = Vector3.Distance(enemyPos, enemy.CrystalPosition);
+            
+            return (playerDistance < stats.MaxRange && playerDistance > stats.MinRange) ||
+                   (crystalDistance > stats.MinRange && crystalDistance < stats.MaxRange);
         }
 
         return false;
