@@ -18,6 +18,8 @@ public class PlayerInterface : MonoBehaviour
 
     private VisualElement _crystalHealthBar;
 
+    private Label _waveLabel;
+
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
@@ -27,24 +29,36 @@ public class PlayerInterface : MonoBehaviour
             .Q<VisualElement>("HealthbarFill");
         _crystalHealthBar = _document.rootVisualElement.Q<VisualElement>("CrystalHealthBackground")
             .Q<VisualElement>("HealthbarFill");
+        _waveLabel = _document.rootVisualElement.Q<VisualElement>("WaveDisplayBackground")
+            .Q<Label>("WaveDisplay");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
         
         if(_crystalHealthBar == null)
             Debug.LogError("No Crystal Health Bar found");
+        
+        if(_waveLabel == null)
+            Debug.LogError("Wave Label not found");
     }
 
     void Start()
     {
         _player.Health.OnDamageTaken += UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken += UpdateCrystalHealth;
+        WaveManager.Manager.OnWaveStarted += UpdateWave;
     }
 
     private void OnDestroy()
     {
         _player.Health.OnDamageTaken -= UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken -= UpdateCrystalHealth;
+        WaveManager.Manager.OnWaveStarted -= UpdateWave;
+    }
+
+    void UpdateWave(int wave)
+    {
+        _waveLabel.text = $"Wave: {(wave + 1).ToString()}";
     }
 
     void UpdatePlayerHealth(float damage)

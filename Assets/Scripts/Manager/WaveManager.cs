@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,10 +18,18 @@ public class WaveManager : MonoBehaviour
     private int _enemiesLeftInWave;
 
     public static WaveManager Manager;
+    
+    public event Action<int> OnWaveStarted;
+    public event Action<int> OnWaveEnded;
+
+    private void Awake()
+    {
+        if(Manager is null)
+            Manager = this;
+    }
 
     private void Start()
     {
-        Manager = this;
         EntityHealth.EntityDies += DecreaseEnemies;
         StartWave();
     }
@@ -35,6 +44,7 @@ public class WaveManager : MonoBehaviour
         EnemyWave wave = _waves[_currentWave];
         _enemiesLeftInWave = Random.Range(wave.MinEnemies, wave.MaxEnemies + 1);
         StartCoroutine(SpawnEnemies(wave));
+        OnWaveStarted?.Invoke(_currentWave);
     }
 
     void DecreaseEnemies(Entity entity)
@@ -46,6 +56,7 @@ public class WaveManager : MonoBehaviour
         {
             _currentWave++;
             StartWave();
+            OnWaveEnded?.Invoke(_currentWave);
         }
     }
 
