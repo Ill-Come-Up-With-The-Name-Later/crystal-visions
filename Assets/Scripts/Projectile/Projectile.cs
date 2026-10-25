@@ -7,6 +7,11 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     [Min(0.01f)]
     private float _maxLifespan;
+
+    [SerializeField]
+    private float _speed;
+    
+    public float Speed { get { return _speed; } }
     
     public float MaxLifespan { get { return _maxLifespan; } }
     

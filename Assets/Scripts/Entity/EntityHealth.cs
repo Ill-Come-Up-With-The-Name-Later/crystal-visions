@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,10 @@ public class EntityHealth : MonoBehaviour
     public bool Invulnerable { get { return _invulnerable; } }
     
     public float CurrentHealth { get { return _currentHealth; } }
+
+    public event Action<float> OnDamageTaken;
+
+    public event Action<float> OnHeal;
     
     void Start()
     {
@@ -64,12 +69,14 @@ public class EntityHealth : MonoBehaviour
 
         _healthbar.value = _currentHealth / _maxHealth;
         StartCoroutine(MakeInvulnerable(_entity.Stats.hitInvulnerability));
+        OnDamageTaken?.Invoke(damage);
     }
 
     public void Heal(float heal)
     {
         _currentHealth += heal;
         _healthbar.value = _currentHealth / _maxHealth;
+        OnHeal?.Invoke(heal);
     }
 
     public void Die()

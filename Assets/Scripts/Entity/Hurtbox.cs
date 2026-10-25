@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -12,6 +13,8 @@ public class Hurtbox : MonoBehaviour
     private Collider _collider;
 
     public Entity Parent { get { return _parent; } }
+
+    public event Action<Entity, Entity> HitOccur;
 
     void Awake()
     {
@@ -63,6 +66,7 @@ public class Hurtbox : MonoBehaviour
             return;
         
         _parent.Health.TakeDamage(otherParent.Stats.damage, otherParent);
+        HitOccur?.Invoke(otherParent, _parent);
         //Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
     }
 }
