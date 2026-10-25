@@ -10,6 +10,9 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     private float _speed;
+
+    [SerializeField]
+    private bool _hasGravity;
     
     public float Speed { get { return _speed; } }
     
@@ -43,6 +46,8 @@ public class Projectile : MonoBehaviour
             enabled = false;
             return;
         }
+        
+        _rigidbody.useGravity = _hasGravity;
         
         _hitbox.HitOccur += OnHit;
     }
@@ -110,6 +115,8 @@ public class Projectile : MonoBehaviour
             Destroy(launched.gameObject);
             return null;
         }
+        
+        Debug.Log($"Projectile {launched.name} launched by {launched.name}");
         
         launched._source = source;
         launched._rigidbody.linearVelocity = velocity;

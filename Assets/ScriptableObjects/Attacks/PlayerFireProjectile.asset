@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b4144648064132beab1777d9c11be8, type: 3}
+  m_Name: PlayerFireProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::FireProjectile
+  _projectile: {fileID: 4886158677887394352, guid: 5a222a39bbb70a94b94c70ada73ea268, type: 3}

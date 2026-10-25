@@ -30,6 +30,8 @@ public class PlayerCamera : MonoBehaviour
         _xRotation = Mathf.Clamp(_xRotation, -_maxAngle, _maxAngle);
         
         gameObject.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        
+        // Todo: Really fix the forward vector
 
         _player.Rotate(Vector3.up * mouseX);
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/Hitscan/Fire Projectile")]
+[CreateAssetMenu(menuName = "Attacks/Projectile/Fire Projectile")]
 public class FireProjectile : Attack
 {
     [Header("Projectile")]
