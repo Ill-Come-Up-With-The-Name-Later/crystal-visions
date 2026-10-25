@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4035b5af8ec588c4595f7bdf6cb7f619, type: 3}
   m_Name: RangedEnemyStats
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  maxHealth: 50
-  speed: 5
+  maxHealth: 75
+  speed: 6.5
   hitInvulnerability: 0.2
-  attackRange: 40
+  attackRange: 18
   damage: 10
-  MinRange: 30
-  MaxRange: 35
+  MinRange: 15
+  MaxRange: 20

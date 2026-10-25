@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
@@ -23,7 +25,12 @@ public class WaveManager : MonoBehaviour
         EntityHealth.EntityDies += DecreaseEnemies;
         StartWave();
     }
-    
+
+    private void OnDestroy()
+    {
+        EntityHealth.EntityDies -= DecreaseEnemies;
+    }
+
     public void StartWave()
     {
         EnemyWave wave = _waves[_currentWave];
