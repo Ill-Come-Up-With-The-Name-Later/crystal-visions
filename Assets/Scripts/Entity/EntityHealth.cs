@@ -8,6 +8,12 @@ public class EntityHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] 
     private float _currentHealth;
+
+    [SerializeField]
+    private float _healthBonus;
+
+    [SerializeField]
+    private float multiplicativeHealthBonus;
     
     [Header("Invulnerability")]
     [SerializeField]
@@ -26,6 +32,8 @@ public class EntityHealth : MonoBehaviour
     public bool Invulnerable { get { return _invulnerable; } }
     
     public float CurrentHealth { get { return _currentHealth; } }
+    
+    public float MaxHealth { get { return _maxHealth; } }
 
     public event Action<float> OnDamageTaken;
 
@@ -35,7 +43,7 @@ public class EntityHealth : MonoBehaviour
     {
         _entity = GetComponent<Entity>();
         
-        _maxHealth = _entity.Stats.maxHealth;
+        _maxHealth = (_entity.Stats.maxHealth + _healthBonus) * (1 + multiplicativeHealthBonus);
         _currentHealth = _maxHealth;
         _healthbar = gameObject.GetComponentInChildren<Slider>();
         

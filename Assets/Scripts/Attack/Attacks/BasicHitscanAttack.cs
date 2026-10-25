@@ -6,7 +6,7 @@ public class BasicHitscanAttack : Attack
     public override void PerformAttack(Entity source)
     {
         float range = source.Stats.attackRange;
-        float damage = source.Stats.damage;
+        float damage = source.Damage;
 
         RaycastHit[] hits = Physics.RaycastAll(source.transform.position,
             source.transform.forward, range);

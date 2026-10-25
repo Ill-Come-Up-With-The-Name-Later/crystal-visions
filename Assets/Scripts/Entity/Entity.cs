@@ -5,6 +5,28 @@ public class Entity : MonoBehaviour
     [Header("Entity Stats")]
     [SerializeField]
     protected EntityStats _stats;
+
+    [SerializeField]
+    [Min(0)]
+    protected float _damageBonus;
+
+    public float DamageBonus
+    {
+        get { return _damageBonus; } 
+        set { _damageBonus = value; }
+    }
+    
+    [SerializeField]
+    [Min(0)]
+    protected float _multiplicativeDamageBonus;
+
+    public float MultiplicativeDamageBonus
+    {
+        get { return _multiplicativeDamageBonus; } 
+        set { _multiplicativeDamageBonus = value; }
+    }
+    
+    public float Damage { get { return (_stats.damage + _damageBonus) * (1 + _multiplicativeDamageBonus); } }
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
@@ -19,7 +41,7 @@ public class Entity : MonoBehaviour
     
     public Rigidbody Rigidbody { get { return _rigidbody; } }
     
-    void Awake()
+    protected void Awake()
     {
         _health = GetComponent<EntityHealth>();
         
