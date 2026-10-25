@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb84aaf89b62f6438760c456e033f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  _maxLifespan: 5
-  _speed: 5
+  _maxLifespan: 3
+  _speed: 20
   _hasGravity: 0
   _rigidbody: {fileID: 0}
   _source: {fileID: 0}

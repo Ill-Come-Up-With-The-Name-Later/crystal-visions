@@ -23,5 +23,5 @@ public struct AttackAndCooldown
 
 public abstract class Attack : ScriptableObject
 {
-    public abstract void PerformAttack(Entity source);
+    public abstract void PerformAttack(Entity source, AttackContext context = null);
 }

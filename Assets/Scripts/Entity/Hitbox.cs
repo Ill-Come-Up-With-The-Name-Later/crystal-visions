@@ -41,10 +41,7 @@ public class Hitbox : MonoBehaviour
 
         if (target == null || target == _parent)
             return;
-
-        if (target.Health == null || target.Health.Invulnerable)
-            return;
-
+        
         HitOccur?.Invoke(target, _parent);
     }
 }

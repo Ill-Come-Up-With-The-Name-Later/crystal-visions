@@ -7,9 +7,17 @@ public class FireProjectile : Attack
     [SerializeField]
     private Projectile _projectile;
     
-    public override void PerformAttack(Entity source)
+    public override void PerformAttack(Entity source, AttackContext context = null)
     {
-        Projectile.LaunchProjectile(_projectile, 
-            source.transform.forward * _projectile.Speed, source);
+        if (context == null)
+        {
+            Projectile.LaunchProjectile(_projectile,
+                source.transform.forward * _projectile.Speed, source);
+        }
+        else
+        {
+            Projectile.LaunchProjectile(_projectile,
+                context.Forward * _projectile.Speed, source);
+        }
     }
 }

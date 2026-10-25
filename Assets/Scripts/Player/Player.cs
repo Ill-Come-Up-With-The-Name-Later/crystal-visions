@@ -6,6 +6,11 @@ public class Player : Entity
     private CrystalBall _crystalBall;
     
     public CrystalBall CrystalBall { get { return _crystalBall; } }
+    
+    [SerializeField]
+    private PlayerCamera _camera;
+    
+    public PlayerCamera Camera { get { return _camera; } }
 
     void Start()
     {
@@ -13,6 +18,11 @@ public class Player : Entity
         
         if(_health == null)
             Debug.LogError("No health found");
+        
+        _camera = GetComponentInChildren<PlayerCamera>();
+        
+        if(_camera == null)
+            Debug.LogError("No camera found");
         
         _rigidbody = GetComponent<Rigidbody>();
         

@@ -17,5 +17,5 @@ MonoBehaviour:
   hitInvulnerability: 0.2
   attackRange: 5
   damage: 10
-  MinRange: 2
-  MaxRange: 2.5
+  MinRange: 4
+  MaxRange: 5

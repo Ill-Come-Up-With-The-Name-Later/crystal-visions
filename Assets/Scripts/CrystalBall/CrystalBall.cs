@@ -56,8 +56,10 @@ public class CrystalBall : MonoBehaviour
     {
         if (!CanUseAttack(attack.Attack))
             return;
-        
-        attack.Attack.PerformAttack(_owner);
+
+        AttackContext context = new AttackContext();
+        context.Forward = _owner.Camera.transform.forward;
+        attack.Attack.PerformAttack(_owner, context);
         _attackCooldowns[attack.Attack] = attack.Cooldown;
     }
 

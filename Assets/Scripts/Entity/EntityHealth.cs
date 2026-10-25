@@ -38,6 +38,8 @@ public class EntityHealth : MonoBehaviour
     public event Action<float> OnDamageTaken;
 
     public event Action<float> OnHeal;
+
+    public event Action OnDeath;
     
     void Start()
     {
@@ -89,6 +91,7 @@ public class EntityHealth : MonoBehaviour
 
     public void Die()
     {
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 }

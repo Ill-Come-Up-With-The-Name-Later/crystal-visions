@@ -85,6 +85,7 @@ public class Projectile : MonoBehaviour
     
     private void OnHit(Entity hit, Entity source)
     {
+        //Debug.Log($"Projectile fired by {source.name} hit {hit.name}");
         OnProjectileHit(hit, source);
     }
     
@@ -94,7 +95,8 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnProjectileHit(Entity hit, Entity source)
     {
-        Debug.Log($"Projectile shot by {source.name} hit {hit.name}");
+        //Debug.Log($"Projectile shot by {source.name} hit {hit.name}");
+        _rigidbody.linearVelocity = Vector3.zero;
         Destroy(gameObject);
     }
 
@@ -108,7 +110,7 @@ public class Projectile : MonoBehaviour
         if (projectile == null || source == null)
             return null;
         
-        Projectile launched = Instantiate(projectile, source.transform.position, source.transform.rotation);
+        Projectile launched = Instantiate(projectile, source.transform.position + velocity.normalized, source.transform.rotation);
         
         if (launched._hitbox == null)
         {
@@ -116,11 +118,15 @@ public class Projectile : MonoBehaviour
             return null;
         }
         
-        Debug.Log($"Projectile {launched.name} launched by {launched.name}");
+        //Debug.Log($"Projectile {launched.name} launched by {source.name}");
         
         launched._source = source;
         launched._rigidbody.linearVelocity = velocity;
         launched._hitbox.Parent = source;
+        
+        Quaternion rotation = Quaternion.LookRotation(velocity.normalized);
+        launched.transform.rotation = rotation;
+        
         return launched;
     }
 }
