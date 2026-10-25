@@ -57,6 +57,8 @@ public class Enemy : Entity
     {
         _targetPlayer = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();
+
+        _health.OnDeath += Die;
         
         if(_crystal == null)
             Debug.LogError("No Crystal found");
@@ -66,6 +68,11 @@ public class Enemy : Entity
         
         foreach(AttackAndCooldown attack in _attacks)
             _attackCooldowns[attack.Attack] = attack.Cooldown;
+    }
+
+    void OnDestroy()
+    {
+        _health.OnDeath -= Die;
     }
 
     void Update()
@@ -78,6 +85,11 @@ public class Enemy : Entity
             _attackCooldowns[attack] -= Time.deltaTime;
 
         _globalAttackCooldown = Math.Max(0, _globalAttackCooldown - Time.deltaTime);
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
     public void UseRandomAttack()

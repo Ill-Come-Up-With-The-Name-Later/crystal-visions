@@ -10,4 +10,7 @@
     <ui:VisualElement name="WaveDisplayBackground" style="flex-grow: 1; width: 248px; height: 100px; background-color: rgba(105, 0, 255, 0.29); position: absolute; top: 1323px; left: 15px; -unity-text-align: middle-center; align-items: auto;">
         <ui:Label text="Wave:" name="WaveDisplay" style="height: auto; top: 10%; width: auto; font-size: 52px; background-color: rgba(0, 0, 0, 0.24); color: rgb(219, 219, 219); position: absolute; -unity-text-align: middle-center;"/>
     </ui:VisualElement>
+    <ui:VisualElement name="DeathLabelBackground" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.39); display: none;">
+        <ui:Label text="You lost. Press &apos;Space&apos; to Restart" style="background-color: rgba(255, 255, 255, 0); -unity-text-align: middle-center; color: rgb(255, 255, 255); font-size: 130px; -unity-font-style: bold;"/>
+    </ui:VisualElement>
 </ui:UXML>

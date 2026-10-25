@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class PlayerInterface : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerInterface : MonoBehaviour
 
     private Label _waveLabel;
 
+    private VisualElement _deathOverlay;
+
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
@@ -31,6 +34,7 @@ public class PlayerInterface : MonoBehaviour
             .Q<VisualElement>("HealthbarFill");
         _waveLabel = _document.rootVisualElement.Q<VisualElement>("WaveDisplayBackground")
             .Q<Label>("WaveDisplay");
+        _deathOverlay = _document.rootVisualElement.Q<VisualElement>("DeathLabelBackground");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -40,12 +44,16 @@ public class PlayerInterface : MonoBehaviour
         
         if(_waveLabel == null)
             Debug.LogError("Wave Label not found");
+        
+        if(_deathOverlay == null)
+            Debug.LogError("Death Overlay not found");
     }
 
     void Start()
     {
         _player.Health.OnDamageTaken += UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken += UpdateCrystalHealth;
+        GameManager.Instance.OnLoss += ShowDeathOverlay;
         WaveManager.Manager.OnWaveStarted += UpdateWave;
     }
 
@@ -53,7 +61,17 @@ public class PlayerInterface : MonoBehaviour
     {
         _player.Health.OnDamageTaken -= UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken -= UpdateCrystalHealth;
+        GameManager.Instance.OnLoss -= ShowDeathOverlay;
         WaveManager.Manager.OnWaveStarted -= UpdateWave;
+    }
+
+    void ShowDeathOverlay()
+    {
+        Debug.Log("Show death overlay");
+        _deathOverlay.style.display = DisplayStyle.Flex;
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void UpdateWave(int wave)

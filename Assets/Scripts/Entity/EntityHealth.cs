@@ -57,11 +57,6 @@ public class EntityHealth : MonoBehaviour
         _healthbar.value = 1f;
     }
     
-    void Update()
-    {
-        
-    }
-
     public IEnumerator MakeInvulnerable(float duration)
     {
         _invulnerable = true;
@@ -95,6 +90,5 @@ public class EntityHealth : MonoBehaviour
     {
         OnDeath?.Invoke();
         EntityDies?.Invoke(_entity);
-        Destroy(gameObject);
     }
 }

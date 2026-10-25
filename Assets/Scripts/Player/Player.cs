@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : Entity
@@ -12,12 +13,16 @@ public class Player : Entity
     
     public PlayerCamera Camera { get { return _camera; } }
 
+    public event Action OnPlayerDeath;
+
     void Start()
     {
         _health = GetComponent<EntityHealth>();
         
         if(_health == null)
             Debug.LogError("No health found");
+        
+        _health.OnDeath += OnDeath;
         
         _camera = GetComponentInChildren<PlayerCamera>();
         
@@ -30,5 +35,15 @@ public class Player : Entity
             Debug.LogError("No rigidbody found");
         
         _crystalBall = GetComponentInChildren<CrystalBall>();
+    }
+
+    private void OnDestroy()
+    {
+        _health.OnDeath -= OnDeath;
+    }
+
+    void OnDeath()
+    {
+        OnPlayerDeath?.Invoke();
     }
 }

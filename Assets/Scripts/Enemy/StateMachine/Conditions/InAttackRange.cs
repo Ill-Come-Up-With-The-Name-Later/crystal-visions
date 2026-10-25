@@ -16,8 +16,7 @@ public class InAttackRange : TransitionCondition
             double playerDistance = Vector3.Distance(enemyPos, enemy.PlayerPosition);
             double crystalDistance = Vector3.Distance(enemyPos, enemy.CrystalPosition);
             
-            return (playerDistance < stats.MaxRange && playerDistance > stats.MinRange) ||
-                   (crystalDistance > stats.MinRange && crystalDistance < stats.MaxRange);
+            return (playerDistance < stats.MaxRange) || (crystalDistance < stats.MaxRange);
         }
 
         return false;
