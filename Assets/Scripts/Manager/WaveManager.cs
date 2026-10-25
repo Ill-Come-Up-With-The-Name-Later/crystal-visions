@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -42,6 +41,12 @@ public class WaveManager : MonoBehaviour
     {
         if (entity is Enemy)
             _enemiesLeftInWave--;
+
+        if (_enemiesLeftInWave <= 0)
+        {
+            _currentWave++;
+            StartWave();
+        }
     }
 
     IEnumerator SpawnEnemies(EnemyWave wave)

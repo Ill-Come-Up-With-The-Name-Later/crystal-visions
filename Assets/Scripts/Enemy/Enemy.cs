@@ -61,7 +61,8 @@ public class Enemy : Entity
         if(_crystal == null)
             Debug.LogError("No Crystal found");
         
-        _crystalPosition = new Vector3(_crystal.transform.position.x, 0, _crystal.transform.position.z);
+        if(_crystal != null)
+            _crystalPosition = new Vector3(_crystal.transform.position.x, 0, _crystal.transform.position.z);
         
         foreach(AttackAndCooldown attack in _attacks)
             _attackCooldowns[attack.Attack] = attack.Cooldown;
