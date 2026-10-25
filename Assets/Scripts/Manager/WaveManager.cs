@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         Manager = this;
+        EntityHealth.EntityDies += DecreaseEnemies;
         StartWave();
     }
     
@@ -30,10 +31,18 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(SpawnEnemies(wave));
     }
 
+    void DecreaseEnemies(Entity entity)
+    {
+        if (entity is Enemy)
+            _enemiesLeftInWave--;
+    }
+
     IEnumerator SpawnEnemies(EnemyWave wave)
     {
         int spawned = 0;
-        while (spawned < _enemiesLeftInWave)
+        int enemiesToSpawn = _enemiesLeftInWave;
+        
+        while (spawned < enemiesToSpawn)
         {
             Vector3 position = transform.position + 
                                new Vector3(Random.Range(-100, 100) + 50, 5, Random.Range(-100, 100) + 50);
