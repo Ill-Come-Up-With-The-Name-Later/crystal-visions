@@ -17,15 +17,17 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private int _enemiesLeftInWave;
 
-    public static WaveManager Manager;
+    public static WaveManager Instance;
     
     public event Action<int> OnWaveStarted;
     public event Action<int> OnWaveEnded;
+    
+    public int CurrentWave { get => _currentWave; }
 
     private void Awake()
     {
-        if(Manager is null)
-            Manager = this;
+        if(Instance is null)
+            Instance = this;
     }
 
     private void Start()
@@ -41,6 +43,12 @@ public class WaveManager : MonoBehaviour
 
     public void StartWave()
     {
+        if (_currentWave >= _waves.Count)
+        {
+            GameManager.Instance.SetWon();
+            return;
+        }
+
         EnemyWave wave = _waves[_currentWave];
         _enemiesLeftInWave = Random.Range(wave.MinEnemies, wave.MaxEnemies + 1);
         StartCoroutine(SpawnEnemies(wave));
@@ -68,7 +76,7 @@ public class WaveManager : MonoBehaviour
         while (spawned < enemiesToSpawn)
         {
             Vector3 position = transform.position + 
-                               new Vector3(Random.Range(-100, 100) + 50, 5, Random.Range(-100, 100) + 50);
+                               new Vector3(Random.Range(-100, 100) + 50, 2, Random.Range(-100, 100) + 50);
             Instantiate(wave.GetRandomEnemy(), position, Quaternion.identity);
             spawned++;
             

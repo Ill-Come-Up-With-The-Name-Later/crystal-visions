@@ -23,6 +23,11 @@ public class PlayerInterface : MonoBehaviour
 
     private VisualElement _deathOverlay;
 
+    private VisualElement _winOverlay;
+
+    private GameManager _gameManager;
+    private WaveManager _waveManager;
+
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
@@ -36,6 +41,8 @@ public class PlayerInterface : MonoBehaviour
             .Q<Label>("WaveDisplay");
         _deathOverlay = _document.rootVisualElement.Q<VisualElement>("DeathLabelBackground");
         
+        _winOverlay = _document.rootVisualElement.Q<VisualElement>("WinLabelBackground");
+        
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
         
@@ -47,22 +54,44 @@ public class PlayerInterface : MonoBehaviour
         
         if(_deathOverlay == null)
             Debug.LogError("Death Overlay not found");
+        
+        if(_winOverlay == null)
+            Debug.LogError("Win Overlay not found");
+        
+        _deathOverlay.style.display = DisplayStyle.None;
+        _winOverlay.style.display = DisplayStyle.None;
     }
 
     void Start()
     {
+        _gameManager = GameManager.Instance;
+        _waveManager = WaveManager.Instance;
+        
         _player.Health.OnDamageTaken += UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken += UpdateCrystalHealth;
-        GameManager.Instance.OnLoss += ShowDeathOverlay;
-        WaveManager.Manager.OnWaveStarted += UpdateWave;
+        _gameManager.OnLoss += ShowDeathOverlay;
+        _waveManager.OnWaveStarted += UpdateWave;
+        _gameManager.OnWin += ShowWinOverlay;
+        
+        UpdateWave(_waveManager.CurrentWave);
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         _player.Health.OnDamageTaken -= UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken -= UpdateCrystalHealth;
-        GameManager.Instance.OnLoss -= ShowDeathOverlay;
-        WaveManager.Manager.OnWaveStarted -= UpdateWave;
+        _gameManager.OnLoss -= ShowDeathOverlay;
+        _waveManager.OnWaveStarted -= UpdateWave;
+        _gameManager.OnWin -= ShowWinOverlay;
+    }
+
+    void ShowWinOverlay()
+    {
+        Debug.Log("Show win overlay");
+        _winOverlay.style.display = DisplayStyle.Flex;
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void ShowDeathOverlay()

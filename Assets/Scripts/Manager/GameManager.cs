@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField]
-    private bool Lost;
+    private bool _lost;
+
+    [SerializeField]
+    private bool _won;
     
     [SerializeField]
     private Player _player;
@@ -16,11 +19,12 @@ public class GameManager : MonoBehaviour
     private Crystal _crystal;
 
     public event Action OnLoss;
+    
+    public event Action OnWin;
 
     void Awake()
     {
-        if (Instance is null)
-            Instance = this;
+        Instance = this;
         
         _player = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();
@@ -31,16 +35,24 @@ public class GameManager : MonoBehaviour
         _player.OnPlayerDeath += SetLost;
         _crystal.Health.OnDeath += SetLost;
     }
+
+    void OnDestroy()
+    {
+        if(Instance == this)
+            Instance = null;
+        
+        _player.OnPlayerDeath -= SetLost;
+        _crystal.Health.OnDeath -= SetLost;
+    }
     
     void Update()
     {
-        if (Lost)
+        if (_lost || _won)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 Time.timeScale = 1;
-                Lost = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
     }
@@ -48,8 +60,16 @@ public class GameManager : MonoBehaviour
     void SetLost()
     {
         Debug.Log("Player has lost");
-        Lost = true;
+        _lost = true;
         OnLoss?.Invoke();
+        Time.timeScale = 0;
+    }
+    
+    public void SetWon()
+    {
+        Debug.Log("Player has won");
+        _won = true;
+        OnWin?.Invoke();
         Time.timeScale = 0;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
   maxHealth: 100
-  speed: 7.5
+  speed: 8
   hitInvulnerability: 0.2
   attackRange: 7
   damage: 15
