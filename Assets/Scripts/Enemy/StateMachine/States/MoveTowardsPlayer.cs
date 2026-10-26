@@ -5,6 +5,13 @@ public class MoveTowardPlayer : State
 {
     public override void OnEnter(StateMachine stateMachine, State previousState)
     {
+        Entity owner = stateMachine.Owner;
+        
+        if (owner == null)
+            return;
+
+        if (owner is Enemy enemy)
+            enemy.Target = GameManager.Instance.Player;
     }
 
     public override void Tick(StateMachine stateMachine, float deltaTime)

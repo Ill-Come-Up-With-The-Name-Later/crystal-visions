@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
@@ -82,7 +81,7 @@ public class StateMachine : MonoBehaviour
         _currentState.State.OnExit(this, next.State);
         _previousState = _currentState;
 
-        Debug.Log($"Swapped to {next.State.name} from {_currentState.State.name}");
+        //Debug.Log($"Swapped to {next.State.name} from {_currentState.State.name}");
         
         _currentState = next;
         _currentState.State.OnEnter(this, _previousState.State);

@@ -23,6 +23,11 @@ public class Enemy : Entity
     
     public Vector3 PlayerPosition { get { return _playerPosition; } }
 
+    [SerializeField]
+    private Entity _target;
+    
+    public Entity Target { get => _target; set { _target = value; } }
+
     [Header("Attacks")]
     [SerializeField]
     private List<AttackAndCooldown> _attacks;

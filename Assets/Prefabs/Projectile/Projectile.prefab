@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   _maxLifespan: 3
-  _speed: 20
+  _speed: 45
   _hasGravity: 0
   _rigidbody: {fileID: 0}
   _source: {fileID: 0}

@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     private Crystal _crystal;
+    
+    public Player Player => _player;
+    
+    public Crystal Crystal => _crystal;
 
     public event Action OnLoss;
     

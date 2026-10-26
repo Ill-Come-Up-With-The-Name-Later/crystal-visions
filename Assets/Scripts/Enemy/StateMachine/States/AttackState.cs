@@ -19,7 +19,10 @@ public class AttackState : State
             return;
 
         if (owner is Enemy enemy)
+        {
+            enemy.transform.LookAt(enemy.Target.transform);
             enemy.UseRandomAttack();
+        }
     }
 
     public override void Tick(StateMachine stateMachine, float deltaTime)
