@@ -35,6 +35,15 @@ public class Player : Entity
             Debug.LogError("No rigidbody found");
         
         _crystalBall = GetComponentInChildren<CrystalBall>();
+        GameManager.Instance.Crystal.Health.OnHealthChanges += GainDamageBoost;
+    }
+
+    private void GainDamageBoost()
+    {
+        float crystalHealth = GameManager.Instance.Crystal.Health.CurrentHealth;
+        float crystalHealthPercent = crystalHealth / GameManager.Instance.Crystal.Health.MaxHealth;
+        
+        _damageBonus = _stats.damage * (1f - crystalHealthPercent);
     }
 
     private void OnDestroy()
