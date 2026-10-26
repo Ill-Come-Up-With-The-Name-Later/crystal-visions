@@ -138,6 +138,7 @@ MonoBehaviour:
   _stateMachine: {fileID: 0}
   _crystalPosition: {x: 0, y: 0, z: 0}
   _playerPosition: {x: 0, y: 0, z: 0}
+  _target: {fileID: 0}
   _attacks:
   - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
     _cooldown: 0.75
@@ -186,7 +187,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4411966925273355907}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 24
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

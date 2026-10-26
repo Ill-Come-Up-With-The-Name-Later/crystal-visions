@@ -76,7 +76,7 @@ public class WaveManager : MonoBehaviour
         while (spawned < enemiesToSpawn)
         {
             Vector3 position = transform.position + 
-                               new Vector3(Random.Range(-100, 100) + 50, 2, Random.Range(-100, 100) + 50);
+                               new Vector3(Random.Range(-40, 40) + 50, 2, Random.Range(-40, 40) + 20);
             Instantiate(wave.GetRandomEnemy(), position, Quaternion.identity);
             spawned++;
             
