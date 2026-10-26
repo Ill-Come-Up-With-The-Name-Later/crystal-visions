@@ -598,6 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   _waves:
   - {fileID: 11400000, guid: 9e12cb738cba1734b89c1aedfe5f5df6, type: 2}
+  - {fileID: 11400000, guid: 4190c36847d106b4492f71a17a3df283, type: 2}
   _currentWave: 0
   _enemiesLeftInWave: 0
 --- !u!4 &841555992

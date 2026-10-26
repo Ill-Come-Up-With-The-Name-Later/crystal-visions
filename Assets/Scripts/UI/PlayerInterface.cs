@@ -24,6 +24,8 @@ public class PlayerInterface : MonoBehaviour
     private VisualElement _deathOverlay;
 
     private VisualElement _winOverlay;
+    
+    private Label _enemiesLeftLabel;
 
     private GameManager _gameManager;
     private WaveManager _waveManager;
@@ -40,8 +42,9 @@ public class PlayerInterface : MonoBehaviour
         _waveLabel = _document.rootVisualElement.Q<VisualElement>("WaveDisplayBackground")
             .Q<Label>("WaveDisplay");
         _deathOverlay = _document.rootVisualElement.Q<VisualElement>("DeathLabelBackground");
-        
         _winOverlay = _document.rootVisualElement.Q<VisualElement>("WinLabelBackground");
+        _enemiesLeftLabel = _document.rootVisualElement.Q<VisualElement>("EnemiesLeftBackground")
+            .Q<Label>("EnemiesLeftLabel");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -58,8 +61,14 @@ public class PlayerInterface : MonoBehaviour
         if(_winOverlay == null)
             Debug.LogError("Win Overlay not found");
         
+        if(_enemiesLeftLabel == null)
+            Debug.LogError("Enemies left label not found");
+        
         _deathOverlay.style.display = DisplayStyle.None;
         _winOverlay.style.display = DisplayStyle.None;
+        
+        _enemiesLeftLabel.text = "Enemies Left:";
+        _waveLabel.text = "Wave:";
     }
 
     void Start()
@@ -70,10 +79,11 @@ public class PlayerInterface : MonoBehaviour
         _player.Health.OnDamageTaken += UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken += UpdateCrystalHealth;
         _gameManager.OnLoss += ShowDeathOverlay;
-        _waveManager.OnWaveStarted += UpdateWave;
         _gameManager.OnWin += ShowWinOverlay;
+        _waveManager.OnWaveStarted += UpdateWave;
+        _waveManager.ChangeEnemiesLeft += UpdateRemainingEnemies;
         
-        UpdateWave(_waveManager.CurrentWave);
+        UpdateWave(0);
     }
 
     void OnDestroy()
@@ -81,13 +91,22 @@ public class PlayerInterface : MonoBehaviour
         _player.Health.OnDamageTaken -= UpdatePlayerHealth;
         _crystal.Health.OnDamageTaken -= UpdateCrystalHealth;
         _gameManager.OnLoss -= ShowDeathOverlay;
-        _waveManager.OnWaveStarted -= UpdateWave;
         _gameManager.OnWin -= ShowWinOverlay;
+        _waveManager.OnWaveStarted -= UpdateWave;
+        _waveManager.ChangeEnemiesLeft -= UpdateRemainingEnemies;
+        
+        _enemiesLeftLabel.text = "Enemies Left:";
+        _waveLabel.text = "Wave:";
+    }
+    
+    void UpdateRemainingEnemies(int enemies)
+    {
+        _enemiesLeftLabel.text = $"Enemies Left: {enemies.ToString()}";
     }
 
     void ShowWinOverlay()
     {
-        Debug.Log("Show win overlay");
+        //Debug.Log("Show win overlay");
         _winOverlay.style.display = DisplayStyle.Flex;
         
         Cursor.lockState = CursorLockMode.None;
@@ -96,7 +115,7 @@ public class PlayerInterface : MonoBehaviour
 
     void ShowDeathOverlay()
     {
-        Debug.Log("Show death overlay");
+        //Debug.Log("Show death overlay");
         _deathOverlay.style.display = DisplayStyle.Flex;
         
         Cursor.lockState = CursorLockMode.None;
@@ -106,6 +125,7 @@ public class PlayerInterface : MonoBehaviour
     void UpdateWave(int wave)
     {
         _waveLabel.text = $"Wave: {(wave + 1).ToString()}";
+        UpdateRemainingEnemies(_waveManager.EnemiesLeftInWave);
     }
 
     void UpdatePlayerHealth(float damage)

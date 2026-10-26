@@ -28,7 +28,15 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        _won = false;
+        _lost = false;
         
         _player = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();
@@ -63,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     void SetLost()
     {
-        Debug.Log("Player has lost");
+        //Debug.Log("Player has lost");
         _lost = true;
         OnLoss?.Invoke();
         Time.timeScale = 0;
@@ -71,7 +79,7 @@ public class GameManager : MonoBehaviour
     
     public void SetWon()
     {
-        Debug.Log("Player has won");
+        //Debug.Log("Player has won");
         _won = true;
         OnWin?.Invoke();
         Time.timeScale = 0;

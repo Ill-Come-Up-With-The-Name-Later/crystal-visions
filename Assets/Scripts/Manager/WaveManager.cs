@@ -21,17 +21,28 @@ public class WaveManager : MonoBehaviour
     
     public event Action<int> OnWaveStarted;
     public event Action<int> OnWaveEnded;
+    public event Action<int> ChangeEnemiesLeft;
     
     public int CurrentWave { get => _currentWave; }
+    
+    public int EnemiesLeftInWave { get => _enemiesLeftInWave; }
 
     private void Awake()
     {
-        if(Instance is null)
-            Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
     }
 
     private void Start()
     {
+        _currentWave = 0;
+        _enemiesLeftInWave = 0;
+        
         EntityHealth.EntityDies += DecreaseEnemies;
         StartWave();
     }
@@ -51,6 +62,8 @@ public class WaveManager : MonoBehaviour
 
         EnemyWave wave = _waves[_currentWave];
         _enemiesLeftInWave = Random.Range(wave.MinEnemies, wave.MaxEnemies + 1);
+        ChangeEnemiesLeft?.Invoke(_enemiesLeftInWave);
+        
         StartCoroutine(SpawnEnemies(wave));
         OnWaveStarted?.Invoke(_currentWave);
     }
@@ -58,13 +71,16 @@ public class WaveManager : MonoBehaviour
     void DecreaseEnemies(Entity entity)
     {
         if (entity is Enemy)
+        {
             _enemiesLeftInWave--;
+            ChangeEnemiesLeft?.Invoke(_enemiesLeftInWave);
+        }
 
         if (_enemiesLeftInWave <= 0)
         {
             _currentWave++;
-            StartWave();
             OnWaveEnded?.Invoke(_currentWave);
+            StartWave();
         }
     }
 
