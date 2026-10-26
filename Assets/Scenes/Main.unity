@@ -275,7 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41231766665cff840b8133fc83ce1425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  Lost: 0
+  _lost: 0
+  _won: 0
   _player: {fileID: 0}
   _crystal: {fileID: 0}
 --- !u!1 &404833524
@@ -1088,6 +1089,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3241518030757366891, guid: 1ddc22f3b0b569f499abc5e24bf9439f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241518030757366891, guid: 1ddc22f3b0b569f499abc5e24bf9439f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8585627467808078404, guid: 1ddc22f3b0b569f499abc5e24bf9439f, type: 3}

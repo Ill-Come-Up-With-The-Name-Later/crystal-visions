@@ -36,6 +36,8 @@ public class Player : Entity
         if(_rigidbody == null)
             Debug.LogError("No rigidbody found");
         
+        _gameManager = GameManager.Instance;
+        
         _crystalBall = GetComponentInChildren<CrystalBall>();
         _gameManager.Crystal.Health.OnHealthChanges += GainDamageBoost;
     }
