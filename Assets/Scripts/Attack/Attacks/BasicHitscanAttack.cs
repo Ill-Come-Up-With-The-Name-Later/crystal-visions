@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Attacks/Hitscan/Basic Hitscan")]
 public class BasicHitscanAttack : Attack
 {
+    [SerializeField]
+    private ParticleSystem _meleeParticles;
+    
     public override void PerformAttack(Entity source, AttackContext context = null)
     {
         float range = source.Stats.attackRange;
@@ -20,6 +23,8 @@ public class BasicHitscanAttack : Attack
             hits = Physics.RaycastAll(source.transform.position,
                 context.Forward, range);
         }
+        
+        Instantiate(_meleeParticles, source.transform.position + source.transform.forward, source.transform.rotation);
 
         foreach (RaycastHit hit in hits)
         {

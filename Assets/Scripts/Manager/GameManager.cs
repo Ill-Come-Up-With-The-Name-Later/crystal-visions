@@ -36,8 +36,11 @@ public class GameManager : MonoBehaviour
     {
         if (Lost)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                Time.timeScale = 1;
+            }
         }
     }
 
