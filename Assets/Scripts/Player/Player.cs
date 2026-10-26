@@ -14,6 +14,8 @@ public class Player : Entity
     public PlayerCamera Camera { get { return _camera; } }
 
     public event Action OnPlayerDeath;
+    
+    private GameManager _gameManager;
 
     void Start()
     {
@@ -35,7 +37,7 @@ public class Player : Entity
             Debug.LogError("No rigidbody found");
         
         _crystalBall = GetComponentInChildren<CrystalBall>();
-        GameManager.Instance.Crystal.Health.OnHealthChanges += GainDamageBoost;
+        _gameManager.Crystal.Health.OnHealthChanges += GainDamageBoost;
     }
 
     private void GainDamageBoost()
@@ -49,6 +51,7 @@ public class Player : Entity
     private void OnDestroy()
     {
         _health.OnDeath -= OnDeath;
+        _gameManager.Crystal.Health.OnHealthChanges -= GainDamageBoost;
     }
 
     void OnDeath()
