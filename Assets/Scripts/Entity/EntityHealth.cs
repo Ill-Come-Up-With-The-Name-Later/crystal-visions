@@ -42,6 +42,8 @@ public class EntityHealth : MonoBehaviour
     public event Action OnDeath;
 
     public static event Action<Entity> EntityDies;
+
+    public event Action OnHealthChanges;
     
     void Start()
     {
@@ -80,6 +82,7 @@ public class EntityHealth : MonoBehaviour
         _healthbar.value = _currentHealth / _maxHealth;
         StartCoroutine(MakeInvulnerable(_entity.Stats.hitInvulnerability));
         OnDamageTaken?.Invoke(damage);
+        OnHealthChanges?.Invoke();
     }
 
     public void Heal(float heal)
@@ -87,6 +90,7 @@ public class EntityHealth : MonoBehaviour
         _currentHealth += heal;
         _healthbar.value = _currentHealth / _maxHealth;
         OnHeal?.Invoke(heal);
+        OnHealthChanges?.Invoke();
     }
 
     public void Die()
