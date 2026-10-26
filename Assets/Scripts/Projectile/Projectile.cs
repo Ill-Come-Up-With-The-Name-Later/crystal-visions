@@ -110,7 +110,7 @@ public class Projectile : MonoBehaviour
         if (projectile == null || source == null)
             return null;
         
-        Projectile launched = Instantiate(projectile, source.transform.position + velocity.normalized, source.transform.rotation);
+        Projectile launched = Instantiate(projectile, source.transform.position + velocity.normalized * 2, source.transform.rotation);
         
         if (launched._hitbox == null)
         {
