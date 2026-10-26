@@ -21,7 +21,9 @@ public class AttackState : State
         if (owner is Enemy enemy)
         {
             enemy.transform.LookAt(enemy.Target.transform);
-            enemy.UseRandomAttack();
+            
+            if(!enemy.Target.Health.Invulnerable)
+                enemy.UseRandomAttack();
         }
     }
 

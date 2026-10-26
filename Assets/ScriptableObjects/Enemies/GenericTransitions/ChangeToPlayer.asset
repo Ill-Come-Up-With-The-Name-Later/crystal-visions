@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChangeToPlayer
   m_EditorClassIdentifier: Assembly-CSharp::Transition
   _condition: {fileID: 11400000, guid: 6005f5fb46fb0214d9c4b2e464b895c5, type: 2}
-  _next: {fileID: 11400000, guid: 81f586d3af2b4f2438013a3adb87ef55, type: 2}
+  _next: {fileID: 11400000, guid: 08c666ca043f793469b061fda52d0edd, type: 2}

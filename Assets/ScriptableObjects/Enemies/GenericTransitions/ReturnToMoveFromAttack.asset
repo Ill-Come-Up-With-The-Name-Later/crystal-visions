@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ReturnToMoveFromAttack
   m_EditorClassIdentifier: Assembly-CSharp::Transition
   _condition: {fileID: 11400000, guid: 72450029b7d5d0649ae81632240f4618, type: 2}
-  _next: {fileID: 11400000, guid: 69849fcbba48ab14ba871f7aaa3710b3, type: 2}
+  _next: {fileID: 11400000, guid: 207637bb91a4d9c41a9dd53331d79b10, type: 2}

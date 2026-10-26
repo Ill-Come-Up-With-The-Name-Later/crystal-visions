@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChangeToCrystal
   m_EditorClassIdentifier: Assembly-CSharp::Transition
   _condition: {fileID: 11400000, guid: cc4e4fb919781ce40aebc5d55499a518, type: 2}
-  _next: {fileID: 11400000, guid: 69849fcbba48ab14ba871f7aaa3710b3, type: 2}
+  _next: {fileID: 11400000, guid: 207637bb91a4d9c41a9dd53331d79b10, type: 2}

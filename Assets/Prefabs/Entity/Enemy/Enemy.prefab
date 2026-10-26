@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e334b1390d9c2438285dab0255580c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StateMachine
-  _startState: {fileID: 11400000, guid: 69849fcbba48ab14ba871f7aaa3710b3, type: 2}
+  _startState: {fileID: 11400000, guid: 207637bb91a4d9c41a9dd53331d79b10, type: 2}
   _owner: {fileID: 0}
   _currentState: {fileID: 0}
   _previousState: {fileID: 0}
