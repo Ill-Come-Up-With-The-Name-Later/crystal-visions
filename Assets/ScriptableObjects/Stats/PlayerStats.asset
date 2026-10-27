@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829269323c0d4bda80b9a97911baec78, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
-  maxHealth: 100
-  speed: 8
+  maxHealth: 150
+  speed: 9
   hitInvulnerability: 0.2
   attackRange: 9
   damage: 20

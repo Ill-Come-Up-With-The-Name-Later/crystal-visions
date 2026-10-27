@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   _player: {fileID: 2462428159747306166}
-  _mouseSensitivity: 520
+  _mouseSensitivity: 590
   _maxAngle: 90
 --- !u!1001 &5503902424644988125
 PrefabInstance:

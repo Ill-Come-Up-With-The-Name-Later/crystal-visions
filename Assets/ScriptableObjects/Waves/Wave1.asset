@@ -17,7 +17,7 @@ MonoBehaviour:
     _weight: 1
   - _enemy: {fileID: 8070961397177764660, guid: f36a8d84fa0a27342ac143dcceba0ff6, type: 3}
     _weight: 1
-  _minEnemies: 8
-  _maxEnemies: 11
+  _minEnemies: 5
+  _maxEnemies: 9
   _minSpawnDelay: 2
   _maxSpawnDelay: 3

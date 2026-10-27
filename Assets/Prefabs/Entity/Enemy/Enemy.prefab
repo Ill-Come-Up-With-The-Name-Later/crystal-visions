@@ -141,7 +141,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _attacks:
   - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
-    _cooldown: 0.75
+    _cooldown: 1
   _globalAttackCooldown: 0.2
 --- !u!114 &8383550019217405398
 MonoBehaviour:
