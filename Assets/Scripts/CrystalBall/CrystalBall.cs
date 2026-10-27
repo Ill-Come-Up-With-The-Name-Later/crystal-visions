@@ -11,6 +11,10 @@ enum MouseButton
 
 public class CrystalBall : MonoBehaviour
 {
+    [Header("Crystal Ball Attack Fail Particle")]
+    [SerializeField]
+    private ParticleSystem _failParticle;
+    
     [Header("Crystal Ball Attacks")]
     [SerializeField]
     private AttackAndCooldown _closeRangeAttack;
@@ -55,7 +59,10 @@ public class CrystalBall : MonoBehaviour
     public void UseAttack(AttackAndCooldown attack)
     {
         if (!CanUseAttack(attack.Attack))
+        {
+            Instantiate(_failParticle, transform.position, Quaternion.identity);
             return;
+        }
 
         AttackContext context = new AttackContext();
         context.Forward = _owner.Camera.transform.forward;

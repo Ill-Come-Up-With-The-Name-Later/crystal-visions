@@ -125,10 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3777f176a969cc4c8d2ecc569ba7ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrystalBall
+  _failParticle: {fileID: 1346299512439734839, guid: 7b3ba0b328febb746a99a922dd8944ff, type: 3}
   _closeRangeAttack:
     _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
-    _cooldown: 0.1
+    _cooldown: 0.2
   _longRangeAttack:
     _attack: {fileID: 11400000, guid: b87930f0c75fffc4a8ee518c22be86bd, type: 2}
-    _cooldown: 0.3
+    _cooldown: 0.5
   _owner: {fileID: 0}

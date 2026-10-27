@@ -16,4 +16,4 @@ MonoBehaviour:
   speed: 8
   hitInvulnerability: 0.2
   attackRange: 9
-  damage: 15
+  damage: 20
