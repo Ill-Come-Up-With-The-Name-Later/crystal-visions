@@ -60,6 +60,8 @@ public class Enemy : Entity
 
     void Start()
     {
+        _damageBonus = WaveManager.Instance.CurrentWave * 5;
+        
         _targetPlayer = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();
 

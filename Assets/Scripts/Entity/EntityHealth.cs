@@ -50,7 +50,13 @@ public class EntityHealth : MonoBehaviour
     void Start()
     {
         _entity = GetComponent<Entity>();
-        
+
+        if (_entity is Enemy)
+        {
+            _healthBonus = WaveManager.Instance.CurrentWave * 5;
+            multiplicativeHealthBonus = 0.15f * WaveManager.Instance.CurrentWave;
+        }
+
         _maxHealth = (_entity.Stats.maxHealth + _healthBonus) * (1 + multiplicativeHealthBonus);
         _currentHealth = _maxHealth;
         _healthbar = gameObject.GetComponentInChildren<Slider>();

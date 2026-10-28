@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
   maxHealth: 150
   speed: 9
-  hitInvulnerability: 0.2
+  hitInvulnerability: 0.1
   attackRange: 9
   damage: 20
