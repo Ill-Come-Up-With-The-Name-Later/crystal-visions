@@ -65,13 +65,13 @@ public class ContestedHealth : MonoBehaviour
         float returnAmount;
         
         if (damage > _contestedHealthAmount)
-            returnAmount = damage - _contestedHealthAmount;
+            returnAmount = _contestedHealthAmount;
         else
             returnAmount = _contestedHealthAmount - damage;
         
         _contestedHealthAmount = Math.Max(_contestedHealthAmount - damage, 0);
         
-        source.Health.Heal(returnAmount);
         OnContestedHealthChange?.Invoke(_contestedHealthAmount);
+        source.Health.Heal(returnAmount);
     }
 }
