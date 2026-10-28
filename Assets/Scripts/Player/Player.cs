@@ -12,29 +12,42 @@ public class Player : Entity
     private PlayerCamera _camera;
     
     public PlayerCamera Camera { get { return _camera; } }
+    
+    [SerializeField]
+    private ContestedHealth _contestedHealth;
+    
+    public ContestedHealth ContestedHealth { get { return _contestedHealth; } }
 
     public event Action OnPlayerDeath;
     
     private GameManager _gameManager;
 
-    void Start()
+    void Awake()
     {
         _health = GetComponent<EntityHealth>();
         
         if(_health == null)
             Debug.LogError("No health found");
         
-        _health.OnDeath += OnDeath;
+        _rigidbody = GetComponent<Rigidbody>();
+        
+        if(_rigidbody == null)
+            Debug.LogError("No rigidbody found");
+        
+        _contestedHealth = GetComponent<ContestedHealth>();
+        
+        if(_contestedHealth == null)
+            Debug.LogError("No contested health found");
         
         _camera = GetComponentInChildren<PlayerCamera>();
         
         if(_camera == null)
             Debug.LogError("No camera found");
-        
-        _rigidbody = GetComponent<Rigidbody>();
-        
-        if(_rigidbody == null)
-            Debug.LogError("No rigidbody found");
+    }
+
+    void Start()
+    {
+        _health.OnDeath += OnDeath;
         
         _gameManager = GameManager.Instance;
         

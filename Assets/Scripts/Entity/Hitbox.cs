@@ -23,6 +23,13 @@ public class Hitbox : MonoBehaviour
         if(_collider == null)
             Debug.LogError("No collider found");
     }
+    
+    void Update()
+    {
+        Vector3 currentRotation = transform.localEulerAngles;
+        currentRotation.x = 0f; 
+        transform.localEulerAngles = currentRotation;
+    }
 
     void OnTriggerEnter(Collider other)
     {

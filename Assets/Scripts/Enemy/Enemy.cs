@@ -83,6 +83,7 @@ public class Enemy : Entity
     void Update()
     {
         _playerPosition = _targetPlayer.transform.position;
+        _timeSinceLastDamage += Time.deltaTime;
         
         List<Attack> attacks = _attackCooldowns.Keys.ToList();
 

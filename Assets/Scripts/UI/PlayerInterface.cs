@@ -11,11 +11,16 @@ public class PlayerInterface : MonoBehaviour
     [Header("Debug (Do not edit)")]
     [SerializeField]
     private Player _player;
+
+    [SerializeField]
+    private ContestedHealth _playerContestedHealth;
     
     [SerializeField]
     private Crystal _crystal;
     
     private VisualElement _playerHealthBar;
+    
+    private VisualElement _playerContestedHealthBar;
 
     private VisualElement _crystalHealthBar;
 
@@ -35,8 +40,16 @@ public class PlayerInterface : MonoBehaviour
         _player = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();
         
+        if(_player == null)
+            Debug.LogError("No Player found");
+        
+        if(_crystal == null)
+            Debug.LogError("No Crystal found");
+        
         _playerHealthBar = _document.rootVisualElement.Q<VisualElement>("PlayerHealthBackground")
             .Q<VisualElement>("HealthbarFill");
+        _playerContestedHealthBar = _document.rootVisualElement.Q<VisualElement>("PlayerHealthBackground")
+            .Q<VisualElement>("ContestedHealthbarFill");
         _crystalHealthBar = _document.rootVisualElement.Q<VisualElement>("CrystalHealthBackground")
             .Q<VisualElement>("HealthbarFill");
         _waveLabel = _document.rootVisualElement.Q<VisualElement>("WaveDisplayBackground")
@@ -73,10 +86,17 @@ public class PlayerInterface : MonoBehaviour
 
     void Start()
     {
+        // I have no clue why this needs to be here and not in Awake()
+        _playerContestedHealth = _player.ContestedHealth;
+        
+        if(_playerContestedHealth == null) 
+            Debug.LogError("No contested health found");
+        
         _gameManager = GameManager.Instance;
         _waveManager = WaveManager.Instance;
         
         _player.Health.OnDamageTaken += UpdatePlayerHealth;
+        _playerContestedHealth.OnContestedHealthChange += UpdatePlayerContestedHealth;
         _crystal.Health.OnDamageTaken += UpdateCrystalHealth;
         _gameManager.OnLoss += ShowDeathOverlay;
         _gameManager.OnWin += ShowWinOverlay;
@@ -89,6 +109,7 @@ public class PlayerInterface : MonoBehaviour
     void OnDestroy()
     {
         _player.Health.OnDamageTaken -= UpdatePlayerHealth;
+        _playerContestedHealth.OnContestedHealthChange -= UpdatePlayerContestedHealth;
         _crystal.Health.OnDamageTaken -= UpdateCrystalHealth;
         _gameManager.OnLoss -= ShowDeathOverlay;
         _gameManager.OnWin -= ShowWinOverlay;
@@ -132,6 +153,12 @@ public class PlayerInterface : MonoBehaviour
     {
         _playerHealthBar.style.width = 
             Length.Percent((_player.Health.CurrentHealth / _player.Health.MaxHealth) * 100);
+    }
+    
+    void UpdatePlayerContestedHealth(float amount)
+    {
+        _playerContestedHealthBar.style.width = 
+            Length.Percent((_player.ContestedHealth.ContestedHealthAmount / _player.Health.MaxHealth) * 100);
     }
 
     void UpdateCrystalHealth(float damage)

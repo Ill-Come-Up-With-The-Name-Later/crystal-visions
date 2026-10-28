@@ -33,6 +33,11 @@ public class Entity : MonoBehaviour
     protected EntityHealth _health;
     
     [SerializeField]
+    protected float _timeSinceLastDamage;
+    
+    public float TimeSinceLastDamage { get { return _timeSinceLastDamage; } set { _timeSinceLastDamage = value; } }
+    
+    [SerializeField]
     protected Rigidbody _rigidbody;
     
     public EntityHealth Health { get { return _health; } }
@@ -52,5 +57,10 @@ public class Entity : MonoBehaviour
         
         if(_rigidbody == null)
             Debug.LogError("No rigidbody found");
+    }
+
+    protected void Update()
+    {
+        _timeSinceLastDamage += Time.deltaTime;
     }
 }

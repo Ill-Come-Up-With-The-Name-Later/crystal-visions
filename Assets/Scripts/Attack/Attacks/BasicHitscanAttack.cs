@@ -10,19 +10,11 @@ public class BasicHitscanAttack : Attack
     {
         float range = source.Stats.attackRange;
         float damage = source.Damage;
-
+        
         RaycastHit[] hits;
-
-        if (context == null)
-        {
-            hits = Physics.RaycastAll(source.transform.position,
-                source.transform.forward, range);
-        }
-        else
-        {
-            hits = Physics.RaycastAll(source.transform.position,
-                context.Forward, range);
-        }
+        
+        hits = Physics.RaycastAll( source.transform.position + source.transform.forward * 0.5f,
+            context == null ? source.transform.forward : context.Forward, range);
         
         Instantiate(_meleeParticles, source.transform.position + source.transform.forward, source.transform.rotation);
 

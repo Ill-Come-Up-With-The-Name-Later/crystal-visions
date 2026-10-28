@@ -37,6 +37,8 @@ public class EntityHealth : MonoBehaviour
 
     public event Action<float> OnDamageTaken;
 
+    public static event Action<float, Entity, Entity> DamageTakenAdditionalInfo;
+
     public event Action<float> OnHeal;
 
     public event Action OnDeath;
@@ -80,14 +82,18 @@ public class EntityHealth : MonoBehaviour
             Die();
 
         _healthbar.value = _currentHealth / _maxHealth;
+        _entity.TimeSinceLastDamage = 0;
         StartCoroutine(MakeInvulnerable(_entity.Stats.hitInvulnerability));
         OnDamageTaken?.Invoke(damage);
         OnHealthChanges?.Invoke();
+        DamageTakenAdditionalInfo?.Invoke(damage, _entity, source);
     }
 
     public void Heal(float heal)
     {
-        _currentHealth += heal;
+        Debug.Log($"Attempting to heal {_entity.name} by {heal} health.");
+        
+        _currentHealth = Math.Min(_currentHealth + heal, _maxHealth); // How did I forget to cap this???
         _healthbar.value = _currentHealth / _maxHealth;
         OnHeal?.Invoke(heal);
         OnHealthChanges?.Invoke();

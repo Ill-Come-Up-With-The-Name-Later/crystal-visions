@@ -27,6 +27,13 @@ public class Hurtbox : MonoBehaviour
         if(_parent == null) 
             Debug.LogWarning("No parent found");
     }
+    
+    void Update()
+    {
+        Vector3 currentRotation = transform.localEulerAngles;
+        currentRotation.x = 0f; 
+        transform.localEulerAngles = currentRotation;
+    }
 
     void OnTriggerEnter(Collider other)
     {

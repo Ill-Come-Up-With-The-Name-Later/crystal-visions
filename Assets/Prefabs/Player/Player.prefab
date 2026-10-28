@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 6032606146205631148}
   - component: {fileID: 801467116735618042}
   - component: {fileID: 4323186449614559066}
+  - component: {fileID: 6722256240298448360}
   - component: {fileID: 4859784774708792862}
   m_Layer: 0
   m_Name: Player
@@ -209,6 +210,7 @@ MonoBehaviour:
   _damageBonus: 0
   _multiplicativeDamageBonus: 0
   _health: {fileID: 0}
+  _timeSinceLastDamage: 0
   _rigidbody: {fileID: 0}
   _crystalBall: {fileID: 0}
   _camera: {fileID: 0}
@@ -245,6 +247,22 @@ MonoBehaviour:
   _invulnerable: 0
   _maxHealth: 0
   _healthbar: {fileID: 0}
+  _entity: {fileID: 0}
+--- !u!114 &6722256240298448360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320866803138264473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81ab39008894abba05571b735d0ea25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContestedHealth
+  _contestedHealthGracePeriod: 0
+  _contestedHealthAmount: 0
+  _drainRate: 0
   _entity: {fileID: 0}
 --- !u!54 &4859784774708792862
 Rigidbody:
@@ -392,9 +410,9 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
-  m_StopNaN: 0
+  m_StopNaN: 1
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1

@@ -128,7 +128,7 @@ MonoBehaviour:
   _failParticle: {fileID: 1346299512439734839, guid: 7b3ba0b328febb746a99a922dd8944ff, type: 3}
   _closeRangeAttack:
     _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
-    _cooldown: 0.2
+    _cooldown: 0.05
   _longRangeAttack:
     _attack: {fileID: 11400000, guid: b87930f0c75fffc4a8ee518c22be86bd, type: 2}
     _cooldown: 0.5
