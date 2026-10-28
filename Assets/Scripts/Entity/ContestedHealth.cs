@@ -17,7 +17,7 @@ public class ContestedHealth : MonoBehaviour
     private float _drainRate;
     
     [SerializeField]
-    private Entity _entity;
+    private Entity _owner;
     
     [SerializeField]
     private EntityHealth _entityHealth;
@@ -26,12 +26,12 @@ public class ContestedHealth : MonoBehaviour
 
     void Awake()
     {
-        _entity = gameObject.GetComponent<Entity>();
+        _owner = gameObject.GetComponent<Entity>();
         
-        if(_entity == null)
+        if(_owner == null)
             Debug.Log("No entity parent found");
 
-        _entityHealth = _entity.gameObject.GetComponent<EntityHealth>();
+        _entityHealth = _owner.GetComponent<EntityHealth>();
         
         if(_entityHealth == null)
             Debug.Log("No entity health found");
@@ -42,7 +42,7 @@ public class ContestedHealth : MonoBehaviour
 
     void Update()
     {
-        if (_entity.TimeSinceLastDamage >= _contestedHealthGracePeriod)
+        if (_owner.TimeSinceLastDamage >= _contestedHealthGracePeriod)
         {
             _contestedHealthAmount = Math.Max(_contestedHealthAmount - (Time.deltaTime * _drainRate), 0);
             OnContestedHealthChange?.Invoke(_contestedHealthAmount);
@@ -54,12 +54,13 @@ public class ContestedHealth : MonoBehaviour
 
     void GrantContestedHealth(float amount)
     {
-        _contestedHealthAmount = Math.Min(_contestedHealthAmount + amount, _entity.Health.MaxHealth - 1);
+        _contestedHealthAmount = Math.Min(_contestedHealthAmount + amount, _owner.Health.MaxHealth - 1);
+        OnContestedHealthChange?.Invoke(_contestedHealthAmount);
     }
 
     void ReturnContestedHealth(float damage, Entity damaged, Entity source)
     {
-        if (source == null || source != _entity)
+        if (source != _owner)
             return;
 
         float returnAmount;

@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInterface
   _document: {fileID: 4004892349661141136}
   _player: {fileID: 0}
+  _playerContestedHealth: {fileID: 0}
   _crystal: {fileID: 0}
 --- !u!1 &2320866803138264473
 GameObject:
@@ -214,6 +215,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _crystalBall: {fileID: 0}
   _camera: {fileID: 0}
+  _contestedHealth: {fileID: 0}
 --- !u!114 &801467116735618042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,10 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81ab39008894abba05571b735d0ea25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContestedHealth
-  _contestedHealthGracePeriod: 0
+  _contestedHealthGracePeriod: 0.8
   _contestedHealthAmount: 0
-  _drainRate: 0
+  _drainRate: 2
   _entity: {fileID: 0}
+  _entityHealth: {fileID: 0}
 --- !u!54 &4859784774708792862
 Rigidbody:
   m_ObjectHideFlags: 0
