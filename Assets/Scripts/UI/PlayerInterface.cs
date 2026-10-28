@@ -145,7 +145,7 @@ public class PlayerInterface : MonoBehaviour
 
     void UpdateWave(int wave)
     {
-        _waveLabel.text = $"Wave: {(wave + 1).ToString()}";
+        _waveLabel.text = $"Wave: {(wave + 1).ToString()}/{_waveManager.Waves}";
         UpdateRemainingEnemies(_waveManager.EnemiesLeftInWave);
     }
 

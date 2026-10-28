@@ -25,6 +25,8 @@ public class WaveManager : MonoBehaviour
     
     public int CurrentWave { get => _currentWave; }
     
+    public int Waves { get { return _waves.Count; } }
+    
     public int EnemiesLeftInWave { get => _enemiesLeftInWave; }
 
     private void Awake()
