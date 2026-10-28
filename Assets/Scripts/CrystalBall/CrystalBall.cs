@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,22 +10,38 @@ enum MouseButton
     Middle
 }
 
+[Serializable]
+struct AttackMode
+{
+    [Header("Attacks")]
+    [SerializeField]
+    private AttackAndCooldown _primaryAttack;
+    
+    [SerializeField]
+    private AttackAndCooldown _secondaryAttack;
+    
+    public AttackAndCooldown Primary { get { return _primaryAttack; } }
+    
+    public AttackAndCooldown Secondary { get { return _secondaryAttack; } }
+}
+
 public class CrystalBall : MonoBehaviour
 {
     [Header("Crystal Ball Attack Fail Particle")]
     [SerializeField]
     private ParticleSystem _failParticle;
-    
+
     [Header("Crystal Ball Attacks")]
     [SerializeField]
-    private AttackAndCooldown _closeRangeAttack;
-    
-    [SerializeField]
-    private AttackAndCooldown _longRangeAttack;
-
+    private List<AttackMode> _attackModes;
+        
     [Header("Debug (Do not edit)")]
     [SerializeField]
     private Player _owner;
+    
+    [SerializeField]
+    private AttackMode _current;
+    private int _currentIndex;
 
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>(); // This isn't great, but it works
 
@@ -38,8 +55,14 @@ public class CrystalBall : MonoBehaviour
 
     void Start()
     {
-        _attackCooldowns[_closeRangeAttack.Attack] = 0;
-        _attackCooldowns[_longRangeAttack.Attack] = 0;
+        _currentIndex = 0;
+        _current = _attackModes[_currentIndex];
+        
+        foreach (AttackMode mode in _attackModes)
+        {
+            _attackCooldowns[mode.Primary.Attack] = 0;
+            _attackCooldowns[mode.Secondary.Attack] = 0;
+        }
     }
     
     void Update()
@@ -50,10 +73,16 @@ public class CrystalBall : MonoBehaviour
             _attackCooldowns[attack] -= Time.deltaTime;
 
         if (Input.GetMouseButtonDown((int)MouseButton.Left))
-            UseAttack(_closeRangeAttack);
+            UseAttack(_current.Primary);
 
         if (Input.GetMouseButtonDown((int)MouseButton.Right))
-            UseAttack(_longRangeAttack);
+            UseAttack(_current.Secondary);
+
+        if (Input.GetMouseButtonDown((int)MouseButton.Middle))
+        {
+            _currentIndex = (_currentIndex + 1) % _attackModes.Count;
+            _current = _attackModes[_currentIndex];
+        }
     }
 
     public void UseAttack(AttackAndCooldown attack)

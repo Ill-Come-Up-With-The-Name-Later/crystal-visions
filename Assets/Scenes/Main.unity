@@ -1179,11 +1179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722256240298448360, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
       propertyPath: _drainRate
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6722256240298448360, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
       propertyPath: _contestedHealthGracePeriod
-      value: 0.8
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
