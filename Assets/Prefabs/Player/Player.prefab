@@ -264,8 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ContestedHealth
   _contestedHealthGracePeriod: 0.8
   _contestedHealthAmount: 0
-  _drainRate: 2
-  _entity: {fileID: 0}
+  _drainRate: 1
+  _owner: {fileID: 0}
   _entityHealth: {fileID: 0}
 --- !u!54 &4859784774708792862
 Rigidbody:
