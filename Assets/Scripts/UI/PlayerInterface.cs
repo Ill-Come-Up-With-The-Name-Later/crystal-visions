@@ -95,9 +95,9 @@ public class PlayerInterface : MonoBehaviour
         _gameManager = GameManager.Instance;
         _waveManager = WaveManager.Instance;
         
-        _player.Health.OnDamageTaken += UpdatePlayerHealth;
+        _player.Health.OnHealthChanges += UpdatePlayerHealth;
         _playerContestedHealth.OnContestedHealthChange += UpdatePlayerContestedHealth;
-        _crystal.Health.OnDamageTaken += UpdateCrystalHealth;
+        _crystal.Health.OnHealthChanges += UpdateCrystalHealth;
         _gameManager.OnLoss += ShowDeathOverlay;
         _gameManager.OnWin += ShowWinOverlay;
         _waveManager.OnWaveStarted += UpdateWave;
@@ -108,9 +108,9 @@ public class PlayerInterface : MonoBehaviour
 
     void OnDestroy()
     {
-        _player.Health.OnDamageTaken -= UpdatePlayerHealth;
+        _player.Health.OnHealthChanges -= UpdatePlayerHealth;
         _playerContestedHealth.OnContestedHealthChange -= UpdatePlayerContestedHealth;
-        _crystal.Health.OnDamageTaken -= UpdateCrystalHealth;
+        _crystal.Health.OnHealthChanges-= UpdateCrystalHealth;
         _gameManager.OnLoss -= ShowDeathOverlay;
         _gameManager.OnWin -= ShowWinOverlay;
         _waveManager.OnWaveStarted -= UpdateWave;
@@ -149,7 +149,7 @@ public class PlayerInterface : MonoBehaviour
         UpdateRemainingEnemies(_waveManager.EnemiesLeftInWave);
     }
 
-    void UpdatePlayerHealth(float damage)
+    void UpdatePlayerHealth()
     {
         _playerHealthBar.style.width = 
             Length.Percent((_player.Health.CurrentHealth / _player.Health.MaxHealth) * 100);
@@ -161,7 +161,7 @@ public class PlayerInterface : MonoBehaviour
             Length.Percent((_player.ContestedHealth.ContestedHealthAmount / _player.Health.MaxHealth) * 100);
     }
 
-    void UpdateCrystalHealth(float damage)
+    void UpdateCrystalHealth()
     {
         _crystalHealthBar.style.width =
             Length.Percent((_crystal.Health.CurrentHealth / _crystal.Health.MaxHealth) * 100);
