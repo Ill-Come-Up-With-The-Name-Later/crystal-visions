@@ -15,6 +15,10 @@ public class EntityHealth : MonoBehaviour
     [SerializeField]
     private float multiplicativeHealthBonus;
     
+    [Header("Damage Particle")]
+    [SerializeField]
+    private ParticleSystem _damageParticle;
+    
     [Header("Invulnerability")]
     [SerializeField]
     private bool _invulnerable;
@@ -84,12 +88,17 @@ public class EntityHealth : MonoBehaviour
         
         _currentHealth -= damage;
         
+        if(_damageParticle != null)
+            Instantiate(_damageParticle, _entity.transform.position, Quaternion.identity);
+        
         if (_currentHealth <= 0)
             Die();
 
         _healthbar.value = _currentHealth / _maxHealth;
         _entity.TimeSinceLastDamage = 0;
+        
         StartCoroutine(MakeInvulnerable(_entity.Stats.hitInvulnerability));
+        
         OnDamageTaken?.Invoke(damage);
         OnHealthChanges?.Invoke();
         DamageTakenAdditionalInfo?.Invoke(damage, _entity, source);

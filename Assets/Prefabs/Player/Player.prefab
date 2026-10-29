@@ -246,6 +246,7 @@ MonoBehaviour:
   _currentHealth: 0
   _healthBonus: 0
   multiplicativeHealthBonus: 0
+  _damageParticle: {fileID: 6876129048977792812, guid: 4de4d12b117e1c34495b2a23dc35f92b, type: 3}
   _invulnerable: 0
   _maxHealth: 0
   _healthbar: {fileID: 0}
@@ -262,9 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81ab39008894abba05571b735d0ea25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContestedHealth
-  _contestedHealthGracePeriod: 0.8
+  _contestedHealthGracePeriod: 1.2
   _contestedHealthAmount: 0
-  _drainRate: 1
+  _drainRate: 5
   _owner: {fileID: 0}
   _entityHealth: {fileID: 0}
 --- !u!54 &4859784774708792862

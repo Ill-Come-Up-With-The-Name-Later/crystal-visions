@@ -134,6 +134,7 @@ MonoBehaviour:
   _damageBonus: 0
   _multiplicativeDamageBonus: 0
   _health: {fileID: 0}
+  _timeSinceLastDamage: 0
   _rigidbody: {fileID: 0}
   _stateMachine: {fileID: 0}
   _crystalPosition: {x: 0, y: 0, z: 0}
@@ -158,6 +159,7 @@ MonoBehaviour:
   _currentHealth: 0
   _healthBonus: 0
   multiplicativeHealthBonus: 0
+  _damageParticle: {fileID: 6876129048977792812, guid: 4de4d12b117e1c34495b2a23dc35f92b, type: 3}
   _invulnerable: 0
   _maxHealth: 0
   _healthbar: {fileID: 0}
