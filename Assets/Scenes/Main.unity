@@ -1044,6 +1044,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3048153180619074508, guid: 1ddc22f3b0b569f499abc5e24bf9439f, type: 3}
+      propertyPath: _healthStat._baseValue
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048153180619074508, guid: 1ddc22f3b0b569f499abc5e24bf9439f, type: 3}
+      propertyPath: _hitInvulnerabilityStat._baseValue
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3129597705692195530, guid: 1ddc22f3b0b569f499abc5e24bf9439f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1184,6 +1192,26 @@ PrefabInstance:
     - target: {fileID: 4952207708369495957, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032606146205631148, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
+      propertyPath: _speedStat._baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032606146205631148, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
+      propertyPath: _damageStat._baseValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032606146205631148, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
+      propertyPath: _healthStat._baseValue
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032606146205631148, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
+      propertyPath: _attackRangeStat._baseValue
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032606146205631148, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
+      propertyPath: _hitInvulnerabilityStat._baseValue
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6722256240298448360, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
       propertyPath: _drainRate

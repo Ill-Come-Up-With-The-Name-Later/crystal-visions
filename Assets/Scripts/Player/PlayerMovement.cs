@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.DrawRay(gameObject.transform.position, _moveDirection, Color.red);
         
         _rigidbody.MovePosition(_rigidbody.position + 
-                                (Vector3.Normalize(_moveDirection) * _player.Stats.speed) * Time.deltaTime);
+                                (Vector3.Normalize(_moveDirection) * _player.SpeedStat.Value) * Time.deltaTime);
     }
 
     void Update()

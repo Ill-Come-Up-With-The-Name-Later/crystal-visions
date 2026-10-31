@@ -68,11 +68,8 @@ public class Hurtbox : MonoBehaviour
         
         if (otherParent == null || otherParent == _parent)
             return;
-
-        if (otherParent.Stats == null)
-            return;
         
-        _parent.Health.TakeDamage(otherParent.Stats.damage, otherParent);
+        _parent.Health.TakeDamage(otherParent.DamageStat.Value, otherParent);
         HitOccur?.Invoke(otherParent, _parent);
         //Debug.Log(_parent.gameObject.name + " Hurtbox hit by " + otherParent.name);
     }

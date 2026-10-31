@@ -35,6 +35,15 @@ public class Enemy : Entity
     [SerializeField]
     private float _globalAttackCooldown; // This applies to all of the enemy's attacks
 
+    [Header("Enemy Stats")] 
+    [SerializeField]
+    private EntityStat _minRangeStat;
+    public EntityStat MinRangeStat { get { return _minRangeStat; } }
+    
+    [SerializeField]
+    private EntityStat _maxRangeStat;
+    public EntityStat MaxRangeStat { get { return _maxRangeStat; } }
+
     public float GlobalAttackCooldown { get => _globalAttackCooldown; }
 
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>();
@@ -60,7 +69,7 @@ public class Enemy : Entity
 
     void Start()
     {
-        _damageBonus = WaveManager.Instance.CurrentWave * 5;
+        _damageStat.BonusValue = WaveManager.Instance.CurrentWave * 5;
         
         _targetPlayer = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();

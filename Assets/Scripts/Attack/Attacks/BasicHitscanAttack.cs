@@ -8,8 +8,8 @@ public class BasicHitscanAttack : Attack
     
     public override void PerformAttack(Entity source, AttackContext context = null)
     {
-        float range = source.Stats.attackRange;
-        float damage = source.Damage;
+        float range = source.AttackRangeStat.Value;
+        float damage = source.DamageStat.Value;
         
         RaycastHit[] hits;
         

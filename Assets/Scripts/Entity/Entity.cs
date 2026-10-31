@@ -4,29 +4,24 @@ public class Entity : MonoBehaviour
 {
     [Header("Entity Stats")]
     [SerializeField]
-    protected EntityStats _stats;
-
-    [SerializeField]
-    [Min(0)]
-    protected float _damageBonus;
-
-    public float DamageBonus
-    {
-        get { return _damageBonus; } 
-        set { _damageBonus = value; }
-    }
+    protected EntityStat _healthStat;
+    public EntityStat HealthStat { get { return _healthStat; } }
     
     [SerializeField]
-    [Min(0)]
-    protected float _multiplicativeDamageBonus;
+    protected EntityStat _damageStat;
+    public EntityStat DamageStat { get { return _damageStat; } }
 
-    public float MultiplicativeDamageBonus
-    {
-        get { return _multiplicativeDamageBonus; } 
-        set { _multiplicativeDamageBonus = value; }
-    }
+    [SerializeField]
+    protected EntityStat _attackRangeStat;
+    public EntityStat AttackRangeStat { get { return _attackRangeStat; } }
     
-    public float Damage { get { return (_stats.damage + _damageBonus) * (1 + _multiplicativeDamageBonus); } }
+    [SerializeField]
+    protected EntityStat _speedStat;
+    public EntityStat SpeedStat { get { return _speedStat; } }
+    
+    [SerializeField]
+    protected EntityStat _hitInvulnerabilityStat;
+    public EntityStat HitInvulnerabilityStat { get { return _hitInvulnerabilityStat; } }
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
@@ -41,8 +36,6 @@ public class Entity : MonoBehaviour
     protected Rigidbody _rigidbody;
     
     public EntityHealth Health { get { return _health; } }
-    
-    public EntityStats Stats { get { return _stats; } }
     
     public Rigidbody Rigidbody { get { return _rigidbody; } }
     

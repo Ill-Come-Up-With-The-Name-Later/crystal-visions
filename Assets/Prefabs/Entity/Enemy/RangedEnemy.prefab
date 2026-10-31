@@ -13,6 +13,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 50c02e2c39f3c6743bb5d4032debc180, type: 2}
     - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _speedStat._baseValue
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _damageStat._baseValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _healthStat._baseValue
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _maxRangeStat._baseValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _minRangeStat._baseValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _attackRangeStat._baseValue
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
       propertyPath: _attacks.Array.data[0]._attack
       value: 
       objectReference: {fileID: 11400000, guid: b87930f0c75fffc4a8ee518c22be86bd, type: 2}

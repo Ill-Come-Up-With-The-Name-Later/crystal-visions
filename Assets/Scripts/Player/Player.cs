@@ -60,7 +60,7 @@ public class Player : Entity
         float crystalHealth = GameManager.Instance.Crystal.Health.CurrentHealth;
         float crystalHealthPercent = crystalHealth / GameManager.Instance.Crystal.Health.MaxHealth;
         
-        _damageBonus = _stats.damage * (1f - crystalHealthPercent);
+        _damageStat.BonusValue = _damageStat.BaseValue * (1f - crystalHealthPercent);
     }
 
     private void OnDestroy()

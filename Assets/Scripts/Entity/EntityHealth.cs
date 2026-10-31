@@ -61,7 +61,7 @@ public class EntityHealth : MonoBehaviour
             multiplicativeHealthBonus = 0.15f * WaveManager.Instance.CurrentWave;
         }
 
-        _maxHealth = (_entity.Stats.maxHealth + _healthBonus) * (1 + multiplicativeHealthBonus);
+        _maxHealth = _entity.HealthStat.Value;
         _currentHealth = _maxHealth;
         _healthbar = gameObject.GetComponentInChildren<Slider>();
         
@@ -97,7 +97,7 @@ public class EntityHealth : MonoBehaviour
         _healthbar.value = _currentHealth / _maxHealth;
         _entity.TimeSinceLastDamage = 0;
         
-        StartCoroutine(MakeInvulnerable(_entity.Stats.hitInvulnerability));
+        StartCoroutine(MakeInvulnerable(_entity.HitInvulnerabilityStat.Value));
         
         OnDamageTaken?.Invoke(damage);
         OnHealthChanges?.Invoke();

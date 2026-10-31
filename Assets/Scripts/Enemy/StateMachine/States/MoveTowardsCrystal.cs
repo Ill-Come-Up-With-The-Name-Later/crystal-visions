@@ -28,15 +28,11 @@ public class MoveTowardsCrystal : State
         if (owner is Enemy enemy)
         {
             Vector3 dir = enemy.CrystalPosition - enemy.transform.position;
-            EnemyStats stats = enemy.Stats as EnemyStats;
-            
-            if(stats == null)
-                return;
 
-            if (Vector3.Distance(enemy.CrystalPosition, enemy.transform.position) > stats.MinRange)
+            if (Vector3.Distance(enemy.CrystalPosition, enemy.transform.position) > enemy.MinRangeStat.Value)
             {
                 enemy.Rigidbody.MovePosition(enemy.Rigidbody.position +
-                                             Vector3.Normalize(dir) * enemy.Stats.speed * deltaTime);
+                                             Vector3.Normalize(dir) * enemy.SpeedStat.Value * deltaTime);
                 Quaternion rot = Quaternion.LookRotation(dir);
                 enemy.transform.rotation *= rot;
             }

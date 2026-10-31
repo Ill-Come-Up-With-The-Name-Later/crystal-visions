@@ -8,15 +8,11 @@ public class InAttackRange : TransitionCondition
         if (entity is Enemy enemy)
         {
             Vector3 enemyPos = enemy.transform.position;
-            EnemyStats stats = enemy.Stats as EnemyStats;
-
-            if (stats == null)
-                return false;
 
             double playerDistance = Vector3.Distance(enemyPos, enemy.PlayerPosition);
             double crystalDistance = Vector3.Distance(enemyPos, enemy.CrystalPosition);
             
-            return (playerDistance < stats.MaxRange) || (crystalDistance < stats.MaxRange);
+            return (playerDistance < enemy.MaxRangeStat.Value) || (crystalDistance < enemy.MinRangeStat.Value);
         }
 
         return false;

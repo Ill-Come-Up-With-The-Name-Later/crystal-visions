@@ -130,9 +130,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e86b422c3f15b34da004457a54375bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _stats: {fileID: 11400000, guid: 7798228d2451551458640ae45f6a60f8, type: 2}
-  _damageBonus: 0
-  _multiplicativeDamageBonus: 0
+  _healthStat:
+    _baseValue: 45
+    _bonusValue: 0
+    _multiplier: 0
+  _damageStat:
+    _baseValue: 20
+    _bonusValue: 0
+    _multiplier: 0
+  _attackRangeStat:
+    _baseValue: 5
+    _bonusValue: 0
+    _multiplier: 0
+  _speedStat:
+    _baseValue: 7
+    _bonusValue: 0
+    _multiplier: 0
+  _hitInvulnerabilityStat:
+    _baseValue: 0.05
+    _bonusValue: 0
+    _multiplier: 0
   _health: {fileID: 0}
   _timeSinceLastDamage: 0
   _rigidbody: {fileID: 0}
@@ -144,6 +161,14 @@ MonoBehaviour:
   - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
     _cooldown: 1
   _globalAttackCooldown: 0.2
+  _minRangeStat:
+    _baseValue: 4
+    _bonusValue: 0
+    _multiplier: 0
+  _maxRangeStat:
+    _baseValue: 5
+    _bonusValue: 0
+    _multiplier: 0
 --- !u!114 &8383550019217405398
 MonoBehaviour:
   m_ObjectHideFlags: 0
