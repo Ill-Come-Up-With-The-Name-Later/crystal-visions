@@ -1193,6 +1193,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5474458851905804865, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
+      propertyPath: _mouseSensitivity
+      value: 650
+      objectReference: {fileID: 0}
     - target: {fileID: 6032606146205631148, guid: bf392be2fa559814a8ec17152d398f30, type: 3}
       propertyPath: _speedStat._baseValue
       value: 8
