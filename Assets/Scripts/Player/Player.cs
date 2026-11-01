@@ -55,6 +55,20 @@ public class Player : Entity
         _gameManager.Crystal.Health.OnHealthChanges += GainDamageBoost;
     }
 
+    new void Update()
+    {
+        base.Update();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (gameObject.GetComponent<PlayerAimAssist>() != null)
+            {
+                PlayerAimAssist aimAssist = gameObject.GetComponent<PlayerAimAssist>();
+                aimAssist.Active = !aimAssist.Active;
+            }
+        }
+    }
+
     private void GainDamageBoost()
     {
         float crystalHealth = GameManager.Instance.Crystal.Health.CurrentHealth;

@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686ab6422485498c8ecb584c5311ab4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimAssist
-  _active: 1
+  _active: 0
   _fov: 25
   _strength: 1
   _range: 24

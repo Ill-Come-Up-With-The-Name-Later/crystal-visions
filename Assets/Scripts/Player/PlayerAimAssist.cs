@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerAimAssist : MonoBehaviour
@@ -6,6 +7,8 @@ public class PlayerAimAssist : MonoBehaviour
     [Header("Aim Assist Settings")]
     [SerializeField]
     private bool _active;
+    
+    public bool Active { get => _active; set => _active = value; }
     
     [SerializeField]
     private float _fov;
@@ -34,8 +37,11 @@ public class PlayerAimAssist : MonoBehaviour
     void Update()
     {
         if (!_active)
+        {
+            _target = null;
             return;
-        
+        }
+
         if(_target != null)
             LockTo(_target);
         else
@@ -45,16 +51,16 @@ public class PlayerAimAssist : MonoBehaviour
     private void FindTarget()
     {
         List<Enemy> enemies = WaveManager.Instance.SpawnedEnemies();
+        List<Enemy> enemiesEligible = enemies.Where(x => PositionInFOV(x.GetComponent<Collider>().bounds.center)
+                                                         && Vector3.Distance(x.GetComponent<Collider>().bounds.center,
+                                                             _player.transform.position)
+                                                         <= _range).ToList();
 
-        foreach (Enemy enemy in enemies)
-        {
-            if (PositionInFOV(enemy.GetComponent<Collider>().bounds.center) && 
-                Vector3.Distance(enemy.transform.position, _player.transform.position) <= _range)
-            {
-                _target = enemy;
-                break;
-            }
-        }
+        // Closest enemy to the player
+        _target = enemiesEligible.Count == 0 ? null
+            : enemiesEligible.Where(t => t != null)
+                .OrderBy(t => (t.transform.position - _player.transform.position).sqrMagnitude)
+                .FirstOrDefault();
     }
 
     private void LockTo(Entity target)
