@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -84,6 +85,12 @@ public class WaveManager : MonoBehaviour
             OnWaveEnded?.Invoke(_currentWave);
             StartWave();
         }
+    }
+
+    public List<Enemy> SpawnedEnemies()
+    {
+        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        return enemies.ToList();
     }
 
     IEnumerator SpawnEnemies(EnemyWave wave)
