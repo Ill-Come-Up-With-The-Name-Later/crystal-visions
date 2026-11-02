@@ -19,6 +19,8 @@ public class Player : Entity
     public ContestedHealth ContestedHealth { get { return _contestedHealth; } }
 
     public event Action OnPlayerDeath;
+
+    public event Action<bool> OnAimAssistToggle;
     
     private GameManager _gameManager;
 
@@ -57,6 +59,7 @@ public class Player : Entity
             {
                 PlayerAimAssist aimAssist = gameObject.GetComponent<PlayerAimAssist>();
                 aimAssist.Active = !aimAssist.Active;
+                OnAimAssistToggle?.Invoke(aimAssist.Active);
             }
         }
     }

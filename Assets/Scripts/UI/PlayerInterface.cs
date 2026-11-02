@@ -32,6 +32,8 @@ public class PlayerInterface : MonoBehaviour
     
     private Label _enemiesLeftLabel;
 
+    private Image _crosshair;
+
     private GameManager _gameManager;
     private WaveManager _waveManager;
 
@@ -58,6 +60,8 @@ public class PlayerInterface : MonoBehaviour
         _winOverlay = _document.rootVisualElement.Q<VisualElement>("WinLabelBackground");
         _enemiesLeftLabel = _document.rootVisualElement.Q<VisualElement>("EnemiesLeftBackground")
             .Q<Label>("EnemiesLeftLabel");
+        _crosshair = _document.rootVisualElement.Q<VisualElement>("Crosshair")
+            .Q<Image>("Crosshair");;
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -76,6 +80,9 @@ public class PlayerInterface : MonoBehaviour
         
         if(_enemiesLeftLabel == null)
             Debug.LogError("Enemies left label not found");
+        
+        if(_crosshair == null)
+            Debug.LogError("Crosshair not found");
         
         _deathOverlay.style.display = DisplayStyle.None;
         _winOverlay.style.display = DisplayStyle.None;
@@ -102,6 +109,7 @@ public class PlayerInterface : MonoBehaviour
         _gameManager.OnWin += ShowWinOverlay;
         _waveManager.OnWaveStarted += UpdateWave;
         _waveManager.ChangeEnemiesLeft += UpdateRemainingEnemies;
+        _player.OnAimAssistToggle += UpdateCrosshair;
         
         UpdateWave(0);
     }
@@ -115,9 +123,18 @@ public class PlayerInterface : MonoBehaviour
         _gameManager.OnWin -= ShowWinOverlay;
         _waveManager.OnWaveStarted -= UpdateWave;
         _waveManager.ChangeEnemiesLeft -= UpdateRemainingEnemies;
+        _player.OnAimAssistToggle -= UpdateCrosshair;
         
         _enemiesLeftLabel.text = "Enemies Left:";
         _waveLabel.text = "Wave:";
+    }
+
+    void UpdateCrosshair(bool aimAssist)
+    {
+        if (aimAssist)
+            _crosshair.tintColor = Color.red;
+        else
+            _crosshair.tintColor = Color.white;
     }
     
     void UpdateRemainingEnemies(int enemies)

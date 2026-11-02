@@ -78,7 +78,7 @@ public class PlayerAimAssist : MonoBehaviour
             
             float targetPitch = targetRotation.eulerAngles.x;
 
-            if (targetPitch > 180f)
+            if (targetPitch > 180f) // Prevent pitch doing weird things like flipping completely around
                 targetPitch -= 360f;
             
             _player.transform.rotation = Quaternion.RotateTowards(

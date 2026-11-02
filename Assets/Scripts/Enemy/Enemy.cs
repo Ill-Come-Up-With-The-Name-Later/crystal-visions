@@ -91,10 +91,10 @@ public class Enemy : Entity
         _health.OnDeath -= Die;
     }
 
-    void Update()
+    new void Update()
     {
+        base.Update();
         _playerPosition = _targetPlayer.transform.position;
-        _timeSinceLastDamage += Time.deltaTime;
         
         List<Attack> attacks = _attackCooldowns.Keys.ToList();
 
