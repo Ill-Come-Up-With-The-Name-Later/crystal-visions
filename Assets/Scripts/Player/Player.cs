@@ -22,17 +22,9 @@ public class Player : Entity
     
     private GameManager _gameManager;
 
-    void Awake()
+    new void Awake()
     {
-        _health = GetComponent<EntityHealth>();
-        
-        if(_health == null)
-            Debug.LogError("No health found");
-        
-        _rigidbody = GetComponent<Rigidbody>();
-        
-        if(_rigidbody == null)
-            Debug.LogError("No rigidbody found");
+        base.Awake();
         
         _contestedHealth = GetComponent<ContestedHealth>();
         

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public struct EntityStat
+public class EntityStat
 {
     [SerializeField]
     private float _baseValue;

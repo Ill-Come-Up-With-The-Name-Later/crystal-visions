@@ -53,8 +53,7 @@ public class PlayerAimAssist : MonoBehaviour
         List<Enemy> enemies = WaveManager.Instance.SpawnedEnemies();
         List<Enemy> enemiesEligible = enemies.Where(x => PositionInFOV(x.GetComponent<Collider>().bounds.center)
                                                          && Vector3.Distance(x.GetComponent<Collider>().bounds.center,
-                                                             _player.transform.position)
-                                                         <= _range).ToList();
+                                                             _player.transform.position) <= _range).ToList();
 
         // Closest enemy to the player
         _target = enemiesEligible.Count == 0 ? null

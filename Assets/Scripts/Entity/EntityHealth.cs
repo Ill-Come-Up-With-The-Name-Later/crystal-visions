@@ -8,12 +8,6 @@ public class EntityHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] 
     private float _currentHealth;
-
-    [SerializeField]
-    private float _healthBonus;
-
-    [SerializeField]
-    private float multiplicativeHealthBonus;
     
     [Header("Damage Particle")]
     [SerializeField]
@@ -57,8 +51,8 @@ public class EntityHealth : MonoBehaviour
 
         if (_entity is Enemy)
         {
-            _healthBonus = WaveManager.Instance.CurrentWave * 5;
-            multiplicativeHealthBonus = 0.15f * WaveManager.Instance.CurrentWave;
+            _entity.HealthStat.BonusValue = WaveManager.Instance.CurrentWave * 5;
+            _entity.HealthStat.Multiplier = 0.2f * WaveManager.Instance.CurrentWave;
         }
 
         _maxHealth = _entity.HealthStat.Value;
@@ -106,7 +100,7 @@ public class EntityHealth : MonoBehaviour
 
     public void Heal(float heal)
     {
-        Debug.Log($"Attempting to heal {_entity.name} by {heal} health.");
+        //Debug.Log($"Attempting to heal {_entity.name} by {heal} health.");
         
         _currentHealth = Math.Min(_currentHealth + heal, _maxHealth); // How did I forget to cap this???
         _healthbar.value = _currentHealth / _maxHealth;
