@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   _enemies:
   - _enemy: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
-    _weight: 1
+    _weight: 2
   - _enemy: {fileID: 8070961397177764660, guid: f36a8d84fa0a27342ac143dcceba0ff6, type: 3}
     _weight: 1
   _minEnemies: 8
-  _maxEnemies: 13
+  _maxEnemies: 10
   _minSpawnDelay: 2
   _maxSpawnDelay: 3

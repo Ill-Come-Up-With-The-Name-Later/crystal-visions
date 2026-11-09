@@ -599,6 +599,7 @@ MonoBehaviour:
   _waves:
   - {fileID: 11400000, guid: 9e12cb738cba1734b89c1aedfe5f5df6, type: 2}
   - {fileID: 11400000, guid: 4190c36847d106b4492f71a17a3df283, type: 2}
+  - {fileID: 11400000, guid: 1d84ab1cb5166f44f989eea6878ccf4b, type: 2}
   _currentWave: 0
   _enemiesLeftInWave: 0
 --- !u!4 &841555992

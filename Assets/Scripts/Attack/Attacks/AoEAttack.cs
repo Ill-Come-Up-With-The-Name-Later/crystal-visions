@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 
+[CreateAssetMenu(menuName = "Attacks/Hitscan/Explosion")]
 public class AoEAttack : Attack
 {
     [Header("Attack Parameters")]
     [SerializeField]
     private float _radius;
+    
+    [SerializeField]
+    private bool _allowSelfDamage;
     
     [SerializeField]
     private ParticleSystem _particles;
@@ -15,7 +19,8 @@ public class AoEAttack : Attack
     
     public override void PerformAttack(Entity source, AttackContext context = null)
     {
-        Instantiate(_particles, _position, Quaternion.identity);
+        _position = source.transform.position;
+        Instantiate(_particles, _position, Quaternion.identity).Play();
         Collider[] hitColliders = Physics.OverlapSphere(_position, _radius);
 
         foreach (Collider collider in hitColliders)
@@ -27,7 +32,7 @@ public class AoEAttack : Attack
                 if (hurtbox == null)
                     continue;
 
-                if (hurtbox.Parent != source)
+                if (hurtbox.Parent != source || _allowSelfDamage)
                     hurtbox.Parent.Health.TakeDamage(source.DamageStat.Value, source);
             }
         }
