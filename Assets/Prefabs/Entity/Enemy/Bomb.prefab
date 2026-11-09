@@ -143,7 +143,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _speedStat:
-    _baseValue: 10
+    _baseValue: 9
     _bonusValue: 0
     _multiplier: 0
   _hitInvulnerabilityStat:
@@ -162,11 +162,11 @@ MonoBehaviour:
     _cooldown: 1
   _globalAttackCooldown: 1
   _minRangeStat:
-    _baseValue: 6
+    _baseValue: 4
     _bonusValue: 0
     _multiplier: 0
   _maxRangeStat:
-    _baseValue: 9
+    _baseValue: 6
     _bonusValue: 0
     _multiplier: 0
 --- !u!114 &8383550019217405398
