@@ -252,6 +252,9 @@ MonoBehaviour:
     _secondaryAttack:
       _attack: {fileID: 11400000, guid: b87930f0c75fffc4a8ee518c22be86bd, type: 2}
       _cooldown: 0.2
+  _modeColors:
+  - {r: 0.23137255, g: 0.7490196, b: 0.627451, a: 0}
+  _colorIntensity: 5
   _owner: {fileID: 0}
   _current:
     _primaryAttack:
@@ -260,3 +263,4 @@ MonoBehaviour:
     _secondaryAttack:
       _attack: {fileID: 0}
       _cooldown: 0
+  _effect: {fileID: 0}

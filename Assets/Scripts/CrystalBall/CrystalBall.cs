@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 enum MouseButton
 {
@@ -34,6 +35,12 @@ public class CrystalBall : MonoBehaviour
     [Header("Crystal Ball Attacks")]
     [SerializeField]
     private List<AttackMode> _attackModes;
+
+    [SerializeField]
+    private List<Color> _modeColors;
+
+    [SerializeField]
+    private float _colorIntensity;
         
     [Header("Debug (Do not edit)")]
     [SerializeField]
@@ -43,6 +50,9 @@ public class CrystalBall : MonoBehaviour
     private AttackMode _current;
     private int _currentIndex;
 
+    [SerializeField]
+    private VisualEffect _effect;
+
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>(); // This isn't great, but it works
 
     private void Awake()
@@ -50,7 +60,12 @@ public class CrystalBall : MonoBehaviour
         _owner = GetComponentInParent<Player>();
         
         if(_owner == null)
-            Debug.LogError($"No owning player found");
+            Debug.LogError("No owning player found");
+
+        _effect = GetComponentInChildren<VisualEffect>();
+        
+        if(_effect == null)
+            Debug.LogError("No effect found");
     }
 
     void Start()
@@ -63,6 +78,9 @@ public class CrystalBall : MonoBehaviour
             _attackCooldowns[mode.Primary.Attack] = 0;
             _attackCooldowns[mode.Secondary.Attack] = 0;
         }
+        
+        if (_effect.HasVector4("color"))
+            _effect.SetVector4("color", _modeColors[_currentIndex] * _colorIntensity);
     }
     
     void Update()
@@ -82,6 +100,9 @@ public class CrystalBall : MonoBehaviour
         {
             _currentIndex = (_currentIndex + 1) % _attackModes.Count;
             _current = _attackModes[_currentIndex];
+
+            if (_effect.HasVector4("color"))
+                _effect.SetVector4("color", _modeColors[_currentIndex] * _colorIntensity);
         }
     }
 

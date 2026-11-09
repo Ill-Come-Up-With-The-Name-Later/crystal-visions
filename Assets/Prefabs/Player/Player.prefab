@@ -190,8 +190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   _currentHealth: 0
-  _healthBonus: 0
-  multiplicativeHealthBonus: 0
   _damageParticle: {fileID: 6876129048977792812, guid: 4de4d12b117e1c34495b2a23dc35f92b, type: 3}
   _invulnerable: 0
   _maxHealth: 0
@@ -482,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408448342988f994bbd1ad4d1c680dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
-  _player: {fileID: 7871916344149482490}
+  _player: {fileID: 0}
   _mouseSensitivity: 650
   _maxAngle: 90
 --- !u!1001 &2588830792150999172
@@ -497,6 +495,58 @@ PrefabInstance:
       propertyPath: _failParticle
       value: 
       objectReference: {fileID: 1346299512439734839, guid: 7b3ba0b328febb746a99a922dd8944ff, type: 3}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
+      value: color
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Name
+      value: flashColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 7.3488727
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 23.96863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 19.985039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.x
+      value: 57.0379
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.y
+      value: 57.0379
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.z
+      value: 57.0379
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500900374449254574, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6521511323219622508, guid: 65b9001d99153d14f9c57ed9fc120b5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
