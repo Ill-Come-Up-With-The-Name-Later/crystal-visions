@@ -59,6 +59,8 @@ public class CrystalBall : MonoBehaviour
     [SerializeField]
     private VisualEffect _effect;
 
+    private ParticleSystem _modeSwitchEffect;
+
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>(); // This isn't great, but it works
 
     private void Awake()
@@ -77,6 +79,11 @@ public class CrystalBall : MonoBehaviour
         
         if(_laserRenderer == null)
             Debug.LogError("No line renderer found");
+        
+        _modeSwitchEffect = GetComponentInChildren<ParticleSystem>();
+        
+        if(_modeSwitchEffect == null)
+            Debug.LogError("No mode switch particle system found");
     }
 
     void Start()
@@ -114,6 +121,8 @@ public class CrystalBall : MonoBehaviour
         {
             _currentIndex = (_currentIndex + 1) % _attackModes.Count;
             _current = _attackModes[_currentIndex];
+            
+            _modeSwitchEffect.Play();
 
             if (_effect.HasVector4("color"))
                 _effect.SetVector4("color", _modeColors[_currentIndex] * _colorIntensity);
