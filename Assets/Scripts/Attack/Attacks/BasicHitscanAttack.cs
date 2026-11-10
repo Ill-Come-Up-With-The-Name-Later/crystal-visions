@@ -22,9 +22,9 @@ public class BasicHitscanAttack : Attack
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            if (hitObject.GetComponent<Entity>() != null)
+            if (hitObject.GetComponent<Hurtbox>() != null)
             {
-                Entity hitEntity = hitObject.GetComponent<Entity>();
+                Entity hitEntity = hitObject.GetComponent<Hurtbox>().Parent;
                 hitEntity.Health.TakeDamage(damage, source);
             }
         }

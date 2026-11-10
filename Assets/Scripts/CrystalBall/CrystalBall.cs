@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -45,6 +46,11 @@ public class CrystalBall : MonoBehaviour
     [Header("Debug (Do not edit)")]
     [SerializeField]
     private Player _owner;
+
+    [SerializeField]
+    private LineRenderer _laserRenderer;
+    
+    public LineRenderer Laser { get { return _laserRenderer; } }
     
     [SerializeField]
     private AttackMode _current;
@@ -66,6 +72,11 @@ public class CrystalBall : MonoBehaviour
         
         if(_effect == null)
             Debug.LogError("No effect found");
+        
+        _laserRenderer = GetComponentInChildren<LineRenderer>();
+        
+        if(_laserRenderer == null)
+            Debug.LogError("No line renderer found");
     }
 
     void Start()
@@ -81,6 +92,9 @@ public class CrystalBall : MonoBehaviour
         
         if (_effect.HasVector4("color"))
             _effect.SetVector4("color", _modeColors[_currentIndex] * _colorIntensity);
+        
+        if (_effect.HasVector4("flashColor"))
+            _effect.SetVector4("flashColor", _modeColors[_currentIndex] * _colorIntensity);
     }
     
     void Update()
@@ -103,6 +117,9 @@ public class CrystalBall : MonoBehaviour
 
             if (_effect.HasVector4("color"))
                 _effect.SetVector4("color", _modeColors[_currentIndex] * _colorIntensity);
+            
+            if (_effect.HasVector4("flashColor"))
+                _effect.SetVector4("flashColor", _modeColors[_currentIndex] * _colorIntensity);
         }
     }
 
@@ -124,5 +141,16 @@ public class CrystalBall : MonoBehaviour
     {
         _attackCooldowns.TryGetValue(attack, out var cooldown);
         return cooldown <= 0;
+    }
+
+    public void HideLaserCoroutine()
+    {
+        StartCoroutine(HideLaser());
+    }
+    
+    IEnumerator HideLaser()
+    {
+        yield return new WaitForSeconds(0.75f);
+        _laserRenderer.enabled = false;
     }
 }
