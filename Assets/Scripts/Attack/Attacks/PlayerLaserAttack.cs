@@ -19,14 +19,15 @@ public class PlayerLaserAttack : Attack
                 RaycastHit[] hits;
                 
                 NativeArray<Vector3> points =  new NativeArray<Vector3>(2, Allocator.Temp);
-                points[0] = source.transform.position + source.transform.forward * 0.5f;
-                points[1] = source.transform.position + source.transform.forward * range;
+                points[0] = crystalBall.gameObject.transform.position + crystalBall.gameObject.transform.forward * 0.5f;
+                points[1] = crystalBall.gameObject.transform.position + (context == null ?
+                    crystalBall.gameObject.transform.forward : context.Forward) * range;
                 
                 crystalBall.Laser.SetPositions(points);
                 crystalBall.Laser.enabled = true;
         
-                hits = Physics.RaycastAll( source.transform.position + source.transform.forward * 0.5f,
-                    context == null ? source.transform.forward : context.Forward, range);
+                hits = Physics.RaycastAll( crystalBall.gameObject.transform.position + crystalBall.gameObject.transform.forward * 0.5f,
+                    context == null ? crystalBall.gameObject.transform.forward : context.Forward, range);
 
                 foreach (RaycastHit hit in hits)
                 {
