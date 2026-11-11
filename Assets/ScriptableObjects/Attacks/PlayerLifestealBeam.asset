@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d345bb8b0f4ad7857cf52aa2527d54, type: 3}
+  m_Name: PlayerLifestealBeam
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLifestealLaser
+  _healBeam: {fileID: 4940757493287886873, guid: 7aba53b4d4fa600448976dd267e77d11, type: 3}
