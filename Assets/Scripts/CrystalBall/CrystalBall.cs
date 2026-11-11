@@ -122,6 +122,7 @@ public class CrystalBall : MonoBehaviour
             _currentIndex = (_currentIndex + 1) % _attackModes.Count;
             _current = _attackModes[_currentIndex];
             
+            _modeSwitchEffect.Stop();
             _modeSwitchEffect.Play();
 
             if (_effect.HasVector4("color"))
