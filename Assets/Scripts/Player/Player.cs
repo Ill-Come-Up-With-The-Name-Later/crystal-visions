@@ -18,6 +18,10 @@ public class Player : Entity
     
     public ContestedHealth ContestedHealth { get { return _contestedHealth; } }
 
+    [Header("Player Exclusive Stats")]
+    [SerializeField]
+    private EntityStat _healthRegeneration;
+
     public event Action OnPlayerDeath;
 
     public event Action<bool> OnAimAssistToggle;
@@ -46,7 +50,7 @@ public class Player : Entity
         _gameManager = GameManager.Instance;
         
         _crystalBall = GetComponentInChildren<CrystalBall>();
-        _gameManager.Crystal.Health.OnHealthChanges += GainDamageBoost;
+        _gameManager.Crystal.Health.OnHealthChanges += GainStatBoosts;
     }
 
     new void Update()
@@ -62,20 +66,24 @@ public class Player : Entity
                 OnAimAssistToggle?.Invoke(aimAssist.Active);
             }
         }
+        
+        _health.Heal(_healthRegeneration.Value * Time.deltaTime);
     }
 
-    private void GainDamageBoost()
+    private void GainStatBoosts()
     {
         float crystalHealth = GameManager.Instance.Crystal.Health.CurrentHealth;
         float crystalHealthPercent = crystalHealth / GameManager.Instance.Crystal.Health.MaxHealth;
         
         _damageStat.BonusValue = _damageStat.BaseValue * (1f - crystalHealthPercent);
+        _speedStat.BonusValue = (_speedStat.BaseValue * (1f - crystalHealthPercent)) * 0.25f;
+        _healthRegeneration.BonusValue = _healthRegeneration.BaseValue * (1f - crystalHealthPercent);
     }
 
     private void OnDestroy()
     {
         _health.OnDeath -= OnDeath;
-        _gameManager.Crystal.Health.OnHealthChanges -= GainDamageBoost;
+        _gameManager.Crystal.Health.OnHealthChanges -= GainStatBoosts;
     }
 
     void OnDeath()

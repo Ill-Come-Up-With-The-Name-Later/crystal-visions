@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crystal
   _healthStat:
-    _baseValue: 350
+    _baseValue: 450
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
@@ -530,7 +530,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _hitInvulnerabilityStat:
-    _baseValue: 0.3
+    _baseValue: 0.25
     _bonusValue: 0
     _multiplier: 0
   _health: {fileID: 0}

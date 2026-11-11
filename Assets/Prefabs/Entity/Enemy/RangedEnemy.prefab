@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
       propertyPath: _damageStat._baseValue
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
       propertyPath: _healthStat._baseValue
@@ -43,6 +43,14 @@ PrefabInstance:
     - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
       propertyPath: _attacks.Array.data[0]._cooldown
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410946900779872823, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410946900779872823, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4411966925273355907, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
       propertyPath: m_Name

@@ -159,7 +159,7 @@ public class CrystalBall : MonoBehaviour
     
     IEnumerator HideLaser()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         _laserRenderer.enabled = false;
     }
 }

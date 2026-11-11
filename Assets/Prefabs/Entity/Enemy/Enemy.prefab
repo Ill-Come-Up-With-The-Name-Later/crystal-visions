@@ -135,7 +135,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 20
+    _baseValue: 24
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:
@@ -143,7 +143,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _speedStat:
-    _baseValue: 7
+    _baseValue: 7.4
     _bonusValue: 0
     _multiplier: 0
   _hitInvulnerabilityStat:
@@ -182,8 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   _currentHealth: 0
-  _healthBonus: 0
-  multiplicativeHealthBonus: 0
   _damageParticle: {fileID: 6876129048977792812, guid: 4de4d12b117e1c34495b2a23dc35f92b, type: 3}
   _invulnerable: 0
   _maxHealth: 0

@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _healthStat:
-    _baseValue: 150
+    _baseValue: 200
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
@@ -153,7 +153,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _hitInvulnerabilityStat:
-    _baseValue: 0.1
+    _baseValue: 0.07
     _bonusValue: 0
     _multiplier: 0
   _health: {fileID: 0}
@@ -162,6 +162,10 @@ MonoBehaviour:
   _crystalBall: {fileID: 0}
   _camera: {fileID: 0}
   _contestedHealth: {fileID: 0}
+  _healthRegeneration:
+    _baseValue: 0.6
+    _bonusValue: 0
+    _multiplier: 0
 --- !u!114 &2320326540943064410
 MonoBehaviour:
   m_ObjectHideFlags: 0
