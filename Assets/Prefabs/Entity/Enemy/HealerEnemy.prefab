@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2562fa74c2ac47268f75b507317666b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealNearbyEnemies
-  _interval: 2.5
+  _interval: 1.75
   _healRadius: 18
   _healBeam: {fileID: 4940757493287886873, guid: 7aba53b4d4fa600448976dd267e77d11, type: 3}
 --- !u!1 &4411966925273355907
