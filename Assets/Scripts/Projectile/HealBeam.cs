@@ -41,7 +41,7 @@ public class HealBeam : MonoBehaviour
         _beamRenderer.SetPosition(0, transform.position);
         _beamRenderer.SetPosition(1, _target.transform.position);
         
-        _target.Health.Heal(_healAmount);
+        _target.Health.Heal(_healAmount, EntityHealth.HealReason.Ability);
         StartCoroutine(TerminateBeam());
     }
 

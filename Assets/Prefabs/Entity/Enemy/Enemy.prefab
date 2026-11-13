@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   _currentHealth: 0
   _damageParticle: {fileID: 6876129048977792812, guid: 4de4d12b117e1c34495b2a23dc35f92b, type: 3}
+  _healParticle: {fileID: 6876129048977792812, guid: 33763f4b491ade64290aabe3134f6fc5, type: 3}
   _invulnerable: 0
   _maxHealth: 0
   _healthbar: {fileID: 0}

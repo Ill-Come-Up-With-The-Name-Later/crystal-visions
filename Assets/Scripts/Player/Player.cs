@@ -67,7 +67,7 @@ public class Player : Entity
             }
         }
         
-        _health.Heal(_healthRegeneration.Value * Time.deltaTime);
+        _health.Heal(_healthRegeneration.Value * Time.deltaTime, EntityHealth.HealReason.Regeneration);
     }
 
     private void GainStatBoosts()

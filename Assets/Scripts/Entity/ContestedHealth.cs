@@ -73,6 +73,6 @@ public class ContestedHealth : MonoBehaviour
         _contestedHealthAmount = Math.Max(_contestedHealthAmount - damage, 0);
         
         OnContestedHealthChange?.Invoke(_contestedHealthAmount);
-        source.Health.Heal(returnAmount);
+        source.Health.Heal(returnAmount, EntityHealth.HealReason.Regeneration);
     }
 }

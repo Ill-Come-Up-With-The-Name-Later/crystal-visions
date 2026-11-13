@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class EntityHealth : MonoBehaviour
 {
+    public enum HealReason
+    {
+        Regeneration,
+        Ability
+    }
+    
     [Header("Health")]
     [SerializeField] 
     private float _currentHealth;
@@ -12,6 +18,10 @@ public class EntityHealth : MonoBehaviour
     [Header("Damage Particle")]
     [SerializeField]
     private ParticleSystem _damageParticle;
+
+    [Header("Healing Particle")]
+    [SerializeField]
+    private ParticleSystem _healParticle;
     
     [Header("Invulnerability")]
     [SerializeField]
@@ -98,7 +108,7 @@ public class EntityHealth : MonoBehaviour
         DamageTakenAdditionalInfo?.Invoke(damage, _entity, source);
     }
 
-    public void Heal(float heal)
+    public void Heal(float heal, HealReason reason)
     {
         //Debug.Log($"Attempting to heal {_entity.name} by {heal} health.");
         
@@ -106,6 +116,9 @@ public class EntityHealth : MonoBehaviour
         _healthbar.value = _currentHealth / _maxHealth;
         OnHeal?.Invoke(heal);
         OnHealthChanges?.Invoke();
+        
+        if(_healParticle != null && reason != HealReason.Regeneration)
+            Instantiate(_healParticle, _entity.transform.position, Quaternion.identity);
     }
 
     public void Die()
