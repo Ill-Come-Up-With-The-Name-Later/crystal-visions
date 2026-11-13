@@ -30,14 +30,10 @@ public class ItemSelector<T> where T : notnull
     public void AddItem(T item, int weight)
     {
         if (entries.ContainsKey(item))
-        {
             RemoveItem(item);
-        }
 
         if (weight <= 0)
-        {
             throw new ArgumentException("Weight must be greater than 0");
-        }
 
         entries[item] = weight;
         totalWeight += weight;
@@ -84,9 +80,7 @@ public class ItemSelector<T> where T : notnull
             value -= weight;
 
             if (value < 0)
-            {
                 return item;
-            }
         }
 
         throw new Exception("Impossible state");

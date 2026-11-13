@@ -64,7 +64,7 @@ public class WaveManager : MonoBehaviour
         }
 
         EnemyWave wave = _waves[_currentWave];
-        _enemiesLeftInWave = Random.Range(wave.MinEnemies, wave.MaxEnemies + 1);
+        _enemiesLeftInWave = Random.Range(wave.MinEnemies, wave.MaxEnemies + 1) + wave.GuaranteedSpawns.Count;
         ChangeEnemiesLeft?.Invoke(_enemiesLeftInWave);
         
         StartCoroutine(SpawnEnemies(wave));
