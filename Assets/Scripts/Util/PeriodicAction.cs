@@ -7,7 +7,7 @@ public class PeriodicAction : MonoBehaviour
     [SerializeField]
     private float _interval;
 
-    void Start()
+    protected virtual void Start()
     {
         StartCoroutine(ActionCoroutine());
     }
