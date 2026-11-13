@@ -29,6 +29,11 @@ public class EnemyWave : ScriptableObject
     private List<WeightedEnemy> _enemies;
     
     public IReadOnlyList<WeightedEnemy> Enemies { get => _enemies; }
+
+    [SerializeField]
+    private List<Enemy> _guaranteedSpawns;
+    
+    public IReadOnlyList<Enemy> GuaranteedSpawns { get => _guaranteedSpawns; }
     
     [SerializeField]
     private int _minEnemies;
