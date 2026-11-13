@@ -9,15 +9,9 @@ public class FireProjectile : Attack
     
     public override void PerformAttack(Entity source, AttackContext context = null)
     {
-        if (context == null)
-        {
-            Projectile.LaunchProjectile(_projectile,
-                source.transform.forward * _projectile.Speed, source);
-        }
-        else
-        {
-            Projectile.LaunchProjectile(_projectile,
-                context.Forward * _projectile.Speed, source);
-        }
+        Vector3 forward = context?.Forward ?? source.transform.forward;
+        
+        Projectile.LaunchProjectile(_projectile,
+            forward * _projectile.Speed, source);
     }
 }
