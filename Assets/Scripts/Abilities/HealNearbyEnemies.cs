@@ -33,7 +33,7 @@ public class HealNearbyEnemies : PeriodicAction
 
             beam.Source = _parent;
             beam.Target = enemy;
-            beam.HealAmount = _parent.DamageStat.Value;
+            beam.HealAmount = _parent.DamageStat.Value * 2;
             
             beam.Heal();
         }
