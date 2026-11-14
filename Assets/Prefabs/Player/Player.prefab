@@ -141,15 +141,15 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 15
+    _baseValue: 18
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:
-    _baseValue: 9
+    _baseValue: 11
     _bonusValue: 0
     _multiplier: 0
   _speedStat:
-    _baseValue: 8
+    _baseValue: 8.4
     _bonusValue: 0
     _multiplier: 0
   _hitInvulnerabilityStat:
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   _player: {fileID: 0}
-  _mouseSensitivity: 720
+  _mouseSensitivity: 800
   _maxAngle: 90
 --- !u!1001 &2588830792150999172
 PrefabInstance:

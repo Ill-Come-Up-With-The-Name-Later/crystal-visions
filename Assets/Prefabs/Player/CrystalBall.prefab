@@ -392,10 +392,10 @@ MonoBehaviour:
   _attackModes:
   - _primaryAttack:
       _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
-      _cooldown: 0.05
+      _cooldown: 0.02
     _secondaryAttack:
       _attack: {fileID: 11400000, guid: f6c2b71a630fc4246aef2d6f0dccfe1d, type: 2}
-      _cooldown: 0.2
+      _cooldown: 0.25
   - _primaryAttack:
       _attack: {fileID: 11400000, guid: 2a8189529e3cef7479fb5bf895a1ea8c, type: 2}
       _cooldown: 0.8
