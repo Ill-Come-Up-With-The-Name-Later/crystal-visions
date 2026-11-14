@@ -63,6 +63,8 @@ public class CrystalBall : MonoBehaviour
 
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>(); // This isn't great, but it works
 
+    public event Action<int> OnModeChange;
+
     private void Awake()
     {
         _owner = GetComponentInParent<Player>();
@@ -121,15 +123,17 @@ public class CrystalBall : MonoBehaviour
         {
             _currentIndex = (_currentIndex + 1) % _attackModes.Count;
             _current = _attackModes[_currentIndex];
-            
-            _modeSwitchEffect.Stop();
-            _modeSwitchEffect.Play();
+
+            ParticleSystem effect = Instantiate(_modeSwitchEffect, transform.position, Quaternion.identity);
+            effect.Play();
 
             if (_effect.HasVector4("color"))
                 _effect.SetVector4("color", _modeColors[_currentIndex] * _colorIntensity);
             
             if (_effect.HasVector4("flashColor"))
                 _effect.SetVector4("flashColor", _modeColors[_currentIndex] * _colorIntensity);
+            
+            OnModeChange?.Invoke(_currentIndex);
         }
     }
 

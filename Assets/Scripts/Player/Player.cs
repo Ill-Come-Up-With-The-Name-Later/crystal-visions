@@ -49,7 +49,9 @@ public class Player : Entity
         
         _gameManager = GameManager.Instance;
         
-        _crystalBall = GetComponentInChildren<CrystalBall>();
+        if(_crystalBall == null)
+            _crystalBall = GetComponentInChildren<CrystalBall>();
+        
         _gameManager.Crystal.Health.OnHealthChanges += GainStatBoosts;
     }
 

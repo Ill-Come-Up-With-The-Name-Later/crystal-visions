@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -11,6 +12,9 @@ public class PlayerInterface : MonoBehaviour
     [Header("Debug (Do not edit)")]
     [SerializeField]
     private Player _player;
+
+    [SerializeField]
+    private CrystalBall _crystalBall;
 
     [SerializeField]
     private ContestedHealth _playerContestedHealth;
@@ -37,6 +41,11 @@ public class PlayerInterface : MonoBehaviour
     private GameManager _gameManager;
     private WaveManager _waveManager;
 
+    private Image _burstIcon;
+    private Image _beamIcon;
+    
+    private List<Image> _modeImages = new List<Image>();
+
     private void Awake()
     {
         _player = FindAnyObjectByType<Player>();
@@ -62,6 +71,10 @@ public class PlayerInterface : MonoBehaviour
             .Q<Label>("EnemiesLeftLabel");
         _crosshair = _document.rootVisualElement.Q<VisualElement>("Crosshair")
             .Q<Image>("Crosshair");;
+        _burstIcon = _document.rootVisualElement.Q<VisualElement>("ModeBackground")
+            .Q<Image>("BurstIcon");
+        _beamIcon = _document.rootVisualElement.Q<VisualElement>("ModeBackground")
+            .Q<Image>("BeamIcon");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -84,6 +97,15 @@ public class PlayerInterface : MonoBehaviour
         if(_crosshair == null)
             Debug.LogError("Crosshair not found");
         
+        if(_burstIcon == null)
+            Debug.LogError("Burst Icon not found");
+        
+        if(_beamIcon == null)
+            Debug.LogError("Beam Icon not found");
+        
+        _modeImages.Add(_burstIcon);
+        _modeImages.Add(_beamIcon);
+        
         _deathOverlay.style.display = DisplayStyle.None;
         _winOverlay.style.display = DisplayStyle.None;
         
@@ -95,6 +117,7 @@ public class PlayerInterface : MonoBehaviour
     {
         // I have no clue why this needs to be here and not in Awake()
         _playerContestedHealth = _player.ContestedHealth;
+        _crystalBall = _player.CrystalBall;
         
         if(_playerContestedHealth == null) 
             Debug.LogError("No contested health found");
@@ -110,8 +133,10 @@ public class PlayerInterface : MonoBehaviour
         _waveManager.OnWaveStarted += UpdateWave;
         _waveManager.ChangeEnemiesLeft += UpdateRemainingEnemies;
         _player.OnAimAssistToggle += UpdateCrosshair;
+        _crystalBall.OnModeChange += UpdateCrystalBallUI;
         
         UpdateWave(0);
+        UpdateCrystalBallUI(0);
     }
 
     void OnDestroy()
@@ -124,6 +149,7 @@ public class PlayerInterface : MonoBehaviour
         _waveManager.OnWaveStarted -= UpdateWave;
         _waveManager.ChangeEnemiesLeft -= UpdateRemainingEnemies;
         _player.OnAimAssistToggle -= UpdateCrosshair;
+        _crystalBall.OnModeChange -= UpdateCrystalBallUI;
         
         _enemiesLeftLabel.text = "Enemies Left:";
         _waveLabel.text = "Wave:";
@@ -182,5 +208,13 @@ public class PlayerInterface : MonoBehaviour
     {
         _crystalHealthBar.style.width =
             Length.Percent((_crystal.Health.CurrentHealth / _crystal.Health.MaxHealth) * 100);
+    }
+
+    void UpdateCrystalBallUI(int mode)
+    {
+        foreach (Image image in _modeImages)
+            image.style.visibility = Visibility.Hidden;
+        
+        _modeImages[mode].style.visibility = Visibility.Visible;
     }
 }
