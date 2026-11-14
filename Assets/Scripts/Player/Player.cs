@@ -76,10 +76,12 @@ public class Player : Entity
     {
         float crystalHealth = GameManager.Instance.Crystal.Health.CurrentHealth;
         float crystalHealthPercent = crystalHealth / GameManager.Instance.Crystal.Health.MaxHealth;
+        float currentHealthPercent = _health.CurrentHealth / _health.MaxHealth;
         
-        _damageStat.BonusValue = _damageStat.BaseValue * (1f - crystalHealthPercent);
-        _speedStat.BonusValue = (_speedStat.BaseValue * (1f - crystalHealthPercent)) * 0.25f;
+        _damageStat.BonusValue = _damageStat.BaseValue * (1f - crystalHealthPercent) * 1.66f;
+        _speedStat.BonusValue = (_speedStat.BaseValue * (1f - crystalHealthPercent)) * 0.33f;
         _healthRegeneration.BonusValue = _healthRegeneration.BaseValue * (1f - crystalHealthPercent);
+        _damageStat.Multiplier = (1f - currentHealthPercent) * 0.75f;
     }
 
     private void OnDestroy()
