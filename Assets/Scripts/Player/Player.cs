@@ -53,6 +53,7 @@ public class Player : Entity
             _crystalBall = GetComponentInChildren<CrystalBall>();
         
         _gameManager.Crystal.Health.OnHealthChanges += GainStatBoosts;
+        _health.OnHealthChanges += GainStatBoosts;
     }
 
     new void Update()
@@ -87,6 +88,7 @@ public class Player : Entity
     private void OnDestroy()
     {
         _health.OnDeath -= OnDeath;
+        _health.OnHealthChanges -= GainStatBoosts;
         _gameManager.Crystal.Health.OnHealthChanges -= GainStatBoosts;
     }
 
