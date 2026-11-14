@@ -10,6 +10,10 @@ public class WaveManager : MonoBehaviour
     [Header("Waves")]
     [SerializeField] 
     private List<EnemyWave> _waves;
+
+    [Header("Spawning Particles")]
+    [SerializeField]
+    private ParticleSystem _spawnParticles;
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
@@ -102,7 +106,7 @@ public class WaveManager : MonoBehaviour
         {
             Vector3 position = transform.position + 
                                new Vector3(Random.Range(-40, 40) + 50, 3.5f, Random.Range(-40, 40) + 50);
-            Instantiate(wave.GetRandomEnemy(), position, Quaternion.identity);
+            SpawnEnemy(wave.GetRandomEnemy(), position);
             spawned++;
             
             yield return new WaitForSeconds(Random.Range(wave.MinSpawnDelay, wave.MaxSpawnDelay));
@@ -114,11 +118,17 @@ public class WaveManager : MonoBehaviour
         {
             Vector3 position = transform.position + 
                                new Vector3(Random.Range(-40, 40) + 50, 3.5f, Random.Range(-40, 40) + 50);
-            Instantiate(enemy, position, Quaternion.identity);
+            SpawnEnemy(enemy, position);
             spawned++;
             
             yield return new WaitForSeconds(
                 Random.Range(wave.MinSpawnDelay, wave.MaxSpawnDelay));
         }
+    }
+
+    void SpawnEnemy(Enemy enemy, Vector3 position)
+    {
+        Instantiate(_spawnParticles, position, Quaternion.identity);
+        Instantiate(enemy, position, Quaternion.identity);
     }
 }

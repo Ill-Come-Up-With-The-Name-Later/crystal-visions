@@ -16,11 +16,11 @@ MonoBehaviour:
   - _enemy: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
     _weight: 3
   - _enemy: {fileID: 8070961397177764660, guid: f36a8d84fa0a27342ac143dcceba0ff6, type: 3}
-    _weight: 2
+    _weight: 3
   - _enemy: {fileID: 957024150784282620, guid: 0208d955b63f5f947a4c2897242c1eaa, type: 3}
-    _weight: 1
-  - _enemy: {fileID: 957024150784282620, guid: 0d9707afe6998064080b10ef8fb54afc, type: 3}
     _weight: 2
+  - _enemy: {fileID: 957024150784282620, guid: 0d9707afe6998064080b10ef8fb54afc, type: 3}
+    _weight: 3
   _guaranteedSpawns:
   - {fileID: 957024150784282620, guid: ba2bcbb20c2b95846abc44192affaae8, type: 3}
   - {fileID: 957024150784282620, guid: 12dd309b42ca08546908e1ca730d0d36, type: 3}

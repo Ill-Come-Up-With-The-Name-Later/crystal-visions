@@ -601,6 +601,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4190c36847d106b4492f71a17a3df283, type: 2}
   - {fileID: 11400000, guid: 1d84ab1cb5166f44f989eea6878ccf4b, type: 2}
   - {fileID: 11400000, guid: fdb83f7d96e0bce40bd5ef0abb52cb5a, type: 2}
+  _spawnParticles: {fileID: 7133844381210205837, guid: 368958d4fdffab944be414c49f703e55, type: 3}
   _currentWave: 0
   _enemiesLeftInWave: 0
 --- !u!4 &841555992
