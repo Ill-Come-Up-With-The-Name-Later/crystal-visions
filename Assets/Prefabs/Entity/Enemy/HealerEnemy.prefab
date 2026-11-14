@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2562fa74c2ac47268f75b507317666b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealNearbyEnemies
-  _interval: 1.75
+  _interval: 1.33
   _healRadius: 18
   _healBeam: {fileID: 4940757493287886873, guid: 7aba53b4d4fa600448976dd267e77d11, type: 3}
 --- !u!1 &4411966925273355907
@@ -179,11 +179,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _healthStat:
-    _baseValue: 50
+    _baseValue: 60
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 10
+    _baseValue: 12
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:
@@ -207,7 +207,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _attacks:
   - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
-    _cooldown: 1
+    _cooldown: 0.5
   _globalAttackCooldown: 0.25
   _minRangeStat:
     _baseValue: 4

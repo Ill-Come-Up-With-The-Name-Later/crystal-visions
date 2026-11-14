@@ -5026,7 +5026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _healthStat:
-    _baseValue: 30
+    _baseValue: 35
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
@@ -5034,7 +5034,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:
-    _baseValue: 8
+    _baseValue: 6.5
     _bonusValue: 0
     _multiplier: 0
   _speedStat:
@@ -5057,11 +5057,11 @@ MonoBehaviour:
     _cooldown: 1
   _globalAttackCooldown: 1
   _minRangeStat:
-    _baseValue: 4
+    _baseValue: 3
     _bonusValue: 0
     _multiplier: 0
   _maxRangeStat:
-    _baseValue: 6
+    _baseValue: 7
     _bonusValue: 0
     _multiplier: 0
 --- !u!114 &8383550019217405398

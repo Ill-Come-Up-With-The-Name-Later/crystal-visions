@@ -131,11 +131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _healthStat:
-    _baseValue: 100
+    _baseValue: 150
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 35
+    _baseValue: 20
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:
@@ -158,8 +158,8 @@ MonoBehaviour:
   _playerPosition: {x: 0, y: 0, z: 0}
   _target: {fileID: 0}
   _attacks:
-  - _attack: {fileID: 11400000, guid: f6c2b71a630fc4246aef2d6f0dccfe1d, type: 2}
-    _cooldown: 0.5
+  - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
+    _cooldown: 0.1
   _globalAttackCooldown: 1
   _minRangeStat:
     _baseValue: 6
