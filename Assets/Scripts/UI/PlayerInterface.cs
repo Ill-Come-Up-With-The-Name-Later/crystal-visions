@@ -213,8 +213,8 @@ public class PlayerInterface : MonoBehaviour
     void UpdateCrystalBallUI(int mode)
     {
         foreach (Image image in _modeImages)
-            image.style.visibility = Visibility.Hidden;
+            image.style.display = DisplayStyle.None;
         
-        _modeImages[mode].style.visibility = Visibility.Visible;
+        _modeImages[mode].style.display = DisplayStyle.Flex;
     }
 }
