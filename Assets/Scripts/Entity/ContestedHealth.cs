@@ -63,13 +63,7 @@ public class ContestedHealth : MonoBehaviour
         if (source != _owner)
             return;
 
-        float returnAmount;
-        
-        if (damage > _contestedHealthAmount)
-            returnAmount = _contestedHealthAmount;
-        else
-            returnAmount = _contestedHealthAmount - damage;
-        
+        float returnAmount = Math.Min(damage, _contestedHealthAmount);
         _contestedHealthAmount = Math.Max(_contestedHealthAmount - damage, 0);
         
         OnContestedHealthChange?.Invoke(_contestedHealthAmount);
