@@ -323,8 +323,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2910852150671728888}
-  - component: {fileID: 541292606197330852}
   - component: {fileID: 4513526989472424275}
+  - component: {fileID: 8948428470914602250}
   m_Layer: 0
   m_Name: Hurtbox
   m_TagString: Hurtbox
@@ -347,8 +347,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3241518030757366891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &541292606197330852
-BoxCollider:
+--- !u!114 &4513526989472424275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177601897430129017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e287e5eea4521d4d9434bb135f167e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  _parent: {fileID: 3048153180619074508}
+  _collider: {fileID: 0}
+--- !u!136 &8948428470914602250
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -365,23 +379,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4513526989472424275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6177601897430129017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e287e5eea4521d4d9434bb135f167e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
-  _parent: {fileID: 3048153180619074508}
-  _collider: {fileID: 0}
 --- !u!1 &8585627467808078404
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,9 +501,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6
-  m_Height: 2.75
+  m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!114 &3048153180619074508
 MonoBehaviour:
   m_ObjectHideFlags: 0

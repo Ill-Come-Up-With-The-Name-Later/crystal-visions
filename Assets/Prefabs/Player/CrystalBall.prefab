@@ -372,7 +372,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -405,7 +405,7 @@ MonoBehaviour:
   _modeColors:
   - {r: 0.23137255, g: 0.7490196, b: 0.627451, a: 0}
   - {r: 0.626169, g: 1, b: 0.4392157, a: 0}
-  _colorIntensity: 4
+  _colorIntensity: 5
   _owner: {fileID: 0}
   _laserRenderer: {fileID: 0}
   _current:
