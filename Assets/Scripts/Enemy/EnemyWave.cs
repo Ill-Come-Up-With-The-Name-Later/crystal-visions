@@ -55,6 +55,11 @@ public class EnemyWave : ScriptableObject
     
     public int MaxSpawnDelay { get => _maxSpawnDelay; }
 
+    [SerializeField]
+    private int _guaranteedSpawnDelay;
+    
+    public int GuaranteedSpawnDelay { get => _guaranteedSpawnDelay; }
+
     public Enemy GetRandomEnemy()
     {
         ItemSelector<Enemy> enemies = new ItemSelector<Enemy>();

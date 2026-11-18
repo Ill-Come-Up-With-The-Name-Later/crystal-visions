@@ -28,3 +28,4 @@ MonoBehaviour:
   _maxEnemies: 25
   _minSpawnDelay: 2
   _maxSpawnDelay: 3
+  _guaranteedSpawnDelay: 7
