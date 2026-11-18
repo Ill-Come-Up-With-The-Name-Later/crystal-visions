@@ -19,6 +19,9 @@ public class EntityHealth : MonoBehaviour
     [SerializeField]
     private ParticleSystem _damageParticle;
 
+    [SerializeField]
+    private ParticleSystem _deathParticle;
+
     [Header("Healing Particle")]
     [SerializeField]
     private ParticleSystem _healParticle;
@@ -123,6 +126,9 @@ public class EntityHealth : MonoBehaviour
 
     public void Die()
     {
+        if(_deathParticle != null)
+            Instantiate(_deathParticle, _entity.transform.position, Quaternion.identity);
+        
         OnDeath?.Invoke();
         EntityDies?.Invoke(_entity);
     }
