@@ -105,7 +105,7 @@ public class WaveManager : MonoBehaviour
         while (spawned < enemiesToSpawn - wave.GuaranteedSpawns.Count)
         {
             Vector3 position = transform.position + 
-                               new Vector3(Random.Range(-20, 20) + 20, 3.5f, Random.Range(-20, 20) + 20);
+                               new Vector3(Random.Range(-30, 30) + 25, 3.5f, Random.Range(30, 30) + 25);
             SpawnEnemy(wave.GetRandomEnemy(), position);
             spawned++;
             
@@ -117,7 +117,7 @@ public class WaveManager : MonoBehaviour
         foreach (Enemy enemy in wave.GuaranteedSpawns)
         {
             Vector3 position = transform.position + 
-                               new Vector3(Random.Range(-20, 20) + 20, 3.5f, Random.Range(-20, 20) + 20);
+                               new Vector3(Random.Range(-30, 30) + 25, 3.5f, Random.Range(30, 30) + 25);
             SpawnEnemy(enemy, position);
             spawned++;
             
