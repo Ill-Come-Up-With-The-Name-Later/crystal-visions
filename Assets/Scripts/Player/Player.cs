@@ -56,7 +56,7 @@ public class Player : Entity
         _health.OnHealthChanges += GainStatBoosts;
     }
 
-    new void Update()
+    protected override void Update()
     {
         base.Update();
 
@@ -85,7 +85,7 @@ public class Player : Entity
         _damageStat.Multiplier = (1f - currentHealthPercent) * 0.75f;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         _health.OnDeath -= OnDeath;
         _health.OnHealthChanges -= GainStatBoosts;

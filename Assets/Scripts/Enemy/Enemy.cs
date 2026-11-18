@@ -86,12 +86,13 @@ public class Enemy : Entity
             _attackCooldowns[attack.Attack] = attack.Cooldown;
     }
 
-    void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         _health.OnDeath -= Die;
     }
 
-    new void Update()
+    protected override void Update()
     {
         base.Update();
         _playerPosition = _targetPlayer.transform.position;

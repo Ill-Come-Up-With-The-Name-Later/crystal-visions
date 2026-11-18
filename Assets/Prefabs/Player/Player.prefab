@@ -156,6 +156,10 @@ MonoBehaviour:
     _baseValue: 0.07
     _bonusValue: 0
     _multiplier: 0
+  _knockbackResistanceStat:
+    _baseValue: 0.5
+    _bonusValue: 0
+    _multiplier: 0
   _health: {fileID: 0}
   _timeSinceLastDamage: 0
   _rigidbody: {fileID: 0}

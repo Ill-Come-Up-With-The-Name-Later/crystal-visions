@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -22,6 +23,10 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected EntityStat _hitInvulnerabilityStat;
     public EntityStat HitInvulnerabilityStat { get { return _hitInvulnerabilityStat; } }
+
+    [SerializeField]
+    protected EntityStat _knockbackResistanceStat;
+    public EntityStat KnockbackResistanceStat { get { return _knockbackResistanceStat; } }
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
@@ -50,10 +55,22 @@ public class Entity : MonoBehaviour
         
         if(_rigidbody == null)
             Debug.LogError("No rigidbody found");
+
+        _health.OnDamageTaken += TakeKnockback;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         _timeSinceLastDamage += Time.deltaTime;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        _health.OnDamageTaken -= TakeKnockback;
+    }
+
+    void TakeKnockback(float damage)
+    {
+        _rigidbody.linearVelocity += (-transform.forward + new Vector3(0, 0.5f, 0)) * (1 - _knockbackResistanceStat.Value) * (damage / 7);
     }
 }
