@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ExplosiveProjectileSpread
   m_EditorClassIdentifier: Assembly-CSharp::SpreadShot
   _projectile: {fileID: 8940823715180329851, guid: e54325624854b1440acbf3f439819648, type: 3}
-  _projectiles: 2
-  _spread: 6
+  _projectiles: 3
+  _spread: 5

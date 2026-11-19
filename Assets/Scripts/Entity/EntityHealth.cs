@@ -90,6 +90,9 @@ public class EntityHealth : MonoBehaviour
         if(_invulnerable) 
             return;
 
+        if (_entity == null)
+            return;
+
         if (_entity is Crystal && source is Player)
             return;
         
