@@ -49,6 +49,7 @@ public class Hitbox : MonoBehaviour
         if (target == null || target == _parent)
             return;
         
+        //Debug.Log($"{_parent.name} hitbox hit {target.name}");
         HitOccur?.Invoke(target, _parent);
     }
 }

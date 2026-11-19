@@ -135,7 +135,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 30
+    _baseValue: 25
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:

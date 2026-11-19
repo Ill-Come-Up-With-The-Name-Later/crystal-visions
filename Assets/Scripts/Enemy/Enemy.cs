@@ -48,7 +48,7 @@ public class Enemy : Entity
 
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>();
     
-    new void Awake()
+    protected override void Awake()
     {
         base.Awake();
         _stateMachine = GetComponent<StateMachine>();

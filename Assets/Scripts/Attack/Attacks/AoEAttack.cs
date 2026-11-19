@@ -19,7 +19,7 @@ public class AoEAttack : Attack
     
     public override void PerformAttack(Entity source, AttackContext context = null)
     {
-        _position = source.transform.position;
+        _position = context == null ? source.transform.position : context.Position;
         Instantiate(_particles, _position, Quaternion.identity).Play();
         Collider[] hitColliders = Physics.OverlapSphere(_position, _radius);
 

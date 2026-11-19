@@ -160,11 +160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _healthStat:
-    _baseValue: 350
+    _baseValue: 320
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 20
+    _baseValue: 16
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:

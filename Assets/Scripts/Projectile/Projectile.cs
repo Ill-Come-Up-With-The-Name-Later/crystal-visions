@@ -6,13 +6,13 @@ public class Projectile : MonoBehaviour
     [Header("Projectile Settings")]
     [SerializeField]
     [Min(0.01f)]
-    private float _maxLifespan;
+    protected float _maxLifespan;
 
     [SerializeField]
-    private float _speed;
+    protected float _speed;
 
     [SerializeField]
-    private bool _hasGravity;
+    protected bool _hasGravity;
     
     public float Speed { get { return _speed; } }
     
@@ -20,22 +20,22 @@ public class Projectile : MonoBehaviour
     
     [Header("Debug (Do not edit)")]
     [SerializeField]
-    private Rigidbody _rigidbody;
+    protected Rigidbody _rigidbody;
 
     public Rigidbody Rigidbody {  get { return _rigidbody; } }
     
     [SerializeField]
-    private Entity _source;
+    protected Entity _source;
     
     public Entity Source { get { return _source; } }
 
     [SerializeField]
-    private Hitbox _hitbox;
+    protected Hitbox _hitbox;
 
     [SerializeField]
-    private float _lifeTime;
+    protected float _lifeTime;
 
-    private void Awake()
+    protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _hitbox = GetComponentInChildren<Hitbox>();
@@ -52,12 +52,12 @@ public class Projectile : MonoBehaviour
         _hitbox.HitOccur += OnHit;
     }
 
-    private void Start()
+    protected void Start()
     {
         OnProjectileStart();
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         OnProjectileDestroy();
         
@@ -65,7 +65,7 @@ public class Projectile : MonoBehaviour
             _hitbox.HitOccur -= OnHit;
     }
 
-    private void Update()
+    protected void Update()
     {
         _lifeTime += Time.deltaTime;
 
@@ -78,14 +78,17 @@ public class Projectile : MonoBehaviour
         ProjectileTick();
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         ProjectileFixedTick();
     }
     
-    private void OnHit(Entity hit, Entity source)
+    protected void OnHit(Entity hit, Entity source)
     {
         //Debug.Log($"Projectile fired by {source.name} hit {hit.name}");
+        if (hit == source)
+            return;
+        
         OnProjectileHit(hit, source);
     }
     
@@ -95,6 +98,9 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnProjectileHit(Entity hit, Entity source)
     {
+        if (hit == source)
+            return;
+        
         //Debug.Log($"Projectile shot by {source.name} hit {hit.name}");
         _rigidbody.linearVelocity = Vector3.zero;
         Destroy(gameObject);
@@ -110,15 +116,19 @@ public class Projectile : MonoBehaviour
         if (projectile == null || source == null)
             return null;
         
-        Projectile launched = Instantiate(projectile, source.transform.position + velocity.normalized * 2, source.transform.rotation);
+        Vector3 position = source.transform.position;
+        Projectile launched = Instantiate(projectile, position
+                                                      + velocity.normalized * 2.5f, source.transform.rotation);
         
         if (launched._hitbox == null)
         {
+            //Debug.Log("Projectile missing hitbox");
             Destroy(launched.gameObject);
             return null;
         }
         
         //Debug.Log($"Projectile {launched.name} launched by {source.name}");
+        //Debug.Log($"Projectile launched at {position}");
         
         launched._source = source;
         launched._rigidbody.linearVelocity = velocity;

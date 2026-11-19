@@ -44,7 +44,7 @@ public class Entity : MonoBehaviour
     
     public Rigidbody Rigidbody { get { return _rigidbody; } }
     
-    protected void Awake()
+    protected virtual void Awake()
     {
         _health = GetComponent<EntityHealth>();
         

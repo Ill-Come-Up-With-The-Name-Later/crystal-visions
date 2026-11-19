@@ -28,7 +28,7 @@ public class Player : Entity
     
     private GameManager _gameManager;
 
-    new void Awake()
+    protected override void Awake()
     {
         base.Awake();
         
