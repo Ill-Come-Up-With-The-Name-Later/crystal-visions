@@ -12,13 +12,16 @@ public class BasicHitscanAttack : Attack
         float damage = source.DamageStat.Value;
         
         RaycastHit[] hits;
+        Vector3 forward = context == null ? source.transform.forward : context.Forward;
         
-        hits = Physics.RaycastAll( source.transform.position + source.transform.forward * 0.5f,
-            context == null ? source.transform.forward : context.Forward, range);
+        hits = Physics.RaycastAll( source.transform.position + forward * 0.5f, 
+            forward, range);
         
-        Instantiate(_meleeParticles, source.transform.position + 
-                                     (context == null ? source.transform.forward : context.Forward), source.transform.rotation);
+        Instantiate(_meleeParticles, source.transform.position + forward, 
+            source.transform.rotation);
 
+        //Debug.Log($"Hitscan attack occurred. Forward vector: {forward}");
+        
         foreach (RaycastHit hit in hits)
         {
             GameObject hitObject = hit.collider.gameObject;
