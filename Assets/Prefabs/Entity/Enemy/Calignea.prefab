@@ -164,7 +164,7 @@ MonoBehaviour:
   _playerPosition: {x: 0, y: 0, z: 0}
   _target: {fileID: 0}
   _attacks:
-  - _attack: {fileID: 11400000, guid: 52c79527c178ca44a8c69a931aa0a253, type: 2}
+  - _attack: {fileID: 11400000, guid: f6c2b71a630fc4246aef2d6f0dccfe1d, type: 2}
     _cooldown: 0.5
   _globalAttackCooldown: 1
   _minRangeStat:

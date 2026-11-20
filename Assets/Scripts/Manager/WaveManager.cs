@@ -14,8 +14,11 @@ public class WaveManager : MonoBehaviour
     [Header("Spawning Particles")]
     [SerializeField]
     private ParticleSystem _spawnParticles;
+
+    [Header("Debug (Do not edit)")] 
+    [SerializeField] [Range(0, 4)]
+    private int _startingWave = 0;
     
-    [Header("Debug (Do not edit)")]
     [SerializeField]
     private int _currentWave;
 
@@ -47,7 +50,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        _currentWave = 0;
+        _currentWave = _startingWave;
         _enemiesLeftInWave = 0;
         
         EntityHealth.EntityDies += DecreaseEnemies;
