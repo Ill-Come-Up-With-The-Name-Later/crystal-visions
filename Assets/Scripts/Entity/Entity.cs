@@ -71,7 +71,7 @@ public class Entity : MonoBehaviour
 
     void TakeKnockback(float damage)
     {
-        _rigidbody.linearVelocity += (-transform.forward + new Vector3(0, 0.75f, 0)) 
-                                     * (1 - _knockbackResistanceStat.Value) * (damage / 5);
+        _rigidbody.linearVelocity += (-transform.forward + new Vector3(0, 0.6f, 0)) 
+                                     * (1 - _knockbackResistanceStat.Value) * (damage / 6);
     }
 }

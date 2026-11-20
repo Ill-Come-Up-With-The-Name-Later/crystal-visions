@@ -52,6 +52,12 @@ public class ContestedHealth : MonoBehaviour
             _contestedHealthAmount = 0;
     }
 
+    public void DamageContestedHealth(float damage, Entity source)
+    {
+        _contestedHealthAmount = Math.Max(_contestedHealthAmount - damage, 0);
+        OnContestedHealthChange?.Invoke(_contestedHealthAmount);
+    }
+
     void GrantContestedHealth(float amount)
     {
         _contestedHealthAmount = Math.Min(_contestedHealthAmount + amount, _owner.Health.MaxHealth - 1);

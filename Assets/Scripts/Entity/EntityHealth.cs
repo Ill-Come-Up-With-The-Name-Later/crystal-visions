@@ -96,13 +96,26 @@ public class EntityHealth : MonoBehaviour
         if (_entity is Crystal && source is Player)
             return;
         
-        _currentHealth -= damage;
+        _currentHealth = Math.Max(_currentHealth - damage, 0);
         
         if(_damageParticle != null)
             Instantiate(_damageParticle, _entity.transform.position, Quaternion.identity);
-        
+
         if (_currentHealth <= 0)
+        {
+            if (_entity.GetComponentInChildren<ContestedHealth>() != null)
+            {
+                ContestedHealth health = _entity.GetComponentInChildren<ContestedHealth>();
+                health.DamageContestedHealth(damage, source);
+                
+                if(health.ContestedHealthAmount <= 0)
+                    Die();
+
+                return;
+            }
+            
             Die();
+        }
 
         _healthbar.value = _currentHealth / _maxHealth;
         _entity.TimeSinceLastDamage = 0;
