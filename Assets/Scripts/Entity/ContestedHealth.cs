@@ -44,7 +44,7 @@ public class ContestedHealth : MonoBehaviour
     {
         if (_owner.TimeSinceLastDamage >= _contestedHealthGracePeriod)
         {
-            _contestedHealthAmount = Math.Max(_contestedHealthAmount - (Time.deltaTime * _drainRate), 0);
+            DamageContestedHealth(Time.deltaTime * _drainRate, null);
             OnContestedHealthChange?.Invoke(_contestedHealthAmount);
         }
 
@@ -56,6 +56,9 @@ public class ContestedHealth : MonoBehaviour
     {
         _contestedHealthAmount = Math.Max(_contestedHealthAmount - damage, 0);
         OnContestedHealthChange?.Invoke(_contestedHealthAmount);
+        
+        if(_contestedHealthAmount <= 0 && _entityHealth.CurrentHealth <= 0)
+            _entityHealth.Die();
     }
 
     void GrantContestedHealth(float amount)
