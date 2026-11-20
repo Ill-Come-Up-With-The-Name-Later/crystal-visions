@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: _attacks.Array.data[0]._cooldown
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 957024150784282620, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
+      propertyPath: _knockbackResistanceStat._baseValue
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4410946900779872823, guid: 3c9e13307f1bd6942b4f895b83429ec3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

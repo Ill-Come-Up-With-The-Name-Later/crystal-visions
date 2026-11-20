@@ -180,7 +180,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _knockbackResistanceStat:
-    _baseValue: 0.75
+    _baseValue: 0.85
     _bonusValue: 0
     _multiplier: 0
   _health: {fileID: 0}

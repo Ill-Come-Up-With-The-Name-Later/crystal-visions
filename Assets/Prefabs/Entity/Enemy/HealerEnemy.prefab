@@ -199,7 +199,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _knockbackResistanceStat:
-    _baseValue: 0
+    _baseValue: 0.2
     _bonusValue: 0
     _multiplier: 0
   _health: {fileID: 0}
