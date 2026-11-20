@@ -279,6 +279,7 @@ MonoBehaviour:
   _won: 0
   _player: {fileID: 0}
   _crystal: {fileID: 0}
+  _boss: {fileID: 0}
 --- !u!1 &404833524
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +602,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4190c36847d106b4492f71a17a3df283, type: 2}
   - {fileID: 11400000, guid: 1d84ab1cb5166f44f989eea6878ccf4b, type: 2}
   - {fileID: 11400000, guid: fdb83f7d96e0bce40bd5ef0abb52cb5a, type: 2}
+  - {fileID: 11400000, guid: 4a5113f9af3114342a5bd9a73d677b9f, type: 2}
   _spawnParticles: {fileID: 7133844381210205837, guid: 368958d4fdffab944be414c49f703e55, type: 3}
   _currentWave: 0
   _enemiesLeftInWave: 0
@@ -613,7 +615,7 @@ Transform:
   m_GameObject: {fileID: 841555990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.65065, y: 0, z: -2.34065}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

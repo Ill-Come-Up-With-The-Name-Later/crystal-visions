@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6413eec29f404cba8202ea52f32a6496, type: 3}
+  m_Name: Wave5
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
+  _enemies:
+  - _enemy: {fileID: 957024150784282620, guid: 0d9707afe6998064080b10ef8fb54afc, type: 3}
+    _weight: 1
+  _guaranteedSpawns:
+  - {fileID: 957024150784282620, guid: ba2bcbb20c2b95846abc44192affaae8, type: 3}
+  - {fileID: 957024150784282620, guid: 12dd309b42ca08546908e1ca730d0d36, type: 3}
+  - {fileID: 957024150784282620, guid: ad1de901eea6dd543b8c18ddd3b34497, type: 3}
+  _minEnemies: 6
+  _maxEnemies: 6
+  _minSpawnDelay: 0.5
+  _maxSpawnDelay: 1
+  _guaranteedSpawnDelay: 2

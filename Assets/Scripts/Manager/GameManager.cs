@@ -17,13 +17,16 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     private Crystal _crystal;
-    
+
+    [SerializeField]    
+    private CaligneaBoss _boss;
     public Player Player => _player;
     
     public Crystal Crystal => _crystal;
+    
+    public CaligneaBoss Boss { get => _boss; set => _boss = value; }
 
     public event Action OnLoss;
-    
     public event Action OnWin;
 
     void Awake()
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         _won = false;
         _lost = false;
+        _boss = null;
         
         _player = FindAnyObjectByType<Player>();
         _crystal = FindAnyObjectByType<Crystal>();

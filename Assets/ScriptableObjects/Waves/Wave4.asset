@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 957024150784282620, guid: ba2bcbb20c2b95846abc44192affaae8, type: 3}
   - {fileID: 957024150784282620, guid: 12dd309b42ca08546908e1ca730d0d36, type: 3}
   _minEnemies: 20
-  _maxEnemies: 25
-  _minSpawnDelay: 2
-  _maxSpawnDelay: 3
-  _guaranteedSpawnDelay: 7
+  _maxEnemies: 23
+  _minSpawnDelay: 1.5
+  _maxSpawnDelay: 2
+  _guaranteedSpawnDelay: 5

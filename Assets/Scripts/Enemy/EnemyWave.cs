@@ -46,19 +46,19 @@ public class EnemyWave : ScriptableObject
     public int MaxEnemies { get => _maxEnemies; }
 
     [SerializeField]
-    private int _minSpawnDelay;
+    private float _minSpawnDelay;
     
-    public int MinSpawnDelay { get => _minSpawnDelay; }
+    public float MinSpawnDelay { get => _minSpawnDelay; }
     
     [SerializeField]
-    private int _maxSpawnDelay;
+    private float _maxSpawnDelay;
     
-    public int MaxSpawnDelay { get => _maxSpawnDelay; }
+    public float MaxSpawnDelay { get => _maxSpawnDelay; }
 
     [SerializeField]
-    private int _guaranteedSpawnDelay;
+    private float _guaranteedSpawnDelay;
     
-    public int GuaranteedSpawnDelay { get => _guaranteedSpawnDelay; }
+    public float GuaranteedSpawnDelay { get => _guaranteedSpawnDelay; }
 
     public Enemy GetRandomEnemy()
     {
