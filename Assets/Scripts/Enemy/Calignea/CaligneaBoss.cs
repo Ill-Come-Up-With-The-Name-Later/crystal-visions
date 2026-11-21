@@ -6,6 +6,14 @@ public class CaligneaBoss : MonoBehaviour
     [Header("Calignea Specials")]
     [SerializeField]
     private float _maxPatience;
+    
+    public float MaxPatience { get => _maxPatience; }
+    
+    [SerializeField]
+    private CaligneaBoundary _boundary;
+
+    [SerializeField]
+    private float _boundaryScalingRate;
 
     [SerializeField]
     private float _patienceDrainRate;
@@ -15,17 +23,25 @@ public class CaligneaBoss : MonoBehaviour
     private float _currentPatience;
     
     public float CurrentPatience { get => _currentPatience; set => _currentPatience = value; }
-
+    
     [SerializeField] 
     private Enemy _enemy;
+    
+    public float CurrentHealth { get => _enemy.Health.CurrentHealth; }
+    public float MaxHealth { get => _enemy.Health.MaxHealth; }
+    
+    private EntityHealth Health { get => _enemy.Health; }
 
     public event Action<float> OnPatienceChange;
     public event Action OnDeath;
     public static event Action<CaligneaBoss> OnBossSpawned;
 
+    public event Action OnHealthChanged;
+
     private void Awake()
     {
         _enemy = gameObject.GetComponent<Enemy>();
+        _boundary = gameObject.GetComponentInChildren<CaligneaBoundary>();
     }
 
     void Start()
@@ -34,12 +50,21 @@ public class CaligneaBoss : MonoBehaviour
         
         OnPatienceChange += GainStatBoosts;
         OnBossSpawned?.Invoke(this);
+        Health.OnHealthChanges += TriggerHealthChangeEvent;
     }
     
     void Update()
     {
         _currentPatience = Mathf.Max(_currentPatience - (_patienceDrainRate * Time.deltaTime), 0);
         OnPatienceChange?.Invoke(_currentPatience);
+        
+        Vector3 scale = _boundary.transform.localScale;
+        
+        scale.x += _boundaryScalingRate * Time.deltaTime;
+        scale.y += _boundaryScalingRate * Time.deltaTime;
+        scale.z += _boundaryScalingRate * Time.deltaTime;
+        
+        _boundary.transform.localScale = scale;
 
         if (_currentPatience <= 0)
             GameManager.Instance.Player.Health.TakeDamage(2_147_483_647, gameObject.GetComponent<Enemy>());
@@ -49,6 +74,12 @@ public class CaligneaBoss : MonoBehaviour
     {
         OnDeath?.Invoke();
         OnPatienceChange -= GainStatBoosts;
+        Health.OnHealthChanges -= TriggerHealthChangeEvent;
+    }
+
+    void TriggerHealthChangeEvent()
+    {
+        OnHealthChanged?.Invoke();
     }
 
     private void GainStatBoosts(float currentPatience)

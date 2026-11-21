@@ -106,7 +106,7 @@ public class EntityHealth : MonoBehaviour
             if (_entity.GetComponentInChildren<ContestedHealth>() != null)
             {
                 ContestedHealth health = _entity.GetComponentInChildren<ContestedHealth>();
-                health.DamageContestedHealth(damage * 2, source);
+                health.DamageContestedHealth(damage * 1.5f, source);
                 
                 if(health.ContestedHealthAmount <= 0)
                     Die();

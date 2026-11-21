@@ -166,7 +166,13 @@ public class PlayerInterface : MonoBehaviour
         _player.OnAimAssistToggle -= UpdateCrosshair;
         _crystalBall.OnModeChange -= UpdateCrystalBallUI;
         CaligneaBoss.OnBossSpawned -= ShowBossMeters;
-        
+
+        if (_boss != null)
+        {
+            _boss.OnHealthChanged -= UpdateBossHealth;
+            _boss.OnPatienceChange -= UpdateBossPatience;
+        }
+
         _enemiesLeftLabel.text = "Enemies Left:";
         _waveLabel.text = "Wave:";
     }
@@ -239,5 +245,20 @@ public class PlayerInterface : MonoBehaviour
         _boss = boss;
         _bossHealthBar.style.display = DisplayStyle.Flex;
         _bossPatienceBar.style.display = DisplayStyle.Flex;
+        
+        _boss.OnHealthChanged += UpdateBossHealth;
+        _boss.OnPatienceChange += UpdateBossPatience;
+    }
+
+    void UpdateBossHealth()
+    {
+        _bossHealthBar.Q<VisualElement>("BossbarFill").style.width = 
+            Length.Percent((_boss.CurrentHealth / _boss.MaxHealth) * 100);
+    }
+
+    void UpdateBossPatience(float amount)
+    {
+        _bossPatienceBar.Q<VisualElement>("PatiencebarFill").style.width =
+            Length.Percent((_boss.CurrentPatience / _boss.MaxPatience) * 100);
     }
 }
