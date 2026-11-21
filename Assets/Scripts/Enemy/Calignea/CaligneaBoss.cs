@@ -20,6 +20,8 @@ public class CaligneaBoss : MonoBehaviour
     private Enemy _enemy;
 
     public event Action<float> OnPatienceChange;
+    public event Action OnDeath;
+    public static event Action<CaligneaBoss> OnBossSpawned;
 
     private void Awake()
     {
@@ -28,9 +30,10 @@ public class CaligneaBoss : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.Boss = this;
         _currentPatience = _maxPatience;
+        
         OnPatienceChange += GainStatBoosts;
+        OnBossSpawned?.Invoke(this);
     }
     
     void Update()
@@ -44,6 +47,7 @@ public class CaligneaBoss : MonoBehaviour
 
     private void OnDestroy()
     {
+        OnDeath?.Invoke();
         OnPatienceChange -= GainStatBoosts;
     }
 

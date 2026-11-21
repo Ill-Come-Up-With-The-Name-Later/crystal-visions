@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpreadMelee
   _attacak: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
   _attacks: 3
-  _spread: 30
+  _spread: 12

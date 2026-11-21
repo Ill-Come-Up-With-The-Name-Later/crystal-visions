@@ -141,7 +141,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
-    _baseValue: 18
+    _baseValue: 20
     _bonusValue: 0
     _multiplier: 0
   _attackRangeStat:
@@ -149,7 +149,7 @@ MonoBehaviour:
     _bonusValue: 0
     _multiplier: 0
   _speedStat:
-    _baseValue: 8.4
+    _baseValue: 8.5
     _bonusValue: 0
     _multiplier: 0
   _hitInvulnerabilityStat:

@@ -21,6 +21,9 @@ public class PlayerInterface : MonoBehaviour
     
     [SerializeField]
     private Crystal _crystal;
+
+    [SerializeField]
+    private CaligneaBoss _boss;
     
     private VisualElement _playerHealthBar;
     
@@ -43,6 +46,9 @@ public class PlayerInterface : MonoBehaviour
 
     private Image _burstIcon;
     private Image _beamIcon;
+
+    private VisualElement _bossHealthBar;
+    private VisualElement _bossPatienceBar;
     
     private List<Image> _modeImages = new List<Image>();
 
@@ -75,6 +81,8 @@ public class PlayerInterface : MonoBehaviour
             .Q<Image>("BurstIcon");
         _beamIcon = _document.rootVisualElement.Q<VisualElement>("ModeBackground")
             .Q<Image>("BeamIcon");
+        _bossHealthBar = _document.rootVisualElement.Q<VisualElement>("CaligneaHealthBackground");
+        _bossPatienceBar = _document.rootVisualElement.Q<VisualElement>("CaligneaPatienceBackground");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -102,6 +110,12 @@ public class PlayerInterface : MonoBehaviour
         
         if(_beamIcon == null)
             Debug.LogError("Beam Icon not found");
+        
+        if(_bossHealthBar == null)
+            Debug.LogError("Boss Health Bar not found");
+        
+        if(_bossPatienceBar == null)
+            Debug.LogError("Boss Patience Bar not found");
         
         _modeImages.Add(_burstIcon);
         _modeImages.Add(_beamIcon);
@@ -134,6 +148,7 @@ public class PlayerInterface : MonoBehaviour
         _waveManager.ChangeEnemiesLeft += UpdateRemainingEnemies;
         _player.OnAimAssistToggle += UpdateCrosshair;
         _crystalBall.OnModeChange += UpdateCrystalBallUI;
+        CaligneaBoss.OnBossSpawned += ShowBossMeters;
         
         UpdateWave(0);
         UpdateCrystalBallUI(0);
@@ -150,6 +165,7 @@ public class PlayerInterface : MonoBehaviour
         _waveManager.ChangeEnemiesLeft -= UpdateRemainingEnemies;
         _player.OnAimAssistToggle -= UpdateCrosshair;
         _crystalBall.OnModeChange -= UpdateCrystalBallUI;
+        CaligneaBoss.OnBossSpawned -= ShowBossMeters;
         
         _enemiesLeftLabel.text = "Enemies Left:";
         _waveLabel.text = "Wave:";
@@ -216,5 +232,12 @@ public class PlayerInterface : MonoBehaviour
             image.style.display = DisplayStyle.None;
         
         _modeImages[mode].style.display = DisplayStyle.Flex;
+    }
+
+    void ShowBossMeters(CaligneaBoss boss)
+    {
+        _boss = boss;
+        _bossHealthBar.style.display = DisplayStyle.Flex;
+        _bossPatienceBar.style.display = DisplayStyle.Flex;
     }
 }
