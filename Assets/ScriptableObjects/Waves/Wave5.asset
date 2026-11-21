@@ -17,8 +17,8 @@ MonoBehaviour:
     _weight: 1
   _guaranteedSpawns:
   - {fileID: 957024150784282620, guid: ad1de901eea6dd543b8c18ddd3b34497, type: 3}
-  _minEnemies: 2
-  _maxEnemies: 2
+  _minEnemies: 3
+  _maxEnemies: 3
   _minSpawnDelay: 0.5
   _maxSpawnDelay: 1
-  _guaranteedSpawnDelay: 2
+  _guaranteedSpawnDelay: 1
