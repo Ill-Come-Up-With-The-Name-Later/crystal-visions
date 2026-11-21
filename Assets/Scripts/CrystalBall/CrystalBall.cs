@@ -149,7 +149,8 @@ public class CrystalBall : MonoBehaviour
         context.Forward = _owner.Camera.transform.forward;
         attack.Attack.PerformAttack(_owner, context);
         _attackCooldowns[attack.Attack] = attack.Cooldown 
-                                          * GameManager.Instance.Crystal.Health.HealthPercentage;
+                                          * Math.Max(Math.Min((GameManager.Instance.Crystal.Health.HealthPercentage
+                                                               + 0.01f) * 1.5f, 1), 0.2f);
     }
 
     public bool CanUseAttack(Attack attack)
