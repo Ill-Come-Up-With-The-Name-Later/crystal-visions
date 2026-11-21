@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
         _player.OnPlayerDeath -= SetLost;
         _crystal.Health.OnDeath -= SetLost;
         CaligneaBoss.OnBossSpawned -= SetBoss;
-        
-        if(_boss != null)
-            _boss.OnDeath -= SetLost;
+
+        if (_boss != null)
+            _boss.OnDeath -= SetWon;
     }
     
     void Update()
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     void SetBoss(CaligneaBoss boss)
     {
         _boss = boss;
-        _boss.OnDeath += SetLost;
+        _boss.OnDeath += SetWon;
     }
 
     void ResetBoss()
