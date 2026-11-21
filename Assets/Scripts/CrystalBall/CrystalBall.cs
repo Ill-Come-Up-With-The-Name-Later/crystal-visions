@@ -148,7 +148,7 @@ public class CrystalBall : MonoBehaviour
         AttackContext context = new AttackContext();
         context.Forward = _owner.Camera.transform.forward;
         attack.Attack.PerformAttack(_owner, context);
-        _attackCooldowns[attack.Attack] = attack.Cooldown;
+        _attackCooldowns[attack.Attack] = attack.Cooldown * _owner.Health.HealthPercentage;
     }
 
     public bool CanUseAttack(Attack attack)

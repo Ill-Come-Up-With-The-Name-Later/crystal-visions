@@ -45,6 +45,8 @@ public class EntityHealth : MonoBehaviour
     public float CurrentHealth { get { return _currentHealth; } }
     
     public float MaxHealth { get { return _maxHealth; } }
+    
+    public float HealthPercentage {  get { return _currentHealth / _maxHealth; } }
 
     public event Action<float> OnDamageTaken;
 
