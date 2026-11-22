@@ -87,5 +87,6 @@ public class CaligneaBoss : MonoBehaviour
         float patiencePercent = _currentPatience / _maxPatience;
         
         _enemy.SpeedStat.BonusValue = (1f - patiencePercent) * 5;
+        _enemy.DamageStat.BonusValue = (1f - patiencePercent) * _enemy.DamageStat.BaseValue * 0.15f;
     }
 }
