@@ -5026,7 +5026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _healthStat:
-    _baseValue: 35
+    _baseValue: 40
     _bonusValue: 0
     _multiplier: 0
   _damageStat:
@@ -5060,6 +5060,7 @@ MonoBehaviour:
   - _attack: {fileID: 11400000, guid: f42b25f012731eb439e93329fbfbff9a, type: 2}
     _cooldown: 1
   _globalAttackCooldown: 1
+  _currentAttackCooldown: 0
   _minRangeStat:
     _baseValue: 3
     _bonusValue: 0
