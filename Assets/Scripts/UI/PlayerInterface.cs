@@ -150,8 +150,8 @@ public class PlayerInterface : MonoBehaviour
         _crystalBall.OnModeChange += UpdateCrystalBallUI;
         CaligneaBoss.OnBossSpawned += ShowBossMeters;
         
-        UpdateWave(0);
-        UpdateCrystalBallUI(0);
+        UpdateWave(_waveManager.CurrentWave);
+        UpdateCrystalBallUI(_crystalBall.CurrentModeIndex);
     }
 
     void OnDestroy()

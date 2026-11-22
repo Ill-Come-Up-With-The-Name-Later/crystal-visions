@@ -35,6 +35,9 @@ public class Enemy : Entity
     [SerializeField]
     private float _globalAttackCooldown; // This applies to all of the enemy's attacks
 
+    [SerializeField]
+    private float _currentAttackCooldown;
+
     [Header("Enemy Stats")] 
     [SerializeField]
     private EntityStat _minRangeStat;
@@ -84,6 +87,8 @@ public class Enemy : Entity
         
         foreach(AttackAndCooldown attack in _attacks)
             _attackCooldowns[attack.Attack] = attack.Cooldown;
+
+        _currentAttackCooldown = _globalAttackCooldown;
     }
 
     protected override void OnDestroy()
@@ -102,7 +107,7 @@ public class Enemy : Entity
         foreach (Attack attack in attacks)
             _attackCooldowns[attack] -= Time.deltaTime;
 
-        _globalAttackCooldown = Math.Max(0, _globalAttackCooldown - Time.deltaTime);
+        _currentAttackCooldown = Math.Max(0, _currentAttackCooldown - Time.deltaTime);
     }
 
     void Die()
@@ -119,7 +124,7 @@ public class Enemy : Entity
 
     public bool CanAttack()
     {
-        return _globalAttackCooldown == 0;
+        return _currentAttackCooldown == 0;
     }
     
     public void UseAttack(AttackAndCooldown attack)
@@ -134,6 +139,6 @@ public class Enemy : Entity
     public bool CanUseAttack(Attack attack)
     {
         _attackCooldowns.TryGetValue(attack, out var cooldown);
-        return cooldown <= 0 && _globalAttackCooldown == 0;
+        return cooldown <= 0 && _currentAttackCooldown == 0;
     }
 }

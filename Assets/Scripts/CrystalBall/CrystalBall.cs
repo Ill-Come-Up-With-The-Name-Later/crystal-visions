@@ -55,6 +55,8 @@ public class CrystalBall : MonoBehaviour
     [SerializeField]
     private AttackMode _current;
     private int _currentIndex;
+    
+    public int CurrentModeIndex { get { return _currentIndex; } }
 
     [SerializeField]
     private VisualEffect _effect;

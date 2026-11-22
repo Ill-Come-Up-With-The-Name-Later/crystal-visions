@@ -193,7 +193,8 @@ MonoBehaviour:
   _attacks:
   - _attack: {fileID: 11400000, guid: fd080cf48813a6641b09acf9199c6596, type: 2}
     _cooldown: 0.1
-  _globalAttackCooldown: 1
+  _globalAttackCooldown: 0.05
+  _currentAttackCooldown: 0
   _minRangeStat:
     _baseValue: 6
     _bonusValue: 0
