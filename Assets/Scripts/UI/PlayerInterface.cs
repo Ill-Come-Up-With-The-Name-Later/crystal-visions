@@ -30,6 +30,8 @@ public class PlayerInterface : MonoBehaviour
     private VisualElement _playerContestedHealthBar;
 
     private VisualElement _crystalHealthBar;
+    
+    private VisualElement _crystalHealthBarBackground;
 
     private Label _waveLabel;
 
@@ -49,6 +51,8 @@ public class PlayerInterface : MonoBehaviour
 
     private VisualElement _bossHealthBar;
     private VisualElement _bossPatienceBar;
+
+    private Image _letter;
     
     private List<Image> _modeImages = new List<Image>();
 
@@ -69,6 +73,7 @@ public class PlayerInterface : MonoBehaviour
             .Q<VisualElement>("ContestedHealthbarFill");
         _crystalHealthBar = _document.rootVisualElement.Q<VisualElement>("CrystalHealthBackground")
             .Q<VisualElement>("HealthbarFill");
+        _crystalHealthBarBackground = _document.rootVisualElement.Q<VisualElement>("CrystalHealthBackground");
         _waveLabel = _document.rootVisualElement.Q<VisualElement>("WaveDisplayBackground")
             .Q<Label>("WaveDisplay");
         _deathOverlay = _document.rootVisualElement.Q<VisualElement>("DeathLabelBackground");
@@ -83,6 +88,7 @@ public class PlayerInterface : MonoBehaviour
             .Q<Image>("BeamIcon");
         _bossHealthBar = _document.rootVisualElement.Q<VisualElement>("CaligneaHealthBackground");
         _bossPatienceBar = _document.rootVisualElement.Q<VisualElement>("CaligneaPatienceBackground");
+        _letter = _document.rootVisualElement.Q<Image>("FakeLetter");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -117,11 +123,16 @@ public class PlayerInterface : MonoBehaviour
         if(_bossPatienceBar == null)
             Debug.LogError("Boss Patience Bar not found");
         
+        if(_letter == null)
+            Debug.LogError("Letter image not found");
+        
         _modeImages.Add(_burstIcon);
         _modeImages.Add(_beamIcon);
         
         _deathOverlay.style.display = DisplayStyle.None;
         _winOverlay.style.display = DisplayStyle.None;
+        
+        _letter.style.display = DisplayStyle.None;
         
         _enemiesLeftLabel.text = "Enemies Left:";
         _waveLabel.text = "Wave:";
@@ -149,6 +160,7 @@ public class PlayerInterface : MonoBehaviour
         _player.OnAimAssistToggle += UpdateCrosshair;
         _crystalBall.OnModeChange += UpdateCrystalBallUI;
         CaligneaBoss.OnBossSpawned += ShowBossMeters;
+        CaligneaBoss.OnPatienceExpires += ShowFakeLetter;
         
         UpdateWave(_waveManager.CurrentWave);
         UpdateCrystalBallUI(_crystalBall.CurrentModeIndex);
@@ -166,6 +178,7 @@ public class PlayerInterface : MonoBehaviour
         _player.OnAimAssistToggle -= UpdateCrosshair;
         _crystalBall.OnModeChange -= UpdateCrystalBallUI;
         CaligneaBoss.OnBossSpawned -= ShowBossMeters;
+        CaligneaBoss.OnPatienceExpires -= ShowFakeLetter;
 
         if (_boss != null)
         {
@@ -197,6 +210,25 @@ public class PlayerInterface : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        
+        _bossHealthBar.style.display = DisplayStyle.None;
+        _bossPatienceBar.style.display = DisplayStyle.None;
+    }
+
+    void ShowFakeLetter()
+    {
+        _letter.style.display = DisplayStyle.Flex;
+
+        _enemiesLeftLabel.style.display = DisplayStyle.None;
+        _waveLabel.style.display = DisplayStyle.None;
+        _bossHealthBar.style.display = DisplayStyle.None;
+        _bossPatienceBar.style.display = DisplayStyle.None;
+        _playerHealthBar.style.display = DisplayStyle.None;
+        _crystalHealthBar.style.display = DisplayStyle.None;
+        _crystalHealthBarBackground.style.display = DisplayStyle.None;
+        _burstIcon.style.display = DisplayStyle.None;
+        _beamIcon.style.display = DisplayStyle.None;
+        _crosshair.style.display = DisplayStyle.None;
     }
 
     void ShowDeathOverlay()

@@ -307,8 +307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CaligneaBoss
   _maxPatience: 100
   _boundary: {fileID: 0}
-  _boundaryScalingRate: 0.2
-  _patienceDrainRate: 1
+  _boundaryScalingRate: 0.25
+  _patienceDrainRate: 1.25
   _currentPatience: 0
   _enemy: {fileID: 0}
 --- !u!1 &5783230712946302057

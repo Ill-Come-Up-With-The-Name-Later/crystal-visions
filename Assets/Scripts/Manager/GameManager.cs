@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
         _player.OnPlayerDeath += SetLost;
         _crystal.Health.OnDeath += SetLost;
         CaligneaBoss.OnBossSpawned += SetBoss;
+        
+        Time.timeScale = 1;
     }
 
     void OnDestroy()

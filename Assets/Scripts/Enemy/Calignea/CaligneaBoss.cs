@@ -33,6 +33,7 @@ public class CaligneaBoss : MonoBehaviour
     private EntityHealth Health { get => _enemy.Health; }
 
     public event Action<float> OnPatienceChange;
+    public static event Action OnPatienceExpires;
     public event Action OnDeath;
     public static event Action<CaligneaBoss> OnBossSpawned;
 
@@ -67,7 +68,10 @@ public class CaligneaBoss : MonoBehaviour
         _boundary.transform.localScale = scale;
 
         if (_currentPatience <= 0)
+        {
+            OnPatienceExpires?.Invoke();
             GameManager.Instance.Player.Health.TakeDamage(2_147_483_647, gameObject.GetComponent<Enemy>());
+        }
     }
 
     private void OnDestroy()
