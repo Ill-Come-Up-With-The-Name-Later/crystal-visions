@@ -22,6 +22,9 @@ public class Player : Entity
     [SerializeField]
     private EntityStat _healthRegeneration;
 
+    [SerializeField]
+    private EntityStat _jumpStrength;
+
     public event Action OnPlayerDeath;
 
     public event Action<bool> OnAimAssistToggle;
@@ -60,7 +63,7 @@ public class Player : Entity
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (gameObject.GetComponent<PlayerAimAssist>() != null)
             {
@@ -69,8 +72,21 @@ public class Player : Entity
                 OnAimAssistToggle?.Invoke(aimAssist.Active);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && OnGround())
+            Jump();
         
         _health.Heal(_healthRegeneration.Value * Time.deltaTime, EntityHealth.HealReason.Regeneration);
+    }
+
+    bool OnGround()
+    {
+        return transform.position.y + 0.01 >= 0.6f && transform.position.y - 0.01 <= 0.6f;
+    }
+
+    private void Jump()
+    {
+        _rigidbody.linearVelocity += new Vector3(0, _jumpStrength.Value, 0);
     }
 
     private void GainStatBoosts()
