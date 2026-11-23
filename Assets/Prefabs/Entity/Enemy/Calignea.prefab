@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DirectionalJump
   _interval: 5
-  _jumpStrength: 3.2
-  _jumpSpeed: 3.5
+  _jumpStrength: 2.5
+  _jumpSpeed: 3.2
   _entity: {fileID: 0}
 --- !u!1 &4411966925273355907
 GameObject:
@@ -219,6 +219,7 @@ MonoBehaviour:
   - _attack: {fileID: 11400000, guid: 0d5d33a21b60cd746bbf6e4dd8b93659, type: 2}
     _cooldown: 1
   _globalAttackCooldown: 1.2
+  _currentAttackCooldown: 0
   _minRangeStat:
     _baseValue: 5
     _bonusValue: 0
