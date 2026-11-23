@@ -50,6 +50,8 @@ public class Enemy : Entity
     public float GlobalAttackCooldown { get => _globalAttackCooldown; }
 
     private Dictionary<Attack, float> _attackCooldowns = new Dictionary<Attack, float>();
+
+    public event Action OnAttack;
     
     protected override void Awake()
     {
@@ -134,6 +136,7 @@ public class Enemy : Entity
         
         attack.Attack.PerformAttack(this);
         _attackCooldowns[attack.Attack] = attack.Cooldown;
+        OnAttack?.Invoke();
     }
 
     public bool CanUseAttack(Attack attack)

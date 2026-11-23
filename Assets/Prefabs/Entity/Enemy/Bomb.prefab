@@ -4910,6 +4910,7 @@ GameObject:
   - component: {fileID: 8383550019217405398}
   - component: {fileID: 6442993101502607528}
   - component: {fileID: 6333930325878618557}
+  - component: {fileID: 2218385856473804981}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -5133,6 +5134,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &2218385856473804981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411966925273355907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c1d87cd5424fc783d5bd3298672930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombEnemy
+  _enemy: {fileID: 0}
 --- !u!1001 &3886281444223924607
 PrefabInstance:
   m_ObjectHideFlags: 0

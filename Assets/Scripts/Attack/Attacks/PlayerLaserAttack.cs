@@ -36,7 +36,7 @@ public class PlayerLaserAttack : Attack
                     if (hitObject.GetComponent<Hurtbox>() != null)
                     {
                         Entity hitEntity = hitObject.GetComponent<Hurtbox>().Parent;
-                        hitEntity.Health.TakeDamage(damage * 4, source);
+                        hitEntity.Health.TakeDamage(damage * 3, source);
                     }
                 }
                 
