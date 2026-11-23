@@ -52,7 +52,7 @@ public class PlayerInterface : MonoBehaviour
     private VisualElement _bossHealthBar;
     private VisualElement _bossPatienceBar;
 
-    private Image _letter;
+    private Image _specialImage;
     
     private List<Image> _modeImages = new List<Image>();
 
@@ -88,7 +88,7 @@ public class PlayerInterface : MonoBehaviour
             .Q<Image>("BeamIcon");
         _bossHealthBar = _document.rootVisualElement.Q<VisualElement>("CaligneaHealthBackground");
         _bossPatienceBar = _document.rootVisualElement.Q<VisualElement>("CaligneaPatienceBackground");
-        _letter = _document.rootVisualElement.Q<Image>("FakeLetter");
+        _specialImage = _document.rootVisualElement.Q<Image>("SpecialImage");
         
         if(_playerHealthBar == null)
             Debug.LogError("No Player Health Bar found");
@@ -123,7 +123,7 @@ public class PlayerInterface : MonoBehaviour
         if(_bossPatienceBar == null)
             Debug.LogError("Boss Patience Bar not found");
         
-        if(_letter == null)
+        if(_specialImage == null)
             Debug.LogError("Letter image not found");
         
         _modeImages.Add(_burstIcon);
@@ -132,7 +132,7 @@ public class PlayerInterface : MonoBehaviour
         _deathOverlay.style.display = DisplayStyle.None;
         _winOverlay.style.display = DisplayStyle.None;
         
-        _letter.style.display = DisplayStyle.None;
+        _specialImage.style.display = DisplayStyle.None;
         
         _enemiesLeftLabel.text = "Enemies Left:";
         _waveLabel.text = "Wave:";
@@ -217,7 +217,7 @@ public class PlayerInterface : MonoBehaviour
 
     void ShowFakeLetter()
     {
-        _letter.style.display = DisplayStyle.Flex;
+        _specialImage.style.display = DisplayStyle.Flex;
 
         _enemiesLeftLabel.style.display = DisplayStyle.None;
         _waveLabel.style.display = DisplayStyle.None;
