@@ -39,6 +39,9 @@ public class EntityHealth : MonoBehaviour
     
     [SerializeField]
     private Entity _entity;
+
+    [SerializeField]
+    private bool _dead;
     
     public bool Invulnerable { get { return _invulnerable; } }
     
@@ -92,7 +95,13 @@ public class EntityHealth : MonoBehaviour
         if(_invulnerable && !overrideImmunity) 
             return;
 
+        if (_dead)
+            return;
+
         if (_entity == null)
+            return;
+
+        if (!gameObject.activeInHierarchy)
             return;
 
         if (_entity is Crystal && source is Player)
@@ -144,9 +153,19 @@ public class EntityHealth : MonoBehaviour
 
     public void Die()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (_entity == null)
+            return;
+
+        if (!gameObject.activeSelf)
+            return;
+        
         if(_deathParticle != null)
             Instantiate(_deathParticle, _entity.transform.position, Quaternion.identity);
-        
+
+        _dead = true;
         OnDeath?.Invoke();
         EntityDies?.Invoke(_entity);
     }

@@ -9,6 +9,9 @@ public class AoEAttack : Attack
     
     [SerializeField]
     private bool _allowSelfDamage;
+
+    [SerializeField]
+    private bool _overrideImmunityTicks;
     
     [SerializeField]
     private ParticleSystem _particles;
@@ -33,7 +36,7 @@ public class AoEAttack : Attack
                     continue;
 
                 if (hurtbox.Parent != source || _allowSelfDamage)
-                    hurtbox.Parent.Health.TakeDamage(source.DamageStat.Value, source);
+                    hurtbox.Parent.Health.TakeDamage(source.DamageStat.Value, source, _overrideImmunityTicks);
             }
         }
     }

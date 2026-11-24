@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AoEAttack
   _radius: 12
   _allowSelfDamage: 0
+  _overrideImmunityTicks: 1
   _particles: {fileID: 1514085189243377872, guid: e0247b43dc77ec4498354a690e37d859, type: 3}
   _position: {x: 0, y: 0, z: 0}
