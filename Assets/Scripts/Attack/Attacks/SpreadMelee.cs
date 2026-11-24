@@ -18,6 +18,7 @@ public class SpreadMelee : Attack
     public override void PerformAttack(Entity source, AttackContext context = null)
     {
         Vector3 forward = context?.Forward ?? source.transform.forward;
+        Vector3 position = context?.Position ?? source.transform.position;
 
         float totalAngle = _spread * (_attacks - 1);
         float halfAngle = totalAngle / 2f;
@@ -28,8 +29,7 @@ public class SpreadMelee : Attack
             float angle = -halfAngle + increment * i;
             Vector3 finalForward = (Quaternion.AngleAxis(angle, Vector3.up) * forward).normalized;
 
-            AttackContext attackContext = new AttackContext();
-            attackContext.Forward = finalForward;
+            AttackContext attackContext = new AttackContext(finalForward, position);
             
             _attacak.PerformAttack(source, attackContext);
         }

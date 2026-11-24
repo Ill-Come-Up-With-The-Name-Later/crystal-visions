@@ -147,11 +147,12 @@ public class CrystalBall : MonoBehaviour
             return;
         }
 
-        AttackContext context = new AttackContext();
-        context.Forward = _owner.Camera.transform.forward;
+        AttackContext context = new AttackContext(_owner.Camera.transform.forward.normalized,
+            transform.position);
+        
         attack.Attack.PerformAttack(_owner, context);
         _attackCooldowns[attack.Attack] = attack.Cooldown 
-                                          * Math.Max(Math.Min((GameManager.Instance.Crystal.Health.HealthPercentage
+                                          * Math.Max(Math.Min((GameManager.Instance.Crystal.Health.HealthPercentage 
                                                                + 0.01f) * 1.5f, 1), 0.2f);
     }
 

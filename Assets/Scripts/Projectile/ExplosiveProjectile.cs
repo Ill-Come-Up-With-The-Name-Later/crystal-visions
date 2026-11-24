@@ -13,9 +13,8 @@ public class ExplosiveProjectile : Projectile
         if (hit == source)
             return;
 
-        AttackContext context = new AttackContext();
-        context.Position = gameObject.transform.position;
-        
+        AttackContext context = new AttackContext(Vector3.zero, gameObject.transform.position);
+
         if(explosion != null)
             explosion.PerformAttack(source, context);
         
