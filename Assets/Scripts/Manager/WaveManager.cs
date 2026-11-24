@@ -112,12 +112,12 @@ public class WaveManager : MonoBehaviour
         
         while (spawned < enemiesToSpawn - wave.GuaranteedSpawns.Count)
         {
+            yield return new WaitForSeconds(Random.Range(wave.MinSpawnDelay, wave.MaxSpawnDelay));
+            
             Vector3 position = transform.position + 
                                new Vector3(Random.Range(-30, 30) + 25, 3.5f, Random.Range(30, 30) + 25);
             SpawnEnemy(wave.GetRandomEnemy(), position);
             spawned++;
-            
-            yield return new WaitForSeconds(Random.Range(wave.MinSpawnDelay, wave.MaxSpawnDelay));
         }
 
         if (wave.GuaranteedSpawns.Count == 0)
