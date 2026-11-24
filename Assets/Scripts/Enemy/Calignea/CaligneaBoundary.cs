@@ -20,6 +20,22 @@ public class CaligneaBoundary : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Hitbox"))
+            return;
+        
+        if (other.GetComponentInParent<Projectile>() != null)
+        {
+            Projectile projectile = other.GetComponentInParent<Projectile>();
+
+            if (projectile.Source == _boss.Enemy)
+                return;
+            
+            projectile.CountHit(_boss.Enemy, projectile.Source);
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Hurtbox"))

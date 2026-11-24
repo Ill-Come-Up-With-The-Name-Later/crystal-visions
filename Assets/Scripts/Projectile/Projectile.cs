@@ -91,6 +91,11 @@ public class Projectile : MonoBehaviour
         
         OnProjectileHit(hit, source);
     }
+
+    public void CountHit(Entity hit, Entity source)
+    {
+        OnHit(hit, source);
+    }
     
     protected virtual void OnProjectileStart() { }
     

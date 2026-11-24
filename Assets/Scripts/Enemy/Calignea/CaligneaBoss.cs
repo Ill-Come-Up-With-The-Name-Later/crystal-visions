@@ -26,6 +26,7 @@ public class CaligneaBoss : MonoBehaviour
     
     [SerializeField] 
     private Enemy _enemy;
+    public Enemy Enemy { get { return _enemy; } }
     
     public float CurrentHealth { get => _enemy.Health.CurrentHealth; }
     public float MaxHealth { get => _enemy.Health.MaxHealth; }
