@@ -25,6 +25,9 @@ public class Player : Entity
     [SerializeField]
     private EntityStat _jumpStrength;
 
+    [SerializeField]
+    private bool _jumpBuffer;
+
     public event Action OnPlayerDeath;
 
     public event Action<bool> OnAimAssistToggle;
@@ -73,8 +76,11 @@ public class Player : Entity
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround())
+        if ((Input.GetKeyDown(KeyCode.Space) && OnGround()) || (_jumpBuffer && OnGround()))
             Jump();
+        else if (Input.GetKeyDown(KeyCode.Space) && 
+                 (transform.position.y < 0.7f && _rigidbody.linearVelocity.y < 0))
+            _jumpBuffer = true;
         
         _health.Heal(_healthRegeneration.Value * Time.deltaTime, EntityHealth.HealReason.Regeneration);
     }
@@ -87,6 +93,7 @@ public class Player : Entity
     private void Jump()
     {
         _rigidbody.linearVelocity += new Vector3(0, _jumpStrength.Value, 0);
+        _jumpBuffer = false;
     }
 
     private void GainStatBoosts()
