@@ -14,7 +14,7 @@ public class BasicHitscanAttack : Attack
         RaycastHit[] hits;
         Vector3 forward = context == null ? source.transform.forward : context.Forward;
         
-        hits = Physics.RaycastAll( source.transform.position + forward * 0.5f, 
+        hits = Physics.RaycastAll( source.transform.position + forward * 1.5f, 
             forward, range);
         
         Instantiate(_meleeParticles, source.transform.position + forward, 
