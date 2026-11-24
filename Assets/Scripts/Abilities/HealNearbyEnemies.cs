@@ -12,6 +12,9 @@ public class HealNearbyEnemies : PeriodicAction
     [SerializeField]
     private HealBeam _healBeam;
 
+    [SerializeField]
+    private int _maxEnemies;
+
     [Header("Debug (Do not edit)")] 
     private Enemy _parent;
 
@@ -27,6 +30,8 @@ public class HealNearbyEnemies : PeriodicAction
             Where(enemy => Vector3.Distance(gameObject.transform.position, enemy.transform.position) 
                            < _healRadius && enemy != _parent).ToList();
 
+        int healedEnemies = 0;
+        
         foreach (Enemy enemy in enemies)
         {
             HealBeam beam = Instantiate(_healBeam);
@@ -36,6 +41,10 @@ public class HealNearbyEnemies : PeriodicAction
             beam.HealAmount = _parent.DamageStat.Value * 2;
             
             beam.Heal();
+            healedEnemies++;
+
+            if (healedEnemies >= _maxEnemies)
+                break;
         }
     }
 }

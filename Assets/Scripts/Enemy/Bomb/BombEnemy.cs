@@ -22,6 +22,6 @@ public class BombEnemy : MonoBehaviour
 
     void KillOnExplode()
     {
-        _enemy.Health.TakeDamage(2_147_483_647, _enemy);
+        _enemy.Health.TakeDamage(2_147_483_647, _enemy, true);
     }
 }

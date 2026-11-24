@@ -87,9 +87,9 @@ public class EntityHealth : MonoBehaviour
         _invulnerable = false;
     }
 
-    public void TakeDamage(float damage, Entity source)
+    public void TakeDamage(float damage, Entity source, bool overrideImmunity = false)
     {
-        if(_invulnerable) 
+        if(_invulnerable && !overrideImmunity) 
             return;
 
         if (_entity == null)
