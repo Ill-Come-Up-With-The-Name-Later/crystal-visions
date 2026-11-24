@@ -81,7 +81,7 @@ public class Player : Entity
 
     bool OnGround()
     {
-        return transform.position.y + 0.01 >= 0.6f && transform.position.y - 0.01 <= 0.6f;
+        return transform.position.y + 0.05 >= 0.55f && transform.position.y - 0.05 <= 0.55f;
     }
 
     private void Jump()
