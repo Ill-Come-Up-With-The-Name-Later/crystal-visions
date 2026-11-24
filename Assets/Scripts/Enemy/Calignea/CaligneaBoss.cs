@@ -53,6 +53,7 @@ public class CaligneaBoss : MonoBehaviour
         OnPatienceChange += GainStatBoosts;
         OnBossSpawned?.Invoke(this);
         Health.OnHealthChanges += TriggerHealthChangeEvent;
+        _enemy.Health.OnDamageTaken += ShrinkBoundary;
     }
     
     void Update()
@@ -71,8 +72,19 @@ public class CaligneaBoss : MonoBehaviour
         if (_currentPatience <= 0)
         {
             OnPatienceExpires?.Invoke();
-            GameManager.Instance.Player.Health.TakeDamage(2_147_483_647, gameObject.GetComponent<Enemy>());
+            GameManager.Instance.Player.Health.TakeDamage(2_147_483_647, _enemy);
         }
+    }
+
+    void ShrinkBoundary(float damage)
+    {
+        Vector3 scale = _boundary.transform.localScale;
+
+        scale.x = Math.Max(3, scale.x - (damage * 0.002f));
+        scale.y = Math.Max(2, scale.y - (damage * 0.002f));
+        scale.z = Math.Max(3, scale.z - (damage * 0.002f));
+        
+        _boundary.transform.localScale = scale;
     }
 
     private void OnDestroy()
@@ -80,6 +92,7 @@ public class CaligneaBoss : MonoBehaviour
         OnDeath?.Invoke();
         OnPatienceChange -= GainStatBoosts;
         Health.OnHealthChanges -= TriggerHealthChangeEvent;
+        _enemy.Health.OnDamageTaken -= ShrinkBoundary;
     }
 
     void TriggerHealthChangeEvent()
