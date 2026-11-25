@@ -402,6 +402,7 @@ MonoBehaviour:
     _secondaryAttack:
       _attack: {fileID: 11400000, guid: 66f20892aa1f5dc40bf0d1c00d145e3f, type: 2}
       _cooldown: 1
+  _swapCooldown: 0.5
   _modeColors:
   - {r: 0.23137255, g: 0.7490196, b: 0.627451, a: 0}
   - {r: 0.626169, g: 1, b: 0.4392157, a: 0}
@@ -415,6 +416,7 @@ MonoBehaviour:
     _secondaryAttack:
       _attack: {fileID: 0}
       _cooldown: 0
+  _canSwapMode: 0
   _effect: {fileID: 0}
 --- !u!1001 &5144397975198521855
 PrefabInstance:
