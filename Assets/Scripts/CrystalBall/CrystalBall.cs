@@ -38,6 +38,9 @@ public class CrystalBall : MonoBehaviour
     private List<AttackMode> _attackModes;
 
     [SerializeField]
+    private float _swapCooldown;
+    
+    [SerializeField]
     private List<Color> _modeColors;
 
     [SerializeField]
@@ -57,6 +60,9 @@ public class CrystalBall : MonoBehaviour
     private int _currentIndex;
     
     public int CurrentModeIndex { get { return _currentIndex; } }
+
+    [SerializeField]
+    private bool _canSwapMode;
 
     [SerializeField]
     private VisualEffect _effect;
@@ -94,6 +100,7 @@ public class CrystalBall : MonoBehaviour
     {
         _currentIndex = 0;
         _current = _attackModes[_currentIndex];
+        _canSwapMode = true;
         
         foreach (AttackMode mode in _attackModes)
         {
@@ -121,10 +128,12 @@ public class CrystalBall : MonoBehaviour
         if (Input.GetMouseButtonDown((int)MouseButton.Right))
             UseAttack(_current.Secondary);
 
-        if (Input.GetMouseButtonDown((int)MouseButton.Middle))
+        if (Input.mouseScrollDelta.y != 0 && _canSwapMode)
         {
-            _currentIndex = (_currentIndex + 1) % _attackModes.Count;
+            _currentIndex += (Input.mouseScrollDelta.y > 0 ? -1 : 1);
+            _currentIndex = Math.Abs(_currentIndex) % _attackModes.Count;
             _current = _attackModes[_currentIndex];
+            StartCoroutine(SetSwapCooldown());
 
             ParticleSystem effect = Instantiate(_modeSwitchEffect, transform.position, Quaternion.identity);
             effect.Play();
@@ -137,6 +146,13 @@ public class CrystalBall : MonoBehaviour
             
             OnModeChange?.Invoke(_currentIndex);
         }
+    }
+
+    IEnumerator SetSwapCooldown()
+    {
+        _canSwapMode = false;
+        yield return new WaitForSeconds(_swapCooldown);
+        _canSwapMode = true;
     }
 
     public void UseAttack(AttackAndCooldown attack)
