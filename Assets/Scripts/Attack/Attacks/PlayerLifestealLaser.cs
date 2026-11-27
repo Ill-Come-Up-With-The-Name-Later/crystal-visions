@@ -39,7 +39,7 @@ public class PlayerLifestealLaser : Attack
                     if (hitObject.GetComponent<Hurtbox>() != null)
                     {
                         Entity hitEntity = hitObject.GetComponent<Hurtbox>().Parent;
-                        hitEntity.Health.TakeDamage(damage * 4, source);
+                        hitEntity.Health.TakeDamage(damage * 2.75f, source);
                         
                         HealBeam beam = Instantiate(_healBeam, source.transform.position, Quaternion.identity)
                             .GetComponent<HealBeam>();
